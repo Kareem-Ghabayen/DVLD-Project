@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="../BussinessLayer/BussinessLayer.csproj" />
-  <Project Path="../DataAccessLayer/DataAccessLayer.csproj" />
-  <Project Path="DVLD.csproj" />
+  <Project Path="../BussinessLayer/BussinessLayer.csproj" Id="a7607597-af61-41be-95f8-609fee435615" />
+  <Project Path="../DataAccessLayer/DataAccessLayer.csproj" Id="96294dc1-e611-4593-8842-07a89459d386" />
+  <Project Path="DVLD.csproj" Id="05461d10-4520-4beb-837b-5880f6d52d9c" />
 </Solution>

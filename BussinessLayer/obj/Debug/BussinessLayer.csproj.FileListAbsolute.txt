@@ -1,9 +1,0 @@
-E:\DVLDProject\BussinessLayer\bin\Debug\BussinessLayer.dll
-E:\DVLDProject\BussinessLayer\bin\Debug\BussinessLayer.pdb
-E:\DVLDProject\BussinessLayer\bin\Debug\DataAccessLayer.dll
-E:\DVLDProject\BussinessLayer\bin\Debug\DataAccessLayer.pdb
-E:\DVLDProject\BussinessLayer\obj\Debug\BussinessLayer.csproj.AssemblyReference.cache
-E:\DVLDProject\BussinessLayer\obj\Debug\BussinessLayer.csproj.CoreCompileInputs.cache
-E:\DVLDProject\BussinessLayer\obj\Debug\Bussines.E1038C4E.Up2Date
-E:\DVLDProject\BussinessLayer\obj\Debug\BussinessLayer.dll
-E:\DVLDProject\BussinessLayer\obj\Debug\BussinessLayer.pdb

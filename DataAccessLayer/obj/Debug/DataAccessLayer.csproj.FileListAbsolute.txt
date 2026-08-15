@@ -1,6 +1,0 @@
-E:\DVLDProject\DataAccessLayer\bin\Debug\DataAccessLayer.dll
-E:\DVLDProject\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
-E:\DVLDProject\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
-E:\DVLDProject\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
-E:\DVLDProject\DataAccessLayer\obj\Debug\DataAccessLayer.dll
-E:\DVLDProject\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
