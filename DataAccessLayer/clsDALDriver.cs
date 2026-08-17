@@ -4,15 +4,15 @@ using System.Data.SqlClient;
 
 namespace DataAccessLayer
 {
-    public class clsDALUser
+    public class clsDALDriver
     {
-        public static bool GetUserInfoByUserID(int UserID, ref int PersonID, ref string Username, ref string Password, ref bool IsActive)
+        public static bool GetDriverInfoByDriverID(int DriverID, ref int PersonID, ref int CreatedByUserID, ref DateTime CreatedDate)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT * FROM Users WHERE UserID = @UserID";
+            string query = "SELECT * FROM Drivers WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             try
             {
@@ -23,9 +23,8 @@ namespace DataAccessLayer
                 {
                     isFound = true;
                     PersonID = (int)reader["PersonID"];
-                    Username = (string)reader["Username"];
-                    Password = (string)reader["Password"];
-                    IsActive = (bool)reader["IsActive"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    CreatedDate = (DateTime)reader["CreatedDate"];
                 }
                 reader.Close();
             }
@@ -41,11 +40,11 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        public static bool GetUserInfoByPersonID(int PersonID, ref int UserID, ref string Username, ref string Password, ref bool IsActive)
+        public static bool GetDriverInfoByPersonID(int PersonID, ref int DriverID, ref int CreatedByUserID, ref DateTime CreatedDate)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT * FROM Users WHERE PersonID = @PersonID";
+            string query = "SELECT * FROM Drivers WHERE PersonID = @PersonID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
 
@@ -57,10 +56,9 @@ namespace DataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
-                    UserID = (int)reader["UserID"];
-                    Username = (string)reader["Username"];
-                    Password = (string)reader["Password"];
-                    IsActive = (bool)reader["IsActive"];
+                    DriverID = (int)reader["DriverID"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    CreatedDate = (DateTime)reader["CreatedDate"];
                 }
                 reader.Close();
             }
@@ -76,14 +74,18 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        public static bool GetUserInfoByUsernameAndPassword(string Username, string Password, ref int UserID, ref int PersonID, ref bool IsActive)
+        public static bool GetDriverInfoByNationalNo(string NationalNo, ref int DriverID, ref int PersonID, ref int CreatedByUserID, ref DateTime CreatedDate)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
+
+            string query = @"SELECT Drivers.* 
+                             FROM Drivers 
+                             INNER JOIN People ON Drivers.PersonID = People.PersonID 
+                             WHERE People.NationalNo = @NationalNo";
+
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@NationalNo", NationalNo);
 
             try
             {
@@ -93,9 +95,10 @@ namespace DataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
-                    UserID = (int)reader["UserID"];
+                    DriverID = (int)reader["DriverID"];
                     PersonID = (int)reader["PersonID"];
-                    IsActive = (bool)reader["IsActive"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    CreatedDate = (DateTime)reader["CreatedDate"];
                 }
                 reader.Close();
             }
@@ -110,21 +113,49 @@ namespace DataAccessLayer
 
             return isFound;
         }
-
-        public static int AddNewUser(int PersonID, string Username, string Password, bool IsActive)
+        public static DataTable GetAllDrivers()
         {
-            int UserID = -1;
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+            string query = "SELECT * FROM Drivers_View";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static int AddNewDriver(int PersonID, int CreatedByUserID)
+        {
+            int DriverID = -1;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = @"INSERT INTO Users (PersonID, Username, Password, IsActive)
-                             VALUES (@PersonID, @Username, @Password, @IsActive);
+            string query = @"INSERT INTO Drivers (PersonID, CreatedByUserID, CreatedDate)
+                             VALUES (@PersonID, @CreatedByUserID, GETDATE());
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
+            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
             try
             {
@@ -133,39 +164,36 @@ namespace DataAccessLayer
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    UserID = insertedID;
+                    DriverID = insertedID;
                 }
             }
             catch (Exception ex)
             {
-                UserID = -1;
+                DriverID = -1;
             }
             finally
             {
                 connection.Close();
             }
 
-            return UserID;
+            return DriverID;
         }
 
-        public static bool UpdateUser(int UserID, int PersonID, string Username, string Password, bool IsActive)
+
+        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID)
         {
             bool isUpdated = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = @"UPDATE Users SET 
-                             PersonID = @PersonID,
-                             Username = @Username,
-                             Password = @Password,
-                             IsActive = @IsActive
-                             WHERE UserID = @UserID";
+            string query = @"UPDATE Drivers SET 
+                                PersonID = @PersonID,
+                                CreatedByUserID = @CreatedByUserID
+                             WHERE DriverID = @DriverID";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
+            command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
             try
             {
@@ -188,14 +216,16 @@ namespace DataAccessLayer
 
             return isUpdated;
         }
+    
 
-        public static bool DeleteUser(int UserID)
+
+    public static bool DeleteDriver(int DriverID)
         {
             bool isDeleted = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "DELETE FROM Users WHERE UserID = @UserID";
+            string query = "DELETE FROM Drivers WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             try
             {
@@ -219,13 +249,13 @@ namespace DataAccessLayer
             return isDeleted;
         }
 
-        public static bool IsUserExist(int UserID)
+        public static bool IsDriverExist(int DriverID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT Found = 1 FROM Users WHERE UserID = @UserID";
+            string query = "SELECT Found=1 FROM Drivers WHERE DriverID = @DriverID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
 
             try
             {
@@ -246,39 +276,13 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        public static bool IsUserExist(string Username)
+
+
+        public static bool IsDriverExistByPersonID(int PersonID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT Found = 1 FROM Users WHERE Username = @Username";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Username", Username);
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                isFound = reader.HasRows;
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return isFound;
-        }
-
-        // 9. التحقق عما إذا كان الشخص يمتلك حساب مستخدم مسبقاً
-        public static bool IsUserExistForPersonID(int PersonID)
-        {
-            bool isFound = false;
-            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT Found = 1 FROM Users WHERE PersonID = @PersonID";
+            string query = "SELECT Found=1 FROM Drivers WHERE PersonID = @PersonID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
 
@@ -300,35 +304,6 @@ namespace DataAccessLayer
 
             return isFound;
         }
+    } 
 
-        public static DataTable GetAllUsers()
-        {
-            DataTable dt = new DataTable();
-            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT * FROM Users";
-            SqlCommand command = new SqlCommand(query, connection);
-            
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                // Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return dt;
-        }
-    }
 }

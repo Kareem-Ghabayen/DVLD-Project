@@ -41,9 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsDALApplication.cs" />
+    <Compile Include="clsDALApplicationType.cs" />
     <Compile Include="clsDALCountry.cs" />
+    <Compile Include="clsDALDriver.cs" />
+    <Compile Include="clsDALLicenseClasses.cs" />
+    <Compile Include="clsDALLocalDrivingLicenseApplication.cs" />
+    <Compile Include="clsDALTest.cs" />
+    <Compile Include="clsDALTestAppointmentcs.cs" />
+    <Compile Include="clsDALTestTypes.cs" />
     <Compile Include="clsDALUser.cs" />
-    <Compile Include="clsPersonBusiness.cs" />
     <Compile Include="clsPersonData.cs" />
     <Compile Include="ConnectionToServer.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
