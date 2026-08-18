@@ -44,8 +44,11 @@
     <Compile Include="clsDALApplication.cs" />
     <Compile Include="clsDALApplicationType.cs" />
     <Compile Include="clsDALCountry.cs" />
+    <Compile Include="clsDALDetainedLicenses.cs" />
     <Compile Include="clsDALDriver.cs" />
+    <Compile Include="clsDALInternationalLicenses.cs" />
     <Compile Include="clsDALLicenseClasses.cs" />
+    <Compile Include="clsDALLicenses.cs" />
     <Compile Include="clsDALLocalDrivingLicenseApplication.cs" />
     <Compile Include="clsDALTest.cs" />
     <Compile Include="clsDALTestAppointmentcs.cs" />

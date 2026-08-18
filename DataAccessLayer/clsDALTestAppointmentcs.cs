@@ -122,7 +122,7 @@ namespace DataAccessLayer
             return TestAppointmentID;
         }
 
-=        public static bool UpdateTestAppointment(int TestAppointmentID, int TestTypeID,
+     public static bool UpdateTestAppointment(int TestAppointmentID, int TestTypeID,
             int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees,
             int CreatedByUserID, bool IsLocked, int RetestTestAppointmentID)
         {

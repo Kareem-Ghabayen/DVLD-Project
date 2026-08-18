@@ -329,6 +329,39 @@ namespace DataAccessLayer
 
             return dt;
         }
+
+
+        public static bool DoesPersonHaveActiveApplication(int PersonID, int ApplicationTypeID)
+        {
+            bool isExist = false;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            // الفحص يتم حصرياً في جدول Applications الرئيسي بناءً على الشخص وننوع الطلب والحالة (غير مكتمل)
+            string query = @"SELECT Found = 1 
+                     FROM Applications 
+                     WHERE ApplicantPersonID = @PersonID 
+                       AND ApplicationTypeID = @ApplicationTypeID 
+                       AND ApplicationStatus = 2"; // 3 تعني Completed (مكتمل)
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isExist = true;
+                }
+            }
+            catch { }
+            finally { connection.Close(); }
+
+            return isExist;
+        }
+
     }
 }
 
