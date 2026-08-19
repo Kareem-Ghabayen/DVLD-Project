@@ -377,7 +377,25 @@ namespace DataAccessLayer
 
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = "SELECT * FROM People";
+            string query = @"SELECT
+    People.PersonID,
+    People.NationalNo,
+    People.FirstName,
+    People.SecondName,
+    People.ThirdName,
+    People.LastName,
+    People.DateOfBirth,
+    CASE
+        WHEN People.Gendor = 0 THEN 'ذكر'
+        ELSE 'أنثى'
+    END AS GendorText,
+    People.Address,
+    People.Phone,
+    People.Email,
+    Countries.CountryName AS Nationality,
+    People.ImagePath
+FROM People
+INNER JOIN Countries ON People.NationalityCountryID = Countries.CountryID" ;
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -404,6 +422,43 @@ namespace DataAccessLayer
                 connection.Close();
             }
             return dt;
+        }
+
+
+        public static bool IsPersonLinked(int personID)
+        {
+            bool isLinked = false;
+
+            string query = @"SELECT TOP 1 1 FROM Drivers WHERE PersonID = @PersonID
+                     UNION
+                     SELECT TOP 1 1 FROM Users WHERE PersonID = @PersonID
+                     UNION
+                     SELECT TOP 1 1 FROM Applications WHERE PersonID = @PersonID";
+
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@PersonID", personID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            isLinked = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isLinked = false;
+                    }
+                }
+            }
+
+            return isLinked;
         }
     }
 }

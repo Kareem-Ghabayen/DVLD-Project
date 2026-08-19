@@ -180,7 +180,7 @@ namespace DataAccessLayer
         }
 
 
-        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID)
+        public static bool UpdateDriver(int DriverID, int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             bool isUpdated = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
@@ -188,11 +188,14 @@ namespace DataAccessLayer
             string query = @"UPDATE Drivers SET 
                                 PersonID = @PersonID,
                                 CreatedByUserID = @CreatedByUserID
+                                 CreatedDate =@CreatedDate
                              WHERE DriverID = @DriverID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DriverID", DriverID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
+
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
             try

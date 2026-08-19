@@ -82,7 +82,6 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        // 3. البحث عن الدولة باستخدام الاسم (CountryName)
         public static bool GetCountryInfoByName(string CountryName, ref int CountryID)
         {
             bool isFound = false;

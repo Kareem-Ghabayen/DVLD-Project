@@ -68,7 +68,20 @@ namespace DVLD_DataAccess
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = "SELECT * FROM Licenses";
+            string query = @"SELECT 
+                                Licenses.LicenseID,
+                                Licenses.ApplicationID,
+                                Drivers.PersonID,
+                                People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName AS FullName,
+                                LicenseClasses.ClassName,
+                                Licenses.IssueDate,
+                                Licenses.ExpirationDate,
+                                Licenses.IsActive
+                             FROM Licenses
+                             INNER JOIN Drivers ON Licenses.DriverID = Drivers.DriverID
+                             INNER JOIN People ON Drivers.PersonID = People.PersonID
+                             INNER JOIN LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID
+                             ORDER BY Licenses.LicenseID DESC";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -95,7 +108,6 @@ namespace DVLD_DataAccess
 
             return dt;
         }
-
         public static DataTable GetDriverLicenses(int DriverID)
         {
             DataTable dt = new DataTable();
@@ -146,7 +158,7 @@ namespace DVLD_DataAccess
 
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@DriverID", DriverID);
-            command.Parameters.AddWithValue("@LicenseClass", LicenseClass); 
+            command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
             command.Parameters.AddWithValue("@IssueDate", IssueDate);
             command.Parameters.AddWithValue("@ExpirationDate", ExpirationDate);
 
@@ -314,6 +326,59 @@ namespace DVLD_DataAccess
             }
 
             return isActive;
+        }
+
+        public static bool GetDriverInfoByDriverID(int DriverID, ref int PersonID, ref int CreatedByUserID, ref DateTime CreatedDate, ref string FullName, ref string NationalNo)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT 
+                                Drivers.DriverID,
+                                Drivers.PersonID,
+                                Drivers.CreatedByUserID,
+                                Drivers.CreatedDate,
+                                People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName AS FullName,
+                                People.NationalNo
+                             FROM Drivers
+                             INNER JOIN People ON Drivers.PersonID = People.PersonID
+                             WHERE Drivers.DriverID = @DriverID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    isFound = true;
+
+                    PersonID = (int)reader["PersonID"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    CreatedDate = (DateTime)reader["CreatedDate"];
+                    FullName = reader["FullName"].ToString();
+                    NationalNo = reader["NationalNo"].ToString();
+                }
+                else
+                {
+                    isFound = false;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
         }
     }
 }

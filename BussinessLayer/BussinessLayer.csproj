@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="clsBLDriver.cs" />
+    <Compile Include="clsBLSCountry.cs" />
+    <Compile Include="clsBLSPeople.cs" />
+    <Compile Include="clsBLUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
