@@ -362,6 +362,47 @@ namespace DataAccessLayer
             return isExist;
         }
 
+
+
+
+        public static bool IsThereAnActiveApplicationInSameLicenses(int applicantPersonID, int applicationTypeID, int licenseClassID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT Found = 1 
+                     FROM Applications 
+                     INNER JOIN LocalDrivingLicenseApplications 
+                         ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+                     WHERE Applications.ApplicantPersonID = @ApplicantPersonID 
+                       AND Applications.ApplicationTypeID = @ApplicationTypeID 
+                       AND LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID
+                       AND Applications.ApplicationStatus = 1";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
+            command.Parameters.AddWithValue("@LicenseClassID", licenseClassID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int found))
+                {
+                    isFound = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // التعامل مع الخطأ (Logging)
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
     }
 }
 

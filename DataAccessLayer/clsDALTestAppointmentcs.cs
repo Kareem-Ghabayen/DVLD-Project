@@ -185,5 +185,42 @@ namespace DataAccessLayer
 
             return isDeleted;
         }
+        public static bool IsThereAnActiveAppointment(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            bool isActive = false;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT TOP 1 Found = 1 
+                     FROM TestAppointments
+                     WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                       AND TestTypeID = @TestTypeID 
+                       AND IsLocked = 0";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", testTypeID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    isActive = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception if needed
+                isActive = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isActive;
+        }
     }
 }

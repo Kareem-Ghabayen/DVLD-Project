@@ -167,5 +167,81 @@ namespace DataAccessLayer
 
             return isUpdated;
         }
+        public static byte GetPassedTestCount(int LocalDrivingLicenseApplicationID)
+        {
+            byte PassedTestCount = 0;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT COUNT(TestID) 
+                             FROM Tests INNER JOIN TestAppointments 
+                             ON Tests.TestAppointmentID = TestAppointments.TestAppointmentID
+                             WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                               AND TestResult = 1";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && byte.TryParse(result.ToString(), out byte count))
+                {
+                    PassedTestCount = count;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return PassedTestCount;
+        }
+
+        public static bool DoesPassTestType(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            bool isPassed = false;
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT TOP 1 Found = 1 
+                     FROM Tests 
+                     INNER JOIN TestAppointments 
+                     ON Tests.TestAppointmentID = TestAppointments.TestAppointmentID
+                     WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                       AND TestTypeID = @TestTypeID 
+                       AND TestResult = 1";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", testTypeID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    isPassed = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception if needed
+                isPassed = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isPassed;
+        }
+
     }
 }

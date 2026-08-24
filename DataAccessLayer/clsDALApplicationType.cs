@@ -35,19 +35,17 @@ namespace DataAccessLayer
             return dt;
         }
 
-        public static bool UpdateApplicationType(int ApplicationTypeID, string ApplicationTypeTitle, float ApplicationFees)
+        public static bool UpdateApplicationFees(int ApplicationTypeID, float ApplicationFees)
         {
             bool isUpdated = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
             string query = @"UPDATE ApplicationTypes SET 
-                             ApplicationTypeTitle = @ApplicationTypeTitle,
-                             ApplicationFees = @ApplicationFees
-                             WHERE ApplicationTypeID = @ApplicationTypeID";
+                     ApplicationFees = @ApplicationFees
+                     WHERE ApplicationTypeID = @ApplicationTypeID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-            command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
             command.Parameters.AddWithValue("@ApplicationFees", ApplicationFees);
 
             try
@@ -104,70 +102,72 @@ namespace DataAccessLayer
 
             return isFound;
         }
-        // 4. إضافة نوع طلب جديد
-        public static int AddNewApplicationType(string ApplicationTypeTitle, float ApplicationFees)
-        {
-            int ApplicationTypeID = -1;
-            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+        // غير مستعملة حتى اللحظة في BL
+        //public static int AddNewApplicationType(string ApplicationTypeTitle, float ApplicationFees)
+        //{
+        //    int ApplicationTypeID = -1;
+        //    SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = @"INSERT INTO ApplicationTypes (ApplicationTypeTitle, ApplicationFees)
-                             VALUES (@ApplicationTypeTitle, @ApplicationFees);
-                             SELECT SCOPE_IDENTITY();";
+        //    string query = @"INSERT INTO ApplicationTypes (ApplicationTypeTitle, ApplicationFees)
+        //                     VALUES (@ApplicationTypeTitle, @ApplicationFees);
+        //                     SELECT SCOPE_IDENTITY();";
 
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
-            command.Parameters.AddWithValue("@ApplicationFees", ApplicationFees);
+        //    SqlCommand command = new SqlCommand(query, connection);
+        //    command.Parameters.AddWithValue("@ApplicationTypeTitle", ApplicationTypeTitle);
+        //    command.Parameters.AddWithValue("@ApplicationFees", ApplicationFees);
 
-            try
-            {
-                connection.Open();
-                object result = command.ExecuteScalar();
+        //    try
+        //    {
+        //        connection.Open();
+        //        object result = command.ExecuteScalar();
 
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
-                {
-                    ApplicationTypeID = insertedID;
-                }
-            }
-            catch (Exception ex)
-            {
-                ApplicationTypeID = -1;
-            }
-            finally
-            {
-                connection.Close();
-            }
+        //        if (result != null && int.TryParse(result.ToString(), out int insertedID))
+        //        {
+        //            ApplicationTypeID = insertedID;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ApplicationTypeID = -1;
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
 
-            return ApplicationTypeID;
-        }
+        //    return ApplicationTypeID;
+        //}
 
-        public static bool DeleteApplicationType(int ApplicationTypeID)
-        {
-            bool isDeleted = false;
-            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "DELETE FROM ApplicationTypes WHERE ApplicationTypeID = @ApplicationTypeID";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+        // غير مستعملة حتى اللحظة في BL
+        
+        //public static bool DeleteApplicationType(int ApplicationTypeID)
+        //{
+        //    bool isDeleted = false;
+        //    SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+        //    string query = "DELETE FROM ApplicationTypes WHERE ApplicationTypeID = @ApplicationTypeID";
+        //    SqlCommand command = new SqlCommand(query, connection);
+        //    command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
 
-            try
-            {
-                connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
+        //    try
+        //    {
+        //        connection.Open();
+        //        int rowsAffected = command.ExecuteNonQuery();
 
-                if (rowsAffected > 0)
-                {
-                    isDeleted = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                isDeleted = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+        //        if (rowsAffected > 0)
+        //        {
+        //            isDeleted = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        isDeleted = false;
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
 
-            return isDeleted;
-        }
+        //    return isDeleted;
+        //}
     }
 }

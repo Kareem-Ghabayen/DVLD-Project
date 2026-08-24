@@ -206,33 +206,33 @@ public class clsDALLocalDrivingLicenseApplication
         return isFound;
     }
 
-    public static bool IsLicenseApplicationForPersonIDExist(int PersonID, int LicenseClassID)
-    {
-        bool isExist = false;
-        SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+    //public static bool IsLicenseApplicationForPersonIDExist(int PersonID, int LicenseClassID)
+    //{
+    //    bool isExist = false;
+    //    SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-        string query = @"SELECT Found = 1 
-                     FROM LocalDrivingLicenseApplications_View 
-                     WHERE ApplicantPersonID = @PersonID 
-                       AND LicenseClassID = @LicenseClassID 
-                       AND ApplicationStatus = 1"; 
+    //    string query = @"SELECT Found = 1 
+    //                 FROM LocalDrivingLicenseApplications_View 
+    //                 WHERE ApplicantPersonID = @PersonID 
+    //                   AND LicenseClassID = @LicenseClassID 
+    //                   AND ApplicationStatus = 1"; 
 
-        SqlCommand command = new SqlCommand(query, connection);
-        command.Parameters.AddWithValue("@PersonID", PersonID);
-        command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+    //    SqlCommand command = new SqlCommand(query, connection);
+    //    command.Parameters.AddWithValue("@PersonID", PersonID);
+    //    command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
 
-        try
-        {
-            connection.Open();
-            object result = command.ExecuteScalar();
-            if (result != null)
-            {
-                isExist = true;
-            }
-        }
-        catch { }
-        finally { connection.Close(); }
+    //    try
+    //    {
+    //        connection.Open();
+    //        object result = command.ExecuteScalar();
+    //        if (result != null)
+    //        {
+    //            isExist = true;
+    //        }
+    //    }
+    //    catch { }
+    //    finally { connection.Close(); }
 
-        return isExist;
-    }
+    //    return isExist;
+    //}
 }

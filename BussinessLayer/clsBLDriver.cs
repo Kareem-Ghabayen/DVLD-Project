@@ -140,5 +140,28 @@ namespace BuisnessLayer
         {
             return clsDALDriver.IsDriverExistByPersonID(PersonID);
         }
+        public static int GetOrCreateDriverID(int personID)
+        {
+            // 1. هل الشخص مسجل كسايق من قبل؟ نبحث عنه بواسطة رقم الشخص
+            clsBLDriver driver = clsBLDriver.FindByPersonID(personID);
+
+            if (driver != null)
+            {
+                return driver.DriverID; // لو لقيناه، بنرجع رقمه الجاهز مباشرة
+            }
+
+            // 2. لو مش مسجل (أول مرة بحياته)، بننشئ له سجل سائق جديد
+            clsBLDriver newDriver = new clsBLDriver();
+            newDriver.PersonID = personID;
+            newDriver.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            // أخذه من العالمي مباشرة            newDriver.CreatedDate = DateTime.Now;
+
+            if (newDriver.Save())
+            {
+                return newDriver.DriverID; // بنرجع رقم السائق الجديد اللي انولد
+            }
+
+            return -1; // فشل الإنشـاء
+        }
     }
 }

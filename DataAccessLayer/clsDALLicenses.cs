@@ -7,6 +7,76 @@ namespace DVLD_DataAccess
 {
     public class clsDALLicenses
     {
+
+        public static bool IsLicenseExist(int licenseID)
+        {
+            bool isFound = false;
+
+            // افترض أن عندك كلاس الاتصال مع قاعدة البيانات ConnectionString
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                string query = "SELECT Found=1 FROM Licenses WHERE LicenseID = @LicenseID";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            isFound = reader.HasRows;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log exception if needed
+                        isFound = false;
+                    }
+                }
+            }
+
+            return isFound;
+        }
+        //  هان عشان تفحص ادا الشخص معاه رخصة من نوع نمعين ولا لا 
+        public static bool IsLicenseExistByPersonIDAndLicenseClass(int PersonID, int LicenseClass)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
+
+            string query = @"SELECT TOP 1 1 
+                     FROM Licenses 
+                     INNER JOIN Drivers ON Licenses.DriverID = Drivers.DriverID
+                     WHERE Drivers.PersonID = @PersonID 
+                       AND Licenses.LicenseClass = @LicenseClass";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClass", LicenseClass);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isFound = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
         public static bool GetLicenseInfoByLicenseID(int LicenseID, ref int ApplicationID, ref int DriverID, ref int LicenseClass, ref DateTime IssueDate, ref DateTime ExpirationDate, ref string Notes, ref decimal PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
         {
             bool isFound = false;
