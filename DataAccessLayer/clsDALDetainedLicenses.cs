@@ -258,5 +258,60 @@ namespace DVLD_DataAccess
 
             return isDetained;
         }
+        public static bool GetDetainedLicenseInfoByLicenseID(int licenseID,
+            ref int detainID, ref DateTime detainDate,
+            ref decimal fineFees, ref int createdByUserID, ref bool isReleased,
+            ref DateTime releaseDate, ref int releasedByUserID, ref int releaseApplicationID)
+        {
+            bool isFound = false;
+            string query = "SELECT * FROM DetainedLicenses WHERE LicenseID = @LicenseID AND IsReleased = 0";
+
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LicenseID", licenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                detainID = (int)reader["DetainID"];
+                                // مش بحاجة نرجع LicenseID لأنه أصلاً معنا كمدخل!
+                                detainDate = (DateTime)reader["DetainDate"];
+                                fineFees = (decimal)reader["FineFees"];
+                                createdByUserID = (int)reader["CreatedByUserID"];
+                                isReleased = (bool)reader["IsReleased"];
+
+                                if (reader["ReleaseDate"] != DBNull.Value)
+                                    releaseDate = (DateTime)reader["ReleaseDate"];
+                                else
+                                    releaseDate = DateTime.MinValue;
+
+                                if (reader["ReleasedByUserID"] != DBNull.Value)
+                                    releasedByUserID = (int)reader["ReleasedByUserID"];
+                                else
+                                    releasedByUserID = -1;
+
+                                if (reader["ReleaseApplicationID"] != DBNull.Value)
+                                    releaseApplicationID = (int)reader["ReleaseApplicationID"];
+                                else
+                                    releaseApplicationID = -1;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+            return isFound;
+        }
     }
 }

@@ -270,5 +270,73 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
             return -1;
         }
+
+        public clsBLLicense Replace(enIssueReason issueReason, int applicationID)
+        {
+            // 1. إلغاء تفعيل الرخصة القديمة الحالية
+            this.IsActive = false;
+            this.Save(); // أو ميثود خاصة بإلغاء التفعيل
+
+            // 2. إنشاء رخصة جديدة كبديل للرخصة الحالية
+            clsBLLicense newLicense = new clsBLLicense();
+
+            newLicense.ApplicationID = applicationID;
+            newLicense.DriverID = this.DriverID;
+            newLicense.LicenseClass = this.LicenseClass;
+            newLicense.IssueDate = DateTime.Now;
+
+            // حساب تاريخ انتهاء الرخصة بناءً على فئة الرخصة (License Class Default Validity Length)
+            clsBLLicenseClass licenseClassInfo = clsBLLicenseClass.Find(this.LicenseClass);
+            if (licenseClassInfo != null)
+            {
+                newLicense.ExpirationDate = this.ExpirationDate;
+            }
+            else
+            {
+                newLicense.ExpirationDate = DateTime.Now.AddYears(10); // قيمة افتراضية مثلاً
+            }
+
+            newLicense.PaidFees = licenseClassInfo != null ? licenseClassInfo.ClassFees : 0;
+            newLicense.IsActive = true;
+            newLicense.IssueReason = (byte)issueReason; // هنا رح تكون Lost (مثلاً 3 أو حسب إعدادات السيستم)
+            newLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            // 3. حفظ الرخصة الجديدة في الداتابيز
+            if (!newLicense.Save())
+            {
+                return null;
+            }
+
+            return newLicense; // إرجاع أوبجيكت الرخصة الجديدة الناجحة
+        }
+        public static clsBLLicense GetActiveClass3LicenseByNationalNo(string nationalNo)
+        {
+            int licenseID = -1;
+            int applicationID = -1;
+            int driverID = -1;
+            int licenseClass = -1;
+            DateTime issueDate = DateTime.MinValue;
+            DateTime expirationDate = DateTime.MinValue;
+            string notes = "";
+            decimal paidFees = 0;
+            bool isActive = false;
+            byte issueReason = 0;
+            int createdByUserID = -1;
+
+            // استدعاء داتابيز
+            if (clsDALLicenses.GetActiveClass3LicenseInfoByNationalNo(nationalNo,
+                ref licenseID, ref applicationID, ref driverID, ref licenseClass,
+                ref issueDate, ref expirationDate, ref notes, ref paidFees,
+                ref isActive, ref issueReason, ref createdByUserID))
+            {
+                // إرجاع كائن رخصة جديد جاهز بالبيانات
+                return new clsBLLicense(licenseID, applicationID, driverID, licenseClass,
+                    issueDate, expirationDate, notes, paidFees, isActive, issueReason, createdByUserID);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

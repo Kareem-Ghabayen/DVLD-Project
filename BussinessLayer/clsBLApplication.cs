@@ -1,7 +1,9 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer;
+using DataAccessLayer;
 using System;
 using System.Data;
 using System.Runtime.Remoting.Messaging;
+using static BuisnessLayer.clsBLLicense;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace BuisnessLayer
@@ -170,7 +172,6 @@ namespace BuisnessLayer
         {
             return clsDALApplication.UpdateStatus(this.ApplicationID, (byte)enStatus.Completed);
         }
-        // استعمال داخلي 
         public static bool DoesPersonHaveActiveApplication(int PersonID, int ApplicationTypeID)
         {
             return clsDALApplication.DoesPersonHaveActiveApplication(PersonID, ApplicationTypeID);
@@ -190,7 +191,6 @@ namespace BuisnessLayer
             RetakeTest = 7
         }
 
-        //  استعمال داخلي  + عليها مراجعة
         public static bool IsThereAnActiveApplicationInSameLicenses(int applicantPersonID, int applicationTypeID, int licenseClassID)
         {
             return clsDALApplication.IsThereAnActiveApplicationInSameLicenses(applicantPersonID, applicationTypeID, licenseClassID);
@@ -198,72 +198,116 @@ namespace BuisnessLayer
 
 
 
-        //  استعمال داخل 
- private bool _CheckApplicationRules(int licenseClassID)
+
+        public static int CreateRetakeTestApplication(string nationalNo, int testTypeID)
         {
-            float requiredFees = clsBLApplicationType.Find(this.ApplicationTypeID).ApplicationFees;
+            int personID = clsBLSPeople.FindByNationalNo(nationalNo)?.ID ?? -1;
+            if (personID == -1)
+            {
+                return -1; 
+            }
 
-            //if (this.ApplicationTypeID != (int)enApplicationType.NewDrivingLicense)
-            //{
-            //    if (clsBLApplication.DoesPersonHaveActiveApplication(this.ApplicantPersonID, this.ApplicationTypeID))
-            //    {
-            //        return false; 
-            //    }
-            //}
+            if (!clsBLTest.DoesFailTestType(personID, testTypeID))
+            {
+                return -1; 
+            }
 
-            switch (this.ApplicationTypeID)
-    {
-        case (int)enApplicationType.NewDrivingLicense: 
-            if (this.PaidFees != requiredFees || IsThereAnActiveApplicationInSameLicenses(this.ApplicantPersonID, this.ApplicationTypeID, licenseClassID)|| clsBLLicense.IsLicenseExistByPersonIDAndLicenseClass(this.ApplicantPersonID, licenseClassID))
-                return false;
+            clsBLApplication retakeApplication = new clsBLApplication();
+            retakeApplication.ApplicantPersonID = personID;
+            retakeApplication.ApplicationDate = DateTime.Now;
+            retakeApplication.ApplicationTypeID = (int)enApplicationType.RetakeTest;
+            retakeApplication.ApplicationStatus = 1;
+            retakeApplication.LastStatusDate = DateTime.Now;
 
-            break;
+            retakeApplication.PaidFees = clsBLApplicationType.Find((int)enApplicationType.RetakeTest)?.ApplicationFees ?? 0;
 
-        case (int)enApplicationType.RenewDrivingLicense:
-                    if (!clsBLLicense.IsLicenseExist(oldLicenseID))
-                    {
-                        return false;
-                    }
-                    if (this.PaidFees != requiredFees || IsThereAnActiveApplicationInSameLicenses(this.ApplicantPersonID, this.ApplicationTypeID, licenseClassID))
-                return false;
-            break;
+            retakeApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
-        case (int)enApplicationType.ReplacementForLost:
-            // بدل فاقد: الشخص لازم يكون عنده رخصة أصلاً عشان نطلعلو بدل فاقد، وفحص رسوم البدل الفاقد
-            // if (!clsBLLicense.DoesPersonHaveLicenseByClass(this.ApplicantPersonID, licenseClassID)) return false;
-            // if (this.PaidFees != ExpectedLostFees) return false;
-            break;
+            if (retakeApplication.Save())
+            {
+                return retakeApplication.ApplicationID;
+            }
 
-        case (int)enApplicationType.ReplacementForDamaged:
-            // بدل تالف: مشابه للفاقد، لازم تكون الرخصة موجودة والرسوم مدفوعة
-            // if (!clsBLLicense.DoesPersonHaveLicenseByClass(this.ApplicantPersonID, licenseClassID)) return false;
-            // if (this.PaidFees != ExpectedDamagedFees) return false;
-            break;
+            return -1;
+        }
+        public static clsBLLicense ReplaceLostDrivingLicense(int licenseID)
+        {
+            clsBLLicense oldLicense = clsBLLicense.FindByLicenseID(licenseID);
+            if (oldLicense == null)
+            {
+                return null;
+            }
 
-        case (int)enApplicationType.ReleaseDetainedDrivingLicense:
-            // الإفراج عن رخصة محجوزة: 
-            // الشرط الأساسي: هل هذه الرخصة محجوزة أصلاً؟ (لو مش محجوزة ما بيزبط يقدم طلب إفراج!)
-            // if (!clsBLDetainedLicense.IsLicenseDetained(licenseID)) return false;
-            break;
+            if (!oldLicense.IsActive)
+            {
+                return null; 
+            }
 
-        case (int)enApplicationType.NewInternationalLicense:
-            // رخصة دولية: 
-            // شرط أساسي: عشان يطلع رخصة دولية، لازم يكون عنده رخصة "محليّة" سارية المفعول أولاً!
-            // if (!clsBLLicense.DoesPersonHaveActiveLocalLicense(this.ApplicantPersonID)) return false;
-            break;
+            clsBLApplication replacementApplication = new clsBLApplication();
 
-        case (int)enApplicationType.RetakeTest:
-            // إعادة امتحان: (عادة بيتم فحص إذا رسب في الامتحان السابق لهذه الفئة ليُسمح له بإعادة الاختبار)
-            break;
+            replacementApplication.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
+            replacementApplication.ApplicationDate = DateTime.Now;
+            replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForDamaged; 
+           replacementApplication.ApplicationStatus = 1;
+            replacementApplication.LastStatusDate = DateTime.Now;
 
-        default:
-            // لأي نوع طلب غير متوقع
-            break;
-    }
+            clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.ReplacementForLost);
+            if (appType != null)
+            {
+                replacementApplication.PaidFees = appType.ApplicationFees; 
+            }
+            else
+            {
+                replacementApplication.PaidFees = 20; 
+            }
 
-    return true; 
-}
+            replacementApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            if (!replacementApplication.Save())
+            {
+                return null;
+            }
+
+            clsBLLicense newLicense = oldLicense.Replace(enIssueReason.LostReplacement, replacementApplication.ApplicationID);
+            replacementApplication.ApplicationStatus = 3; 
+            return newLicense;
+        }
+        public static clsBLLicense ReplaceDamagedDrivingLicense(int licenseID)
+        {
+            clsBLLicense oldLicense = clsBLLicense.FindByLicenseID(licenseID);
+            if (oldLicense == null)
+            {
+                return null;
+            }
+
+            if (!oldLicense.IsActive)
+            {
+                return null;
+            }
 
 
+            clsBLApplication replacementApplication = new clsBLApplication();
+
+            replacementApplication.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
+            replacementApplication.ApplicationDate = DateTime.Now;
+            replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForDamaged;
+            replacementApplication.ApplicationStatus = 1;
+            replacementApplication.LastStatusDate = DateTime.Now;
+
+            clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.ReplacementForDamaged);
+            replacementApplication.PaidFees = (appType != null) ? appType.ApplicationFees : 20;
+
+            replacementApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            if (!replacementApplication.Save())
+            {
+                return null;
+            }
+
+            clsBLLicense newLicense = oldLicense.Replace(enIssueReason.DamagedReplacement, replacementApplication.ApplicationID);
+            replacementApplication.ApplicationStatus = 3;
+
+            return newLicense;
+        }
     }
 }

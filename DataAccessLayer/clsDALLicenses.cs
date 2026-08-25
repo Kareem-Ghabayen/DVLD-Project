@@ -450,5 +450,64 @@ namespace DVLD_DataAccess
 
             return isFound;
         }
+        public static bool GetActiveClass3LicenseInfoByNationalNo(string nationalNo,
+    ref int licenseID, ref int applicationID, ref int driverID, ref int licenseClass,
+    ref DateTime issueDate, ref DateTime expirationDate, ref string notes,
+    ref decimal paidFees, ref bool isActive, ref byte issueReason, ref int createdByUserID)
+        {
+            bool isFound = false;
+
+            // استعلام SQL يربط Persons مع Drivers مع Licenses لجلب الرخصة السارية الفئة الثالثة
+            string query = @"SELECT TOP 1 Licenses.* 
+                     FROM Licenses
+                     INNER JOIN Drivers ON Licenses.DriverID = Drivers.DriverID
+                     INNER JOIN Persons ON Drivers.PersonID = Persons.PersonID
+                     WHERE Persons.NationalNo = @NationalNo 
+                       AND Licenses.LicenseClass = 3 
+                       AND Licenses.IsActive = 1 
+                       AND Licenses.ExpirationDate > GETDATE()";
+
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NationalNo", nationalNo);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                isFound = true;
+
+                                licenseID = (int)reader["LicenseID"];
+                                applicationID = (int)reader["ApplicationID"];
+                                driverID = (int)reader["DriverID"];
+                                licenseClass = (int)reader["LicenseClass"];
+                                issueDate = (DateTime)reader["IssueDate"];
+                                expirationDate = (DateTime)reader["ExpirationDate"];
+
+                                if (reader["Notes"] != DBNull.Value)
+                                    notes = (string)reader["Notes"];
+                                else
+                                    notes = "";
+
+                                paidFees = (decimal)reader["PaidFees"];
+                                isActive = (bool)reader["IsActive"];
+                                issueReason = (byte)reader["IssueReason"];
+                                createdByUserID = (int)reader["CreatedByUserID"];
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        isFound = false;
+                    }
+                }
+            }
+            return isFound;
+        }
     }
 }

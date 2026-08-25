@@ -222,5 +222,44 @@ namespace DataAccessLayer
 
             return isActive;
         }
+        public static int GetActiveRetakeTestApplicationID(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            int retakeAppID = -1;
+
+            // استعلام بيجيب أحدث طلب إعادة فحص (نوع 7) مرتبط بهذا الطلب المحلي وما انحجز فيه موعد بعد (أو غير مكتمل)
+            string query = @"SELECT TOP 1 Applications.ApplicationID 
+                     FROM Applications
+                     INNER JOIN LocalDrivingLicenseApplications 
+                         ON Applications.ApplicantPersonID = LocalDrivingLicenseApplications.ApplicantPersonID
+                     WHERE LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID
+                       AND Applications.ApplicationTypeID = 7 -- Retake Test
+                       -- وشرط إضافي لو بدك تتأكد إنه مش مستخدم أو جديد
+                     ORDER BY Applications.ApplicationID DESC";
+
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            retakeAppID = id;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log exception
+                    }
+                }
+            }
+
+            return retakeAppID;
+        }
     }
 }

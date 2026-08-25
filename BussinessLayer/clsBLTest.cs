@@ -155,6 +155,10 @@ namespace BusinessLayer
 
             return false;
         }
-
+        public static bool DoesFailTestType(int personID, int testTypeID)
+        {
+            // بنستدعي داتا لاير بتجيب لنا قيمة البوليان (نجاح/رسوب) لآخر اختبار قدمه هذا الشخص لهذا النوع
+            return clsDALTest.DoesFailTestType(personID, testTypeID);
+        }
     }
 }

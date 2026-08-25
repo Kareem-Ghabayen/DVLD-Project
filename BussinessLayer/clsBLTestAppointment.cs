@@ -1,7 +1,9 @@
 ﻿using BuisnessLayer;
 using DataAccessLayer;
+using DVLD_BLL;
 using System;
 using System.Data;
+using static BuisnessLayer.clsBLApplication;
 
 namespace BusinessLayer
 {
@@ -133,6 +135,7 @@ namespace BusinessLayer
             {
                 return false;
             }
+            //  هان فيه شرط مهم لازم تفحص ادا كان فشل ف اختبار الى جاي يحجزلي موعد ورقم اعدة الطلب سايبو نل بيكون مش مقدم طلب اعادة فحص وبدنا نمنعو 
             clsBLTestAppointment appointment = new clsBLTestAppointment();
 
             appointment.TestTypeID = testTypeID;
@@ -152,6 +155,54 @@ namespace BusinessLayer
             }
 
             return false;
+        }
+
+        public static clsBLTestAppointment ScheduleRetakeTest(int localDrivingLicenseApplicationID, int testTypeID, DateTime appointmentDate)
+        {
+            // 1. التأكد أولاً أن المتقدم رسب في الاختبار الأخير لنفس النوع
+            if (!clsBLTest.DoesFailTestType(localDrivingLicenseApplicationID, testTypeID))
+            {
+                return null; // لا يمكنه إعادة الاختبار إن لم يكن راسباً
+            }
+
+            // 2. التأكد أنه ليس لديه موعد نشط حالياً لنفس الفحص
+            if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
+            {
+                return null;
+            }
+
+            // ملاحظة هامة: تم إلغاء إنشاء الطلب من هان، لأنه تم إنشاؤه مسبقاً في الشاشة السابقة وتم إرسال رقمه كباراميتر (retakeTestApplicationID)
+
+            // 3. إنشاء موعد الاختبار الجديد وربطه بطلب الإعادة الجاهز
+            clsBLTestAppointment appointment = new clsBLTestAppointment();
+            appointment.RetestTestAppointmentID = GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
+            if (appointment.RetestTestAppointmentID == -1)
+            {
+                return null; // لم يتم تقديم طلب إعادة فحص، ترفض المعاملة بالكامل!
+            }
+            appointment.TestTypeID = testTypeID;
+            appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
+            appointment.AppointmentDate = appointmentDate;
+
+            // رسوم الموعد الأساسية للفحص
+            appointment.PaidFees = (decimal)clsBLTestType.Find(testTypeID).TestTypeFees;
+            appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            appointment.IsLocked = false;
+
+            // الربط الهام جداً: تمرير رقم طلب إعادة الفحص الجاهز الذي تم إنشاؤه مسبقاً!
+
+            // 4. حفظ الموعد
+            if (!appointment.Save())
+            {
+                return null;
+            }
+
+            return appointment;
+        }
+        public static int GetActiveRetakeTestApplicationID(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            // بنعطي الرقم المحلي ورقم الاختبار للـ DAL، وهي بتجيب لنا رقم طلب الإعادة النشط
+            return clsDALTestAppointment.GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
         }
     }
 }
