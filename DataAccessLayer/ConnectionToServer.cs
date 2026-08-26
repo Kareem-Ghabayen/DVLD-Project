@@ -9,6 +9,6 @@ namespace DataAccessLayer
 {
     public static  class Connection
     {
-        public static string ConnectionString = "Server=.;Database=ContactsDB;User Id=sa;Password=123456;";
+        public static string ConnectionString = "Server=.;Database=DVLD;User Id=sa;Password=123456;";
     }
 }

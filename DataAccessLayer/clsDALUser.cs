@@ -80,7 +80,7 @@ namespace DataAccessLayer
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
-            string query = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
+            string query = "SELECT * FROM Users WHERE UserName = @Username AND Password = @Password";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@Username", Username);
             command.Parameters.AddWithValue("@Password", Password);
@@ -96,11 +96,14 @@ namespace DataAccessLayer
                     UserID = (int)reader["UserID"];
                     PersonID = (int)reader["PersonID"];
                     IsActive = (bool)reader["IsActive"];
+
                 }
                 reader.Close();
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
+
                 isFound = false;
             }
             finally

@@ -95,10 +95,12 @@ namespace BuisnessLayer
 
             if (clsDALUser.GetUserInfoByUsernameAndPassword(Username, Password, ref UserID, ref PersonID, ref IsActive))
             {
+
                 return new clsBLUser(UserID, PersonID, Username, Password, IsActive);
             }
             else
             {
+
                 return null;
             }
         }
