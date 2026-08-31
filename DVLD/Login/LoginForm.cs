@@ -17,6 +17,18 @@ namespace DVLD.Login
         public LoginForm()
         {
             InitializeComponent();
+            string userName = "", password = "";
+
+            clsLogin.GetStoredCredential(ref userName, ref password);
+
+            if (!string.IsNullOrEmpty(userName))
+            {
+                tbUserName.Text = userName;
+                tbPassword.Text = password;
+                chkRememberMe.Checked = true;
+            }
+
+            tbUserName.Focus();
         }
 
 
@@ -52,6 +64,15 @@ namespace DVLD.Login
             clsBLUser user = clsLogin.AuthenticateUser(tbUserName.Text, tbPassword.Text);
             if (user != null)
             {
+
+                if (chkRememberMe.Checked)
+                {
+                    clsLogin. RememberUsernameAndPassword(tbUserName.Text, tbPassword.Text);
+                }
+                else
+                {
+                    clsLogin. RememberUsernameAndPassword("", "");
+                }
                 clsGlobal.CurrentUser = user;
                 this.Hide();
                 MainForm frm = new MainForm(this);
@@ -63,6 +84,12 @@ namespace DVLD.Login
                 tbUserName.Focus();
                 tbUserName.SelectAll();
             }
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+  
+            Application.Exit(); // هذا بينهي كل التطبيق والباك جراوند من الفيجوال ستوديو فوراً
         }
     }
 }

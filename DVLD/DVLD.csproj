@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Guna.UI2, Version=2.0.4.8, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
-      <HintPath>packages\Guna.UI2.WinForms.2.0.4.8\lib\net48\Guna.UI2.dll</HintPath>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,6 +71,25 @@
     <Compile Include="MainScreen\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="people\clsPerson.cs" />
+    <Compile Include="people\ctrlPersonCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="people\ctrlPersonCard.Designer.cs">
+      <DependentUpon>ctrlPersonCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="people\frmAddEditPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="people\frmAddEditPerson.Designer.cs">
+      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="people\frmManagePeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="people\frmManagePeople.Designer.cs">
+      <DependentUpon>frmManagePeople.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login\LoginForm.resx">
@@ -78,6 +97,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainScreen\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="people\ctrlPersonCard.resx">
+      <DependentUpon>ctrlPersonCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="people\frmAddEditPerson.resx">
+      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="people\frmManagePeople.resx">
+      <DependentUpon>frmManagePeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -114,6 +142,132 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Login\image\logo.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Applications 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\People 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Drivers 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Users 2 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\account_settings 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Driver License 48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Manage Applications 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Detain 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Application Types 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Schedule Test 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\New Driving License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Renew Driving License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Lost Driving License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Release Detained License 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Local Driving License 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\International 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Local 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Detained Driving License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Release Detained License 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Detain 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Retake Test 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Password 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Sign Out 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\PersonDetails 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\AddPerson 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\People 400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Add Person 72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\edit 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Delete 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Email 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Phone 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\call 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\send email 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\cross 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Number 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Person 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Man 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Woman 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Address 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Male 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Cars 48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Country 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

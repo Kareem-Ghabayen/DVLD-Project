@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DVLD.Login
 {
@@ -34,12 +35,11 @@ namespace DVLD.Login
             }
             catch (Exception ex)
             {
-                // يمكن تسجيل الخطأ إذا لزم الأمر
             }
         }
 
         // 3. ميثود جلب البيانات المحفوظة عند فتح الشاشة لو كانت مفعلة
-        public static void GetStoredCredential(ref string username, ref string password)
+        public static void  GetStoredCredential(ref string username, ref string password)
         {
             try
             {
@@ -54,6 +54,7 @@ namespace DVLD.Login
             {
                 username = "";
                 password = "";
+                MessageBox.Show("صار خطأ في الحفظ يا هندسة: " + ex.Message);
             }
         }
     }

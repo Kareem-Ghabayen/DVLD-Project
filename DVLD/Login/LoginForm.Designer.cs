@@ -35,7 +35,7 @@
             this.tbUserName = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.pnlRight = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkRememberMe = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -103,8 +103,11 @@
             // 
             // pnlRight
             // 
+            this.pnlRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pnlRight.Controls.Add(this.checkBox1);
+            this.pnlRight.Controls.Add(this.chkRememberMe);
             this.pnlRight.Controls.Add(this.pictureBox1);
             this.pnlRight.Controls.Add(this.label1);
             this.pnlRight.Controls.Add(this.btnLogin);
@@ -112,22 +115,21 @@
             this.pnlRight.Controls.Add(this.lbUserName);
             this.pnlRight.Controls.Add(this.lbPassword);
             this.pnlRight.Controls.Add(this.tbUserName);
-            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(450, 0);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(450, 600);
             this.pnlRight.TabIndex = 1;
             // 
-            // checkBox1
+            // chkRememberMe
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.checkBox1.Location = new System.Drawing.Point(51, 379);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(118, 21);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Rememper Me";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkRememberMe.AutoSize = true;
+            this.chkRememberMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.chkRememberMe.Location = new System.Drawing.Point(51, 379);
+            this.chkRememberMe.Name = "chkRememberMe";
+            this.chkRememberMe.Size = new System.Drawing.Size(118, 21);
+            this.chkRememberMe.TabIndex = 8;
+            this.chkRememberMe.Text = "Rememper Me";
+            this.chkRememberMe.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -197,9 +199,10 @@
             this.ClientSize = new System.Drawing.Size(900, 600);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LoginForm";
             this.Text = "LoginForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -222,7 +225,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkRememberMe;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
