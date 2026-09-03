@@ -52,6 +52,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\frmListTestTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frmListTestTypes.Designer.cs">
+      <DependentUpon>frmListTestTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\frmManageApplicationTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frmManageApplicationTypes.Designer.cs">
+      <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\frmUpdateApplicationType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frmUpdateApplicationType.Designer.cs">
+      <DependentUpon>frmUpdateApplicationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\frmUpdateTestType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\frmUpdateTestType.Designer.cs">
+      <DependentUpon>frmUpdateTestType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +164,18 @@
     <Compile Include="User\frmUserInfo.Designer.cs">
       <DependentUpon>frmUserInfo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Applications\frmListTestTypes.resx">
+      <DependentUpon>frmListTestTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\frmManageApplicationTypes.resx">
+      <DependentUpon>frmManageApplicationTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\frmUpdateApplicationType.resx">
+      <DependentUpon>frmUpdateApplicationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\frmUpdateTestType.resx">
+      <DependentUpon>frmUpdateTestType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmListDrivers.resx">
       <DependentUpon>frmListDrivers.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +382,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icons\SearchPerson.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Application Types 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\TestType 512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

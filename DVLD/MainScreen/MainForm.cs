@@ -1,4 +1,5 @@
 ﻿using BuisnessLayer;
+using DVLD.Applications;
 using DVLD.Login;
 using DVLD.people;
 using DVLD.User;
@@ -82,6 +83,12 @@ namespace DVLD.MainScreen
         private void driversToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmListDrivers frm = new frmListDrivers();
+            frm.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageApplicationTypes frm = new frmManageApplicationTypes();
             frm.ShowDialog();
         }
     }

@@ -124,6 +124,9 @@
   <data name="Phone 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Phone 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Person 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Person 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AddPerson 322" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -184,20 +187,26 @@
   <data name="PersonDetails 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\PersonDetails 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Application Types 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Application Types 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Users 2 642" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Users 2 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Driver License 48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Driver License 48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Manage Applications 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\Manage Applications 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="People 400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\People 400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="International 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\International 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sign Out 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Sign Out 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchPerson" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\SearchPerson.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Delete 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Delete 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +220,8 @@
   <data name="account_settings 641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\account_settings 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="People 400" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\People 400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Users 2 400" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Users 2 400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Local Driving License 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Local Driving License 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,9 +262,6 @@
   <data name="AddPerson 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Users 2 400" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\Users 2 400.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="People 641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\People 64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -280,8 +286,8 @@
   <data name="AddPerson 321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\AddPerson 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Person 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\Person 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Manage Applications 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Manage Applications 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Renew Driving License 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Renew Driving License 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,7 +298,7 @@
   <data name="Cars 48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\Cars 48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SearchPerson" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Icons\SearchPerson.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TestType 512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\TestType 512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

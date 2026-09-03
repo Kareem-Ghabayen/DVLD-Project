@@ -218,6 +218,7 @@
             this.manageApplicationTypesToolStripMenuItem.Name = "manageApplicationTypesToolStripMenuItem";
             this.manageApplicationTypesToolStripMenuItem.Size = new System.Drawing.Size(345, 54);
             this.manageApplicationTypesToolStripMenuItem.Text = "Manage Application Types";
+            this.manageApplicationTypesToolStripMenuItem.Click += new System.EventHandler(this.manageApplicationTypesToolStripMenuItem_Click);
             // 
             // manageTestTypesToolStripMenuItem
             // 
