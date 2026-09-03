@@ -1,5 +1,7 @@
-﻿using DVLD.Login;
+﻿using BuisnessLayer;
+using DVLD.Login;
 using DVLD.people;
+using DVLD.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,7 @@ namespace DVLD.MainScreen
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit(); // هذا بينهي كل التطبيق والباك جراوند من الفيجوال ستوديو فوراً
+            //Application.Exit(); // هذا بينهي كل التطبيق والباك جراوند من الفيجوال ستوديو فوراً
 
         }
 
@@ -53,8 +55,34 @@ namespace DVLD.MainScreen
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmListUserscs frm = new frmListUserscs(); // استخدم frmManageUsers إذا كان هذا اسم الشاشة لديك
+            frm.ShowDialog();
 
+        }
 
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            frmUserInfo frm = new frmUserInfo(clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsGlobal.CurrentUser = null;
+            this.Close(); //
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword(clsGlobal.CurrentUser.UserID);
+            frm.ShowDialog();
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListDrivers frm = new frmListDrivers();
+            frm.ShowDialog();
         }
     }
 }

@@ -13,11 +13,10 @@ namespace DVLD.people
 {
     public partial class ctrlPersonCard : UserControl
     {
-        private clsPerson _Person;
+        private clsBLSPeople _Person;
         private int _PersonID = -1;
 
         public int PersonID => _PersonID;
-        public clsPerson SelectedPersonInfo => _Person;
 
         public ctrlPersonCard()
         {
@@ -26,7 +25,7 @@ namespace DVLD.people
 
         public void LoadPersonInfo(int PersonID)
         {
-            _Person = clsPerson.Find(PersonID);
+            _Person = clsBLSPeople.FindByID(PersonID);
             if (_Person == null)
             {
                 ResetPersonInfo();
@@ -39,7 +38,7 @@ namespace DVLD.people
 
         public void LoadPersonInfo(string NationalNo)
         {
-            _Person = clsPerson.Find(NationalNo);
+            _Person = clsBLSPeople.FindByNationalNo(NationalNo);
             if (_Person == null)
             {
                 ResetPersonInfo();
@@ -52,21 +51,21 @@ namespace DVLD.people
 
         private void _FillPersonInfo()
         {
-            _PersonID = _Person.PersonID;
-            lblPersonID.Text = _Person.PersonID.ToString();
+            _PersonID = _Person.ID;
+            lblPersonID.Text = _Person.ID.ToString();
             lblNationalNo.Text = _Person.NationalNo;
-            lblFullName.Text = _Person.FullName; // خاصية تعود بالاسم الأرباعي في الكلاس
+            lblFullName.Text = _Person.FirstName + " " + _Person.SecondName + " " + _Person.ThirdName; // خاصية تعود بالاسم الأرباعي في الكلاس
             lblGendor.Text = _Person.Gendor == 0 ? "Male" : "Female";
             lblEmail.Text = _Person.Email;
             lblPhone.Text = _Person.Phone;
             lblDateOfBirth.Text = _Person.DateOfBirth.ToShortDateString();
-            lblCountry.Text = clsBLCountry.Find(_Person.NationalityCountryID).CountryName;
+            lblCountry.Text = clsBLCountry.FindByCountryID(_Person.NationalityCountryID).CountryName;
             lblAddress.Text = _Person.Address;
 
             if (!string.IsNullOrEmpty(_Person.ImagePath) && System.IO.File.Exists(_Person.ImagePath))
                 pbPersonImage.ImageLocation = _Person.ImagePath;
             else
-                pbPersonImage.Image = _Person.Gendor == 0 ? Properties.Resources.Male_512 : Properties.Resources.Female_512;
+                pbPersonImage.Image = _Person.Gendor == 0 ? Properties.Resources.Male_512 : Properties.Resources.Male_512;
 
             llEditPersonInfo.Enabled = true;
         }
@@ -90,8 +89,15 @@ namespace DVLD.people
         private void llEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmAddEditPerson frm = new frmAddEditPerson(_PersonID);
-            // عند حفظ التعديل، يُعيد الكنترول تحميل بياناته تلقائياً
+            frm.DataBack += (s, personID) => LoadPersonInfo(personID);
+            frm.ShowDialog();
+        }
+
+        private void llEditPersonInfo_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditPerson frm = new frmAddEditPerson(_PersonID);
             frm.DataBack += (s, personID) => LoadPersonInfo(personID);
             frm.ShowDialog();
         }
     }
+}

@@ -77,6 +77,7 @@ namespace DVLD.Login
                 this.Hide();
                 MainForm frm = new MainForm(this);
                 frm.ShowDialog();
+                this.Show(); // إعادة إظهار شاشة اللوجن فور إغلاق MainForm
             }
             else
             {

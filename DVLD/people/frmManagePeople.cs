@@ -149,5 +149,20 @@ namespace DVLD.people
             frm.ShowDialog(this);
             _RefreshPeopleList();
         }
+
+        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvPeople.CurrentRow == null) return;
+
+            // 2. قراءة PersonID من السطر المظلل حالياً
+            int personID = (int)dgvPeople.CurrentRow.Cells["PersonID"].Value;
+
+            // 3. إنشاء شاشة التفاصيل وتمرير المعرف لها
+            frmShowPersonInfo frm = new frmShowPersonInfo(personID);
+            frm.ShowDialog();
+
+            // 4. إعادة تحديث الجدول بعد إغلاق الشاشة (تحسباً لو تم تعديل البيانات من الداخل)
+            _RefreshPeopleList();
+        }
     }
 }
