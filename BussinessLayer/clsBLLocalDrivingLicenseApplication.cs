@@ -102,10 +102,10 @@ namespace DVLD_BLL
         }
 
         // 5. ميثود إضافة طلب رخصة قيادة جديد باستخدام رقم الهوية (NationalNo)
-        public static clsBLLocalDrivingLicenseApplication AddNewLocalDrivingLicenseApplication(string nationalNo, int licenseClassID)
+        public static clsBLLocalDrivingLicenseApplication AddNewLocalDrivingLicenseApplication(int applicantPersonID, int licenseClassID)
         {
             // 1. البحث عن الشخص باستخدام رقم الهوية (NationalNo) بدلاً من الـ ID
-            clsBLSPeople person = clsBLSPeople.FindByNationalNo(nationalNo);
+            clsBLSPeople person = clsBLSPeople.FindByID(applicantPersonID);
             if (person == null)
             {
                 return null; // الشخص غير مسجل بالنظام أصلاً

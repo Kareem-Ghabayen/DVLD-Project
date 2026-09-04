@@ -29,102 +29,53 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.tcUser = new Guna.UI2.WinForms.Guna2TabControl();
-            this.tpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tpLoginInfo = new System.Windows.Forms.TabPage();
-            this.btnSave = new Guna.UI2.WinForms.Guna2Button();
-            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
-            this.lblPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.chkIsActive = new System.Windows.Forms.CheckBox();
-            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtUserName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tpPersonalInfo = new System.Windows.Forms.TabPage();
+            this.tcUser = new Guna.UI2.WinForms.Guna2TabControl();
+            this.lblPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblUserIDValue = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnSave = new Guna.UI2.WinForms.Guna2Button();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnNext = new Guna.UI2.WinForms.Guna2Button();
             this.ctrlPersonCardWithFilter1 = new DVLD.people.ctrlPersonCardWithFilter();
-            this.tcUser.SuspendLayout();
-            this.tpPersonalInfo.SuspendLayout();
-            this.tpLoginInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.tpLoginInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tpPersonalInfo.SuspendLayout();
+            this.tcUser.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblTitle
+            // errorProvider1
             // 
-            this.lblTitle.AutoSize = false;
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(282, 37);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(180, 30);
-            this.lblTitle.TabIndex = 17;
-            this.lblTitle.Text = "Add New User";
-            // 
-            // tcUser
-            // 
-            this.tcUser.Controls.Add(this.tpPersonalInfo);
-            this.tcUser.Controls.Add(this.tpLoginInfo);
-            this.tcUser.ItemSize = new System.Drawing.Size(180, 40);
-            this.tcUser.Location = new System.Drawing.Point(0, 73);
-            this.tcUser.Name = "tcUser";
-            this.tcUser.SelectedIndex = 0;
-            this.tcUser.Size = new System.Drawing.Size(721, 519);
-            this.tcUser.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
-            this.tcUser.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.tcUser.TabButtonHoverState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.tcUser.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
-            this.tcUser.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.tcUser.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
-            this.tcUser.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.tcUser.TabButtonIdleState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.tcUser.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(160)))), ((int)(((byte)(167)))));
-            this.tcUser.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.tcUser.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
-            this.tcUser.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(37)))), ((int)(((byte)(49)))));
-            this.tcUser.TabButtonSelectedState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.tcUser.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
-            this.tcUser.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.tcUser.TabButtonSize = new System.Drawing.Size(180, 40);
-            this.tcUser.TabIndex = 18;
-            this.tcUser.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.tcUser.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop;
-            // 
-            // tpPersonalInfo
-            // 
-            this.tpPersonalInfo.Controls.Add(this.ctrlPersonCardWithFilter1);
-            this.tpPersonalInfo.Controls.Add(this.btnNext);
-            this.tpPersonalInfo.Location = new System.Drawing.Point(4, 44);
-            this.tpPersonalInfo.Name = "tpPersonalInfo";
-            this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPersonalInfo.Size = new System.Drawing.Size(713, 471);
-            this.tpPersonalInfo.TabIndex = 0;
-            this.tpPersonalInfo.Text = "Personal Info";
-            this.tpPersonalInfo.UseVisualStyleBackColor = true;
+            this.errorProvider1.ContainerControl = this;
             // 
             // tpLoginInfo
             // 
             this.tpLoginInfo.Controls.Add(this.lblUserIDValue);
+            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel2);
+            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel10);
+            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel1);
+            this.tpLoginInfo.Controls.Add(this.lblPassword);
             this.tpLoginInfo.Controls.Add(this.txtConfirmPassword);
             this.tpLoginInfo.Controls.Add(this.txtPassword);
             this.tpLoginInfo.Controls.Add(this.txtUserName);
-            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel2);
-            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel10);
             this.tpLoginInfo.Controls.Add(this.chkIsActive);
-            this.tpLoginInfo.Controls.Add(this.guna2HtmlLabel1);
-            this.tpLoginInfo.Controls.Add(this.lblPassword);
             this.tpLoginInfo.Controls.Add(this.pictureBox3);
             this.tpLoginInfo.Controls.Add(this.pictureBox2);
             this.tpLoginInfo.Controls.Add(this.pictureBox1);
@@ -137,65 +88,45 @@
             this.tpLoginInfo.Text = "Login Info";
             this.tpLoginInfo.UseVisualStyleBackColor = true;
             // 
-            // btnSave
+            // pictureBox5
             // 
-            this.btnSave.BorderRadius = 15;
-            this.btnSave.BorderThickness = 1;
-            this.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSave.FillColor = System.Drawing.Color.Transparent;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(424, 594);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(113, 37);
-            this.btnSave.TabIndex = 40;
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox5.Location = new System.Drawing.Point(185, 111);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(22, 24);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 64;
+            this.pictureBox5.TabStop = false;
             // 
-            // btnNext
+            // pictureBox1
             // 
-            this.btnNext.BorderRadius = 15;
-            this.btnNext.BorderThickness = 1;
-            this.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnNext.FillColor = System.Drawing.Color.Transparent;
-            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnNext.ForeColor = System.Drawing.Color.Black;
-            this.btnNext.Location = new System.Drawing.Point(571, 427);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(113, 37);
-            this.btnNext.TabIndex = 43;
-            this.btnNext.Text = "next";
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox1.Location = new System.Drawing.Point(185, 165);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 66;
+            this.pictureBox1.TabStop = false;
             // 
-            // lblPassword
+            // pictureBox2
             // 
-            this.lblPassword.AutoSize = false;
-            this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.ForeColor = System.Drawing.Color.Black;
-            this.lblPassword.Location = new System.Drawing.Point(74, 119);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(86, 24);
-            this.lblPassword.TabIndex = 61;
-            this.lblPassword.Text = "Password:";
+            this.pictureBox2.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox2.Location = new System.Drawing.Point(185, 27);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(22, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 71;
+            this.pictureBox2.TabStop = false;
             // 
-            // guna2HtmlLabel1
+            // pictureBox3
             // 
-            this.guna2HtmlLabel1.AutoSize = false;
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(8, 165);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(152, 24);
-            this.guna2HtmlLabel1.TabIndex = 65;
-            this.guna2HtmlLabel1.Text = "Confirm Password:";
+            this.pictureBox3.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox3.Location = new System.Drawing.Point(185, 73);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(22, 24);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 72;
+            this.pictureBox3.TabStop = false;
             // 
             // chkIsActive
             // 
@@ -206,30 +137,6 @@
             this.chkIsActive.TabIndex = 68;
             this.chkIsActive.Text = "Is Active";
             this.chkIsActive.UseVisualStyleBackColor = true;
-            // 
-            // guna2HtmlLabel10
-            // 
-            this.guna2HtmlLabel10.AutoSize = false;
-            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(74, 73);
-            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(86, 24);
-            this.guna2HtmlLabel10.TabIndex = 69;
-            this.guna2HtmlLabel10.Text = "UserName";
-            // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.AutoSize = false;
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(96, 27);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(64, 24);
-            this.guna2HtmlLabel2.TabIndex = 70;
-            this.guna2HtmlLabel2.Text = "UserID";
             // 
             // txtUserName
             // 
@@ -297,6 +204,95 @@
             this.txtConfirmPassword.TabIndex = 76;
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
+            // tpPersonalInfo
+            // 
+            this.tpPersonalInfo.Controls.Add(this.ctrlPersonCardWithFilter1);
+            this.tpPersonalInfo.Controls.Add(this.btnNext);
+            this.tpPersonalInfo.Location = new System.Drawing.Point(4, 44);
+            this.tpPersonalInfo.Name = "tpPersonalInfo";
+            this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPersonalInfo.Size = new System.Drawing.Size(692, 471);
+            this.tpPersonalInfo.TabIndex = 0;
+            this.tpPersonalInfo.Text = "Personal Info";
+            this.tpPersonalInfo.UseVisualStyleBackColor = true;
+            // 
+            // tcUser
+            // 
+            this.tcUser.Controls.Add(this.tpPersonalInfo);
+            this.tcUser.Controls.Add(this.tpLoginInfo);
+            this.tcUser.ItemSize = new System.Drawing.Size(180, 40);
+            this.tcUser.Location = new System.Drawing.Point(0, 73);
+            this.tcUser.Name = "tcUser";
+            this.tcUser.SelectedIndex = 0;
+            this.tcUser.Size = new System.Drawing.Size(700, 519);
+            this.tcUser.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
+            this.tcUser.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
+            this.tcUser.TabButtonHoverState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.tcUser.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
+            this.tcUser.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
+            this.tcUser.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
+            this.tcUser.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.tcUser.TabButtonIdleState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.tcUser.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(160)))), ((int)(((byte)(167)))));
+            this.tcUser.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.tcUser.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
+            this.tcUser.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(37)))), ((int)(((byte)(49)))));
+            this.tcUser.TabButtonSelectedState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.tcUser.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
+            this.tcUser.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
+            this.tcUser.TabButtonSize = new System.Drawing.Size(180, 40);
+            this.tcUser.TabIndex = 18;
+            this.tcUser.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.tcUser.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = false;
+            this.lblPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblPassword.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.ForeColor = System.Drawing.Color.Black;
+            this.lblPassword.Location = new System.Drawing.Point(74, 119);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(86, 24);
+            this.lblPassword.TabIndex = 61;
+            this.lblPassword.Text = "Password:";
+            // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.AutoSize = false;
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(8, 165);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(152, 24);
+            this.guna2HtmlLabel1.TabIndex = 65;
+            this.guna2HtmlLabel1.Text = "Confirm Password:";
+            // 
+            // guna2HtmlLabel10
+            // 
+            this.guna2HtmlLabel10.AutoSize = false;
+            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel10.Location = new System.Drawing.Point(74, 73);
+            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(86, 24);
+            this.guna2HtmlLabel10.TabIndex = 69;
+            this.guna2HtmlLabel10.Text = "UserName";
+            // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.AutoSize = false;
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(96, 27);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(64, 24);
+            this.guna2HtmlLabel2.TabIndex = 70;
+            this.guna2HtmlLabel2.Text = "UserID";
+            // 
             // lblUserIDValue
             // 
             this.lblUserIDValue.AutoSize = false;
@@ -308,6 +304,24 @@
             this.lblUserIDValue.Size = new System.Drawing.Size(49, 24);
             this.lblUserIDValue.TabIndex = 77;
             this.lblUserIDValue.Text = "[???]";
+            // 
+            // btnSave
+            // 
+            this.btnSave.BorderRadius = 15;
+            this.btnSave.BorderThickness = 1;
+            this.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSave.FillColor = System.Drawing.Color.Transparent;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Location = new System.Drawing.Point(424, 594);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(113, 37);
+            this.btnSave.TabIndex = 40;
+            this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -327,49 +341,23 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // pictureBox3
+            // btnNext
             // 
-            this.pictureBox3.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox3.Location = new System.Drawing.Point(185, 73);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(22, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 72;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox2.Location = new System.Drawing.Point(185, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(22, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 71;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox1.Location = new System.Drawing.Point(185, 165);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(22, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 66;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox5.Location = new System.Drawing.Point(185, 111);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(22, 24);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 64;
-            this.pictureBox5.TabStop = false;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
+            this.btnNext.BorderRadius = 15;
+            this.btnNext.BorderThickness = 1;
+            this.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnNext.FillColor = System.Drawing.Color.Transparent;
+            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnNext.ForeColor = System.Drawing.Color.Black;
+            this.btnNext.Location = new System.Drawing.Point(571, 427);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(113, 37);
+            this.btnNext.TabIndex = 43;
+            this.btnNext.Text = "next";
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // ctrlPersonCardWithFilter1
             // 
@@ -379,6 +367,18 @@
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(690, 421);
             this.ctrlPersonCardWithFilter1.TabIndex = 44;
             this.ctrlPersonCardWithFilter1.Load += new System.EventHandler(this.ctrlPersonCardWithFilter1_Load);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = false;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Red;
+            this.lblTitle.Location = new System.Drawing.Point(282, 37);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(180, 30);
+            this.lblTitle.TabIndex = 17;
+            this.lblTitle.Text = "Add New User";
             // 
             // frmAddUpdateUser
             // 
@@ -392,42 +392,41 @@
             this.Name = "frmAddUpdateUser";
             this.Text = "frmAddUpdateUser";
             this.Load += new System.EventHandler(this.frmAddUpdateUser_Load);
-            this.tcUser.ResumeLayout(false);
-            this.tpPersonalInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tpLoginInfo.ResumeLayout(false);
             this.tpLoginInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tpPersonalInfo.ResumeLayout(false);
+            this.tcUser.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
+        private Guna.UI2.WinForms.Guna2Button btnSave;
         private Guna.UI2.WinForms.Guna2TabControl tcUser;
         private System.Windows.Forms.TabPage tpPersonalInfo;
-        private System.Windows.Forms.TabPage tpLoginInfo;
-        private Guna.UI2.WinForms.Guna2Button btnSave;
+        private people.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private Guna.UI2.WinForms.Guna2Button btnNext;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPassword;
-        private System.Windows.Forms.CheckBox chkIsActive;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
+        private System.Windows.Forms.TabPage tpLoginInfo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblUserIDValue;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtUserName;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblUserIDValue;
-        private Guna.UI2.WinForms.Guna2Button btnClose;
-        private people.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.CheckBox chkIsActive;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
     }
 }

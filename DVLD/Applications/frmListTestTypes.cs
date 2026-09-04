@@ -24,7 +24,7 @@ namespace DVLD.Applications
             _dtTestTypes = clsBLTestType.GetAllTestTypes();
             dgvTestTypes.DataSource = _dtTestTypes;
             lblRecordsCount.Text = dgvTestTypes.Rows.Count.ToString();
-\
+
         }
         private void frmListTestTypes_Load(object sender, EventArgs e)
         {

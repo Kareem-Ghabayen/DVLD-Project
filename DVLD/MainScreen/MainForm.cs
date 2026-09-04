@@ -91,5 +91,21 @@ namespace DVLD.MainScreen
             frmManageApplicationTypes frm = new frmManageApplicationTypes();
             frm.ShowDialog();
         }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListTestTypes frm = new frmListTestTypes();
+            frm.ShowDialog();
+        }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication();
+
+            // الاشتراك في الـ Delegate لتحديث الجدول عند الحفظ
+            //frm.DataBack += Frm_DataBack;
+
+            frm.ShowDialog();
+        }
     }
 }
