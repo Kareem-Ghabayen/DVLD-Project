@@ -364,43 +364,44 @@ namespace DataAccessLayer
 
 
 
-
-        public static bool IsThereAnActiveApplicationInSameLicenses(int applicantPersonID, int applicationTypeID, int licenseClassID)
+        public static bool IsThereAnActiveApplicationInSameLicenses(int ApplicantPersonID, int ApplicationTypeID, int LicenseClassID)
         {
             bool isFound = false;
+
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = @"SELECT Found = 1 
-                     FROM Applications 
+            string query = @"SELECT Found = 1 FROM Applications 
                      INNER JOIN LocalDrivingLicenseApplications 
-                         ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+                     ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
                      WHERE Applications.ApplicantPersonID = @ApplicantPersonID 
                        AND Applications.ApplicationTypeID = @ApplicationTypeID 
-                       AND LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID
-                       AND Applications.ApplicationStatus = 1";
+                       AND LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID 
+                       AND Applications.ApplicationStatus = 1;"; // 1 = New / Active
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ApplicantPersonID", applicantPersonID);
-            command.Parameters.AddWithValue("@ApplicationTypeID", applicationTypeID);
-            command.Parameters.AddWithValue("@LicenseClassID", licenseClassID);
+            command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
 
             try
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                if (result != null && int.TryParse(result.ToString(), out int found))
+
+                if (result != null)
                 {
                     isFound = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                // التعامل مع الخطأ (Logging)
+                isFound = false;
             }
             finally
             {
                 connection.Close();
             }
+
             return isFound;
         }
     }

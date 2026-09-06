@@ -183,6 +183,22 @@ namespace DVLD.Applications
             }
             else
             {
+
+
+                if (_LocalDrivingLicenseApplication.LicenseClassID != licenseClassID)
+                {
+                    if (clsBLApplication.IsThereAnActiveApplicationInSameLicenses(personID, (int)clsBLApplicationType.enApplicationType.NewDrivingLicense, licenseClassID))
+                    {
+                        MessageBox.Show("Selected person already has an active application for this license class. Choose another class.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (clsBLLicense.IsLicenseExistByPersonIDAndLicenseClass(personID, licenseClassID))
+                    {
+                        MessageBox.Show("Selected person already has a license for this class. Choose another class.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
                 // وضع التعديل (Update)
                 _LocalDrivingLicenseApplication.LicenseClassID = licenseClassID;
 

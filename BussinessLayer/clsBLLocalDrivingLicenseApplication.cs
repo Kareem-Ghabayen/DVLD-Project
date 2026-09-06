@@ -18,12 +18,16 @@ namespace DVLD_BLL
         // كلاس الأب (Composition للـ Application الأساسي)
         public clsBLApplication BaseApplicationInfo { get; set; }
 
+        // Composition لفئة الرخصة
+        public clsBLLicenseClass LicenseClassInfo { get; set; }
+
         // Constructor افتراضي
         public clsBLLocalDrivingLicenseApplication()
         {
             this.LocalDrivingLicenseApplicationID = -1;
             this.ApplicationID = -1;
             this.LicenseClassID = -1;
+            this.LicenseClassInfo = null;
         }
 
         // Constructor خاص بالبحث
@@ -33,6 +37,7 @@ namespace DVLD_BLL
             this.ApplicationID = applicationID;
             this.LicenseClassID = licenseClassID;
             this.BaseApplicationInfo = clsBLApplication.Find(applicationID);
+            this.LicenseClassInfo = clsBLLicenseClass.Find(licenseClassID);
         }
 
         // 1. ميثود البحث باستخدام ID الطلب المحلي
@@ -53,21 +58,21 @@ namespace DVLD_BLL
         }
 
         //// 2. ميثود البحث باستخدام ID الطلب الأساسي
-        //public static clsBLLocalDrivingLicenseApplication FindByApplicationID(int applicationID)
-        //{
-        //    int localDrivingLicenseApplicationID = -1;
-        //    int licenseClassID = -1;
+        public static clsBLLocalDrivingLicenseApplication FindByApplicationID(int applicationID)
+        {
+            int localDrivingLicenseApplicationID = -1;
+            int licenseClassID = -1;
 
-        //    bool isFound = clsDALLocalDrivingLicenseApplication.GetInfoByApplicationID(
-        //        applicationID, ref localDrivingLicenseApplicationID, ref licenseClassID);
+            bool isFound = clsDALLocalDrivingLicenseApplication.GetInfoByApplicationID(
+                applicationID, ref localDrivingLicenseApplicationID, ref licenseClassID);
 
-        //    if (isFound)
-        //    {
-        //        return new clsBLLocalDrivingLicenseApplication(localDrivingLicenseApplicationID, applicationID, licenseClassID);
-        //    }
+            if (isFound)
+            {
+                return new clsBLLocalDrivingLicenseApplication(localDrivingLicenseApplicationID, applicationID, licenseClassID);
+            }
 
-        //    return null;
-        //}
+            return null;
+        }
 
         // 3. ميثود الحفظ (Save)
         public bool Save()
@@ -77,6 +82,18 @@ namespace DVLD_BLL
                 case -1:
                     return _AddNewLocalDrivingLicenseApplication();
                 default:
+                    int oldClassID = FindByLocalDrivingLicenseApplicationID(this.LocalDrivingLicenseApplicationID).LicenseClassID;
+
+                    // 2. إذا غير المستخدم الفئة من الشاشة، نفحص الفئة الجديدة
+                    if (this.LicenseClassID != oldClassID)
+                    {
+                        if (clsBLLicense.IsLicenseExistByPersonIDAndLicenseClass(BaseApplicationInfo.ApplicantPersonID, this.LicenseClassID) ||
+                            clsBLApplication.IsThereAnActiveApplicationInSameLicenses(BaseApplicationInfo.ApplicantPersonID, (int)clsBLApplicationType.enApplicationType.NewDrivingLicense, this.LicenseClassID))
+                        {
+                            return false; // يرفض التعديل لو الفئة الجديدة مكررة
+                        }
+                    }
+
                     return _UpdateLocalDrivingLicenseApplication();
             }
         }
@@ -152,6 +169,10 @@ namespace DVLD_BLL
             }
 
             return localApp;
+        }
+        public static DataTable GetAllLocalDrivingLicenseApplications()
+        {
+            return clsDALLocalDrivingLicenseApplication.GetAllLocalDrivingLicenseApplications();
         }
     }
 }

@@ -165,7 +165,18 @@ namespace BuisnessLayer
         }
         public bool Cancel()
         {
-            return clsDALApplication.UpdateStatus(this.ApplicationID, (byte)enStatus.Cancelled);
+            if (this.ApplicationStatus != (byte)enStatus.New)
+            {
+                return false; 
+            }
+            if (clsDALApplication.UpdateStatus(this.ApplicationID, (byte)enStatus.Cancelled))
+            {
+                this.ApplicationStatus = (byte)enStatus.Cancelled;
+                this.LastStatusDate = DateTime.Now;
+                return true;
+            }
+
+            return false;
         }
 
         public bool SetComplete()
@@ -191,12 +202,10 @@ namespace BuisnessLayer
             RetakeTest = 7
         }
 
-        public static bool IsThereAnActiveApplicationInSameLicenses(int applicantPersonID, int applicationTypeID, int licenseClassID)
+        public static bool IsThereAnActiveApplicationInSameLicenses(int ApplicantPersonID, int ApplicationTypeID, int LicenseClassID)
         {
-            return clsDALApplication.IsThereAnActiveApplicationInSameLicenses(applicantPersonID, applicationTypeID, licenseClassID);
+            return clsDALApplication.IsThereAnActiveApplicationInSameLicenses(ApplicantPersonID, ApplicationTypeID, LicenseClassID);
         }
-
-
 
 
         public static int CreateRetakeTestApplication(string nationalNo, int testTypeID)
