@@ -201,8 +201,11 @@ namespace BusinessLayer
         }
         public static int GetActiveRetakeTestApplicationID(int localDrivingLicenseApplicationID, int testTypeID)
         {
-            // بنعطي الرقم المحلي ورقم الاختبار للـ DAL، وهي بتجيب لنا رقم طلب الإعادة النشط
             return clsDALTestAppointment.GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
+        }
+        public static DataTable GetApplicationTestAppointmentsPerTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            return clsDALTestAppointment.GetApplicationTestAppointmentsPerTestType(LocalDrivingLicenseApplicationID, TestTypeID);
         }
     }
 }

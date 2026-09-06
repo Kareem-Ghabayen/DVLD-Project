@@ -135,7 +135,12 @@ namespace DVLD.Applications
 
         private void scheduleVisionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // _ScheduleTest(1); // 1 = Vision Test
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+
+            frmListTestAppointments frm = new frmListTestAppointments(localDrivingLicenseApplicationID, frmListTestAppointments.enTestType.VisionTest);
+            frm.ShowDialog();
+
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void cmsApplications_Opening(object sender, CancelEventArgs e)
@@ -228,12 +233,22 @@ namespace DVLD.Applications
 
         private void scheduleWrittenTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         //   _ScheduleTest(2); // 2 = Written Test
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+
+            frmListTestAppointments frm = new frmListTestAppointments(localDrivingLicenseApplicationID, frmListTestAppointments.enTestType.WrittenTest);
+            frm.ShowDialog();
+
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
 
         private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         //   _ScheduleTest(3); // 3 = Street Test
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+
+            frmListTestAppointments frm = new frmListTestAppointments(localDrivingLicenseApplicationID, frmListTestAppointments.enTestType.StreetTest);
+            frm.ShowDialog();
+
+            _RefreshLocalDrivingLicenseApplicationsList();
         }
         private void _ScheduleTest(int testTypeID)
         {

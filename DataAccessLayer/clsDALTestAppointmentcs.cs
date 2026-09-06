@@ -261,5 +261,44 @@ namespace DataAccessLayer
 
             return retakeAppID;
         }
+        public static DataTable GetApplicationTestAppointmentsPerTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString); // أصلح اسم كلاس الاتصال إن اختلف عندك
+
+            string query = @"SELECT TestAppointmentID, AppointmentDate, PaidFees, IsLocked
+                     FROM TestAppointments
+                     WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
+                       AND TestTypeID = @TestTypeID
+                     ORDER BY TestAppointmentID DESC;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle Exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
     }
 }
