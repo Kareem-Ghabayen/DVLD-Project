@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             this.gbTestType = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSave = new Guna.UI2.WinForms.Guna2Button();
+            this.lblUserMessage = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblTotalFees = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblRetakeTestAppID = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblRetakeAppFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.dtpAppointmentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDrivingClass = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTrial = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblFullName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblLocalDrivingLicenseAppID = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbPersonID = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.dtpAppointmentDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.lblTotalFees = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblRetakeTestAppID = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblRetakeAppFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblUserMessage = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSave = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pbTestTypeImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.gbTestType.SuspendLayout();
             this.lblTotalFees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -110,18 +110,228 @@
             this.gbTestType.Size = new System.Drawing.Size(460, 686);
             this.gbTestType.TabIndex = 0;
             this.gbTestType.Text = "Vision Test";
+            this.gbTestType.Click += new System.EventHandler(this.gbTestType_Click);
             // 
-            // lblTitle
+            // btnClose
             // 
-            this.lblTitle.AutoSize = false;
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Location = new System.Drawing.Point(159, 127);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(182, 39);
-            this.lblTitle.TabIndex = 38;
-            this.lblTitle.Text = "Schedule Test";
+            this.btnClose.BorderRadius = 15;
+            this.btnClose.BorderThickness = 1;
+            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnClose.FillColor = System.Drawing.Color.Transparent;
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
+            this.btnClose.Location = new System.Drawing.Point(274, 637);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(113, 37);
+            this.btnClose.TabIndex = 97;
+            this.btnClose.Text = "Close";
+            // 
+            // btnSave
+            // 
+            this.btnSave.BorderRadius = 15;
+            this.btnSave.BorderThickness = 1;
+            this.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSave.FillColor = System.Drawing.Color.Transparent;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Location = new System.Drawing.Point(103, 637);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(113, 37);
+            this.btnSave.TabIndex = 96;
+            this.btnSave.Text = "Save";
+            // 
+            // lblUserMessage
+            // 
+            this.lblUserMessage.AutoSize = false;
+            this.lblUserMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lblUserMessage.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserMessage.ForeColor = System.Drawing.Color.Brown;
+            this.lblUserMessage.Location = new System.Drawing.Point(27, 160);
+            this.lblUserMessage.Name = "lblUserMessage";
+            this.lblUserMessage.Size = new System.Drawing.Size(421, 28);
+            this.lblUserMessage.TabIndex = 95;
+            this.lblUserMessage.Text = "Person already sat for the test, appointment locked";
+            this.lblUserMessage.Visible = false;
+            // 
+            // lblTotalFees
+            // 
+            this.lblTotalFees.Controls.Add(this.pictureBox2);
+            this.lblTotalFees.Controls.Add(this.pictureBox4);
+            this.lblTotalFees.Controls.Add(this.pictureBox3);
+            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel10);
+            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel1);
+            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel9);
+            this.lblTotalFees.Controls.Add(this.lblRetakeTestAppID);
+            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel8);
+            this.lblTotalFees.Controls.Add(this.lblRetakeAppFees);
+            this.lblTotalFees.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblTotalFees.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.lblTotalFees.Location = new System.Drawing.Point(3, 474);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(454, 143);
+            this.lblTotalFees.TabIndex = 94;
+            this.lblTotalFees.Text = " Retake Test Info";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DVLD.Properties.Resources.Person_32;
+            this.pictureBox2.Location = new System.Drawing.Point(131, 97);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 103;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::DVLD.Properties.Resources.money_322;
+            this.pictureBox4.Location = new System.Drawing.Point(131, 53);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 98;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::DVLD.Properties.Resources.Count_32;
+            this.pictureBox3.Location = new System.Drawing.Point(329, 53);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 102;
+            this.pictureBox3.TabStop = false;
+            // 
+            // guna2HtmlLabel10
+            // 
+            this.guna2HtmlLabel10.AutoSize = false;
+            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel10.Location = new System.Drawing.Point(13, 53);
+            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
+            this.guna2HtmlLabel10.Size = new System.Drawing.Size(101, 24);
+            this.guna2HtmlLabel10.TabIndex = 95;
+            this.guna2HtmlLabel10.Text = "R.App.Fees";
+            // 
+            // guna2HtmlLabel1
+            // 
+            this.guna2HtmlLabel1.AutoSize = false;
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(381, 53);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(73, 24);
+            this.guna2HtmlLabel1.TabIndex = 101;
+            this.guna2HtmlLabel1.Text = "[???]";
+            // 
+            // guna2HtmlLabel9
+            // 
+            this.guna2HtmlLabel9.AutoSize = false;
+            this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel9.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel9.Location = new System.Drawing.Point(13, 97);
+            this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
+            this.guna2HtmlLabel9.Size = new System.Drawing.Size(129, 24);
+            this.guna2HtmlLabel9.TabIndex = 96;
+            this.guna2HtmlLabel9.Text = "R.Test.App.ID";
+            // 
+            // lblRetakeTestAppID
+            // 
+            this.lblRetakeTestAppID.AutoSize = false;
+            this.lblRetakeTestAppID.BackColor = System.Drawing.Color.Transparent;
+            this.lblRetakeTestAppID.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeTestAppID.ForeColor = System.Drawing.Color.Black;
+            this.lblRetakeTestAppID.Location = new System.Drawing.Point(181, 97);
+            this.lblRetakeTestAppID.Name = "lblRetakeTestAppID";
+            this.lblRetakeTestAppID.Size = new System.Drawing.Size(129, 24);
+            this.lblRetakeTestAppID.TabIndex = 100;
+            this.lblRetakeTestAppID.Text = "[???]";
+            // 
+            // guna2HtmlLabel8
+            // 
+            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(239, 53);
+            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(84, 24);
+            this.guna2HtmlLabel8.TabIndex = 97;
+            this.guna2HtmlLabel8.Text = "Total Fees";
+            // 
+            // lblRetakeAppFees
+            // 
+            this.lblRetakeAppFees.AutoSize = false;
+            this.lblRetakeAppFees.BackColor = System.Drawing.Color.Transparent;
+            this.lblRetakeAppFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeAppFees.ForeColor = System.Drawing.Color.Black;
+            this.lblRetakeAppFees.Location = new System.Drawing.Point(181, 53);
+            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
+            this.lblRetakeAppFees.Size = new System.Drawing.Size(52, 24);
+            this.lblRetakeAppFees.TabIndex = 99;
+            this.lblRetakeAppFees.Text = "[???]";
+            // 
+            // dtpAppointmentDate
+            // 
+            this.dtpAppointmentDate.Checked = true;
+            this.dtpAppointmentDate.FillColor = System.Drawing.Color.White;
+            this.dtpAppointmentDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpAppointmentDate.Location = new System.Drawing.Point(184, 423);
+            this.dtpAppointmentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpAppointmentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpAppointmentDate.Name = "dtpAppointmentDate";
+            this.dtpAppointmentDate.Size = new System.Drawing.Size(200, 36);
+            this.dtpAppointmentDate.TabIndex = 93;
+            this.dtpAppointmentDate.Value = new System.DateTime(2026, 9, 6, 22, 20, 29, 700);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.Person_32;
+            this.pictureBox1.Location = new System.Drawing.Point(120, 348);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 92;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::DVLD.Properties.Resources.Count_32;
+            this.pictureBox7.Location = new System.Drawing.Point(120, 392);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 91;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::DVLD.Properties.Resources.License_Type_322;
+            this.pictureBox8.Location = new System.Drawing.Point(120, 260);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 90;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::DVLD.Properties.Resources.Calendar_321;
+            this.pictureBox12.Location = new System.Drawing.Point(120, 436);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox12.TabIndex = 89;
+            this.pictureBox12.TabStop = false;
             // 
             // guna2HtmlLabel15
             // 
@@ -182,6 +392,26 @@
             this.lblFees.Size = new System.Drawing.Size(129, 24);
             this.lblFees.TabIndex = 83;
             this.lblFees.Text = "[???]";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::DVLD.Properties.Resources.money_322;
+            this.pictureBox6.Location = new System.Drawing.Point(120, 304);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 81;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox9.Location = new System.Drawing.Point(120, 216);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 80;
+            this.pictureBox9.TabStop = false;
             // 
             // lblLocalDrivingLicenseAppID
             // 
@@ -254,247 +484,6 @@
             this.lbPersonID.TabIndex = 74;
             this.lbPersonID.Text = "D.L.App.ID";
             // 
-            // dtpAppointmentDate
-            // 
-            this.dtpAppointmentDate.Checked = true;
-            this.dtpAppointmentDate.FillColor = System.Drawing.Color.White;
-            this.dtpAppointmentDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpAppointmentDate.Location = new System.Drawing.Point(184, 423);
-            this.dtpAppointmentDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpAppointmentDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpAppointmentDate.Name = "dtpAppointmentDate";
-            this.dtpAppointmentDate.Size = new System.Drawing.Size(200, 36);
-            this.dtpAppointmentDate.TabIndex = 93;
-            this.dtpAppointmentDate.Value = new System.DateTime(2026, 9, 6, 22, 20, 29, 700);
-            // 
-            // lblTotalFees
-            // 
-            this.lblTotalFees.Controls.Add(this.pictureBox2);
-            this.lblTotalFees.Controls.Add(this.pictureBox4);
-            this.lblTotalFees.Controls.Add(this.pictureBox3);
-            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel10);
-            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel1);
-            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel9);
-            this.lblTotalFees.Controls.Add(this.lblRetakeTestAppID);
-            this.lblTotalFees.Controls.Add(this.guna2HtmlLabel8);
-            this.lblTotalFees.Controls.Add(this.lblRetakeAppFees);
-            this.lblTotalFees.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblTotalFees.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.lblTotalFees.Location = new System.Drawing.Point(3, 474);
-            this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(454, 143);
-            this.lblTotalFees.TabIndex = 94;
-            this.lblTotalFees.Text = " Retake Test Info";
-            // 
-            // guna2HtmlLabel1
-            // 
-            this.guna2HtmlLabel1.AutoSize = false;
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(381, 53);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(73, 24);
-            this.guna2HtmlLabel1.TabIndex = 101;
-            this.guna2HtmlLabel1.Text = "[???]";
-            // 
-            // lblRetakeTestAppID
-            // 
-            this.lblRetakeTestAppID.AutoSize = false;
-            this.lblRetakeTestAppID.BackColor = System.Drawing.Color.Transparent;
-            this.lblRetakeTestAppID.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetakeTestAppID.ForeColor = System.Drawing.Color.Black;
-            this.lblRetakeTestAppID.Location = new System.Drawing.Point(181, 97);
-            this.lblRetakeTestAppID.Name = "lblRetakeTestAppID";
-            this.lblRetakeTestAppID.Size = new System.Drawing.Size(129, 24);
-            this.lblRetakeTestAppID.TabIndex = 100;
-            this.lblRetakeTestAppID.Text = "[???]";
-            // 
-            // lblRetakeAppFees
-            // 
-            this.lblRetakeAppFees.AutoSize = false;
-            this.lblRetakeAppFees.BackColor = System.Drawing.Color.Transparent;
-            this.lblRetakeAppFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetakeAppFees.ForeColor = System.Drawing.Color.Black;
-            this.lblRetakeAppFees.Location = new System.Drawing.Point(181, 53);
-            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
-            this.lblRetakeAppFees.Size = new System.Drawing.Size(52, 24);
-            this.lblRetakeAppFees.TabIndex = 99;
-            this.lblRetakeAppFees.Text = "[???]";
-            // 
-            // guna2HtmlLabel8
-            // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(239, 53);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(84, 24);
-            this.guna2HtmlLabel8.TabIndex = 97;
-            this.guna2HtmlLabel8.Text = "Total Fees";
-            // 
-            // guna2HtmlLabel9
-            // 
-            this.guna2HtmlLabel9.AutoSize = false;
-            this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel9.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel9.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel9.Location = new System.Drawing.Point(13, 97);
-            this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            this.guna2HtmlLabel9.Size = new System.Drawing.Size(129, 24);
-            this.guna2HtmlLabel9.TabIndex = 96;
-            this.guna2HtmlLabel9.Text = "R.Test.App.ID";
-            // 
-            // guna2HtmlLabel10
-            // 
-            this.guna2HtmlLabel10.AutoSize = false;
-            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel10.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel10.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(13, 53);
-            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(101, 24);
-            this.guna2HtmlLabel10.TabIndex = 95;
-            this.guna2HtmlLabel10.Text = "R.App.Fees";
-            // 
-            // lblUserMessage
-            // 
-            this.lblUserMessage.AutoSize = false;
-            this.lblUserMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserMessage.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserMessage.ForeColor = System.Drawing.Color.Brown;
-            this.lblUserMessage.Location = new System.Drawing.Point(27, 160);
-            this.lblUserMessage.Name = "lblUserMessage";
-            this.lblUserMessage.Size = new System.Drawing.Size(421, 28);
-            this.lblUserMessage.TabIndex = 95;
-            this.lblUserMessage.Text = "Person already sat for the test, appointment locked";
-            this.lblUserMessage.Visible = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.BorderRadius = 15;
-            this.btnClose.BorderThickness = 1;
-            this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnClose.FillColor = System.Drawing.Color.Transparent;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(274, 637);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(113, 37);
-            this.btnClose.TabIndex = 97;
-            this.btnClose.Text = "Close";
-            // 
-            // btnSave
-            // 
-            this.btnSave.BorderRadius = 15;
-            this.btnSave.BorderThickness = 1;
-            this.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSave.FillColor = System.Drawing.Color.Transparent;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(103, 637);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(113, 37);
-            this.btnSave.TabIndex = 96;
-            this.btnSave.Text = "Save";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DVLD.Properties.Resources.Person_32;
-            this.pictureBox2.Location = new System.Drawing.Point(131, 97);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 103;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::DVLD.Properties.Resources.money_322;
-            this.pictureBox4.Location = new System.Drawing.Point(131, 53);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 98;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::DVLD.Properties.Resources.Count_32;
-            this.pictureBox3.Location = new System.Drawing.Point(329, 53);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 102;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.Person_32;
-            this.pictureBox1.Location = new System.Drawing.Point(120, 348);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 92;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::DVLD.Properties.Resources.Count_32;
-            this.pictureBox7.Location = new System.Drawing.Point(120, 392);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 91;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::DVLD.Properties.Resources.License_Type_322;
-            this.pictureBox8.Location = new System.Drawing.Point(120, 260);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 90;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Image = global::DVLD.Properties.Resources.Calendar_321;
-            this.pictureBox12.Location = new System.Drawing.Point(120, 436);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox12.TabIndex = 89;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::DVLD.Properties.Resources.money_322;
-            this.pictureBox6.Location = new System.Drawing.Point(120, 304);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 81;
-            this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox9.Location = new System.Drawing.Point(120, 216);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 80;
-            this.pictureBox9.TabStop = false;
-            // 
             // pbTestTypeImage
             // 
             this.pbTestTypeImage.Image = global::DVLD.Properties.Resources.Vision_512;
@@ -505,6 +494,18 @@
             this.pbTestTypeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbTestTypeImage.TabIndex = 39;
             this.pbTestTypeImage.TabStop = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = false;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Location = new System.Drawing.Point(159, 127);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(182, 39);
+            this.lblTitle.TabIndex = 38;
+            this.lblTitle.Text = "Schedule Test";
             // 
             // frmScheduleTest
             // 

@@ -16,5 +16,10 @@ namespace DVLD.Applications
         {
             InitializeComponent();
         }
+
+        private void gbTestType_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

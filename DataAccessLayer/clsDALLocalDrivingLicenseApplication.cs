@@ -271,4 +271,41 @@ public class clsDALLocalDrivingLicenseApplication
 
     //    return isExist;
     //}
+    public static byte GetTotalTrialsPerTest(int LocalDrivingLicenseApplicationID, int TestTypeID)
+    {
+        byte TotalTrials = 0;
+
+        using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+        {
+            string query = @"SELECT TotalTrialsPerTest = COUNT(TestAppointments.TestAppointmentID)
+                        FROM TestAppointments INNER JOIN
+                             Tests ON TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                        WHERE (TestAppointments.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID) 
+                          AND (TestAppointments.TestTypeID = @TestTypeID)";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+                try
+                {
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && byte.TryParse(result.ToString(), out byte value))
+                    {
+                        TotalTrials = value;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // يمكن إضافة تسجيل للخطأ هنا عند الحاجة
+                }
+            }
+        }
+
+        return TotalTrials;
+    }
 }

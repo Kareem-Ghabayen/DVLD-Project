@@ -8,7 +8,12 @@ namespace BusinessLayer
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.Update;
-
+        public enum enTestType
+        {
+            VisionTest = 1,
+            WrittenTest = 2,
+            StreetTest = 3
+        };
         public int TestTypeID { set; get; }
         public string TestTypeTitle { set; get; }
         public string TestTypeDescription { set; get; }

@@ -174,5 +174,9 @@ namespace DVLD_BLL
         {
             return clsDALLocalDrivingLicenseApplication.GetAllLocalDrivingLicenseApplications();
         }
+        public byte TotalTrialsPerTest(clsBLTestType.enTestType TestTypeID)
+        {
+            return clsDALLocalDrivingLicenseApplication.GetTotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
+        }
     }
 }

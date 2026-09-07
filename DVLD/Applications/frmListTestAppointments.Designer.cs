@@ -36,11 +36,11 @@
             this.lblRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.dgvAppointments = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.lblFilterBy = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cmsAppointments = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblFilterBy = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnAddNewAppointment = new Guna.UI2.WinForms.Guna2Button();
             this.pbTestTypeImage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.ctrlLocalDrivingLicenseApplicationInfo1 = new DVLD.Applications.Controls.ctrlLocalDrivingLicenseApplicationInfo();
@@ -88,6 +88,7 @@
             this.btnClose.Size = new System.Drawing.Size(113, 37);
             this.btnClose.TabIndex = 42;
             this.btnClose.Text = "Close";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
             // dgvAppointments
             // 
@@ -156,28 +157,6 @@
             this.dgvAppointments.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvAppointments.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // lblFilterBy
-            // 
-            this.lblFilterBy.BackColor = System.Drawing.Color.Transparent;
-            this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterBy.ForeColor = System.Drawing.Color.Black;
-            this.lblFilterBy.Location = new System.Drawing.Point(12, 627);
-            this.lblFilterBy.Name = "lblFilterBy";
-            this.lblFilterBy.Size = new System.Drawing.Size(124, 23);
-            this.lblFilterBy.TabIndex = 45;
-            this.lblFilterBy.Text = "Appointments";
-            // 
-            // lblRecordsCount
-            // 
-            this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
-            this.lblRecordsCount.Location = new System.Drawing.Point(113, 819);
-            this.lblRecordsCount.Name = "lblRecordsCount";
-            this.lblRecordsCount.Size = new System.Drawing.Size(43, 23);
-            this.lblRecordsCount.TabIndex = 46;
-            this.lblRecordsCount.Text = "????";
-            // 
             // cmsAppointments
             // 
             this.cmsAppointments.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -211,6 +190,28 @@
             this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.takeTestToolStripMenuItem.Text = "Take Test";
             this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
+            // 
+            // lblFilterBy
+            // 
+            this.lblFilterBy.BackColor = System.Drawing.Color.Transparent;
+            this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilterBy.ForeColor = System.Drawing.Color.Black;
+            this.lblFilterBy.Location = new System.Drawing.Point(12, 627);
+            this.lblFilterBy.Name = "lblFilterBy";
+            this.lblFilterBy.Size = new System.Drawing.Size(124, 23);
+            this.lblFilterBy.TabIndex = 45;
+            this.lblFilterBy.Text = "Appointments";
+            // 
+            // lblRecordsCount
+            // 
+            this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
+            this.lblRecordsCount.Location = new System.Drawing.Point(113, 819);
+            this.lblRecordsCount.Name = "lblRecordsCount";
+            this.lblRecordsCount.Size = new System.Drawing.Size(43, 23);
+            this.lblRecordsCount.TabIndex = 46;
+            this.lblRecordsCount.Text = "????";
             // 
             // btnAddNewAppointment
             // 
