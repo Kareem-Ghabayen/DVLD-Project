@@ -19,7 +19,7 @@ namespace BusinessLayer
         public decimal PaidFees { set; get; }
         public int CreatedByUserID { set; get; }
         public bool IsLocked { set; get; }
-        public int RetestTestAppointmentID { set; get; }
+        public int RetakeTestApplicationID { set; get; }
 
         public clsBLTestAppointment()
         {
@@ -30,7 +30,7 @@ namespace BusinessLayer
             this.PaidFees = 0;
             this.CreatedByUserID = -1;
             this.IsLocked = false;
-            this.RetestTestAppointmentID = -1;
+            this.RetakeTestApplicationID = -1;
             Mode = enMode.AddNew;
         }
 
@@ -44,7 +44,7 @@ namespace BusinessLayer
             this.PaidFees = paidFees;
             this.CreatedByUserID = createdByUserID;
             this.IsLocked = isLocked;
-            this.RetestTestAppointmentID = retestTestAppointmentID;
+            this.RetakeTestApplicationID = retestTestAppointmentID;
             Mode = enMode.Update;
         }
 
@@ -84,7 +84,7 @@ namespace BusinessLayer
         {
             this.TestAppointmentID = clsDALTestAppointment.AddNewTestAppointment(
                 this.TestTypeID, this.LocalDrivingLicenseApplicationID,
-                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.RetestTestAppointmentID);
+                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.RetakeTestApplicationID);
 
             return (this.TestAppointmentID != -1);
         }
@@ -93,7 +93,7 @@ namespace BusinessLayer
         {
             return clsDALTestAppointment.UpdateTestAppointment(
                 this.TestAppointmentID, this.TestTypeID, this.LocalDrivingLicenseApplicationID,
-                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetestTestAppointmentID);
+                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
         }
 
         public bool Save()
@@ -124,37 +124,78 @@ namespace BusinessLayer
             return clsDALTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID);
         }
 
-        public static bool ScheduleNewTestAppointment(int localDrivingLicenseApplicationID, int testTypeID)
+        public static bool ScheduleNewTestAppointment(int localDrivingLicenseApplicationID, int testTypeID, DateTime appointmentDate)
         {
-            if (clsBLTest.DoesPassTestType(localDrivingLicenseApplicationID, testTypeID))
+            try
             {
-                return false;
-            }
+                // 1. فحص هل اجتاز الاختبار سابقاً
+                if (clsBLTest.DoesPassTestType(localDrivingLicenseApplicationID, testTypeID))
+                {
+                    Console.WriteLine("تتبع 1: فشل بسبب أن المتقدم اجتاز هذا الاختبار سابقاً!");
+                    return false;
+                }
 
-            if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
-            {
-                return false;
-            }
-            //  هان فيه شرط مهم لازم تفحص ادا كان فشل ف اختبار الى جاي يحجزلي موعد ورقم اعدة الطلب سايبو نل بيكون مش مقدم طلب اعادة فحص وبدنا نمنعو 
-            clsBLTestAppointment appointment = new clsBLTestAppointment();
+                // 2. فحص هل يوجد موعد نشط حالياً
+                if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
+                {
+                    Console.WriteLine("تتبع 2: فشل بسبب وجود موعد نشط ومحجوز حالياً لهذا الفحص!");
+                    return false;
+                }
 
-            appointment.TestTypeID = testTypeID;
-            appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
+                // 3. فحص وجود الطلب المحلي وعدد المحاولات السابقة
+                var localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
+                if (localApp == null)
+                {
+                    Console.WriteLine("تتبع 3أ: فشل بسبب عدم العثور على طلب الرخصة المحلي (localApp == null)!");
+                    return false;
+                }
 
-            appointment.AppointmentDate = DateTime.Now; // (طبعاً التاريخ بتجيبه من الشاشة أو الكنترول حسب ما بختاره المستخدم)
+                byte totalTrials = localApp.TotalTrialsPerTest((clsBLTestType.enTestType)testTypeID);
+                if (totalTrials > 0)
+                {
+                    Console.WriteLine($"تتبع 3ب: فشل بسبب وجود محاولات رسوب سابقة ({totalTrials})! المفروض يتوجه لمسار الإعادة وليس جديد.");
+                    return false;
+                }
 
-            appointment.PaidFees = (decimal)clsBLTestType.Find(testTypeID).TestTypeFees;
-            appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID; // المستخدم الحالي الحقيقي
-                                                                        //
-                                                                        // appointment.IsLocked = false; // الموعد جديد لسه ما تقفل
+                // 4. فحص جلب رسوم نوع الاختبار
+                var testType = clsBLTestType.Find(testTypeID);
+                if (testType == null)
+                {
+                    Console.WriteLine($"تتبع 4: فشل بسبب عدم العثور على نوع الاختبار رقم ({testTypeID}) في جدول TestTypes!");
+                    return false;
+                }
 
-            // 3. استدعاء ميثود الحفظ من كلاس المواعيد (المنفذ الفني)
-            if (appointment.Save())
-            {
+                // 5. فحص تسجيل دخول المستخدم الحالي
+                if (clsGlobal.CurrentUser == null)
+                {
+                    Console.WriteLine("تتبع 5: فشل بسبب أن clsGlobal.CurrentUser يساوي null!");
+                    return false;
+                }
+
+                // 6. إنشـاء وتعبئة الكائن
+                clsBLTestAppointment appointment = new clsBLTestAppointment();
+                appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
+                appointment.TestTypeID = testTypeID;
+                appointment.AppointmentDate = appointmentDate;
+                appointment.PaidFees = (decimal)testType.TestTypeFees;
+                appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+                appointment.RetakeTestApplicationID = -1;
+
+                // 7. محاولة الحفظ في قاعدة البيانات
+                if (!appointment.Save())
+                {
+                    Console.WriteLine("تتبع 6: فشل داخل appointment.Save()! (تأكد من الـ DAL وقيم DBNull.Value للـ RetakeTestApplicationID)");
+                    return false;
+                }
+
+                Console.WriteLine("تتبع نجاح: تم حفظ الموعد الجديد بنجاح!");
                 return true;
             }
-
-            return false;
+            catch (Exception ex)
+            {
+                Console.WriteLine("استثناء خطأ (Exception): " + ex.Message);
+                return false;
+            }
         }
 
         public static clsBLTestAppointment ScheduleRetakeTest(int localDrivingLicenseApplicationID, int testTypeID, DateTime appointmentDate)
@@ -175,8 +216,8 @@ namespace BusinessLayer
 
             // 3. إنشاء موعد الاختبار الجديد وربطه بطلب الإعادة الجاهز
             clsBLTestAppointment appointment = new clsBLTestAppointment();
-            appointment.RetestTestAppointmentID = GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
-            if (appointment.RetestTestAppointmentID == -1)
+            appointment.RetakeTestApplicationID = GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
+            if (appointment.RetakeTestApplicationID == -1)
             {
                 return null; // لم يتم تقديم طلب إعادة فحص، ترفض المعاملة بالكامل!
             }

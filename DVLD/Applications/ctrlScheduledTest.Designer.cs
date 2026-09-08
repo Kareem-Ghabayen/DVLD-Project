@@ -266,7 +266,7 @@
             this.lbPersonID.ForeColor = System.Drawing.Color.Black;
             this.lbPersonID.Location = new System.Drawing.Point(28, 152);
             this.lbPersonID.Name = "lbPersonID";
-            this.lbPersonID.Size = new System.Drawing.Size(129, 24);
+            this.lbPersonID.Size = new System.Drawing.Size(98, 24);
             this.lbPersonID.TabIndex = 94;
             this.lbPersonID.Text = "D.L.App.ID";
             // 
@@ -322,6 +322,7 @@
             this.gbTestType.TabIndex = 115;
             this.gbTestType.TabStop = false;
             this.gbTestType.Text = "Vision Test";
+            this.gbTestType.Enter += new System.EventHandler(this.gbTestType_Enter);
             // 
             // lblUserMessage
             // 

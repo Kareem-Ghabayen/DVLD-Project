@@ -88,14 +88,17 @@ namespace DataAccessLayer
         }
 
         public static int AddNewTestAppointment(int TestTypeID, int LocalDrivingLicenseApplicationID,
-            DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, int RetestTestAppointmentID)
+            DateTime AppointmentDate, decimal PaidFees, int CreatedByUserID, int RetakeTestApplicationID)
         {
             int TestAppointmentID = -1;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = @"INSERT INTO TestAppointments (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetestTestAppointmentID)
-                             VALUES (@TestTypeID, @LocalDrivingLicenseApplicationID, @AppointmentDate, @PaidFees, @CreatedByUserID, 0, @RetestTestAppointmentID);
-                             SELECT SCOPE_IDENTITY();";
+            // تم تصحيح اسم العمود واسم البرامتر إلى RetakeTestApplicationID
+            string query = @"INSERT INTO TestAppointments 
+                        (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID)
+                     VALUES 
+                        (@TestTypeID, @LocalDrivingLicenseApplicationID, @AppointmentDate, @PaidFees, @CreatedByUserID, 0, @RetakeTestApplicationID);
+                     SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
@@ -104,10 +107,10 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@PaidFees", PaidFees);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
-            if (RetestTestAppointmentID == -1)
-                command.Parameters.AddWithValue("@RetestTestAppointmentID", DBNull.Value);
+            if (RetakeTestApplicationID == -1)
+                command.Parameters.AddWithValue("@RetakeTestApplicationID", DBNull.Value);
             else
-                command.Parameters.AddWithValue("@RetestTestAppointmentID", RetestTestAppointmentID);
+                command.Parameters.AddWithValue("@RetakeTestApplicationID", RetakeTestApplicationID);
 
             try
             {
@@ -116,28 +119,35 @@ namespace DataAccessLayer
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                     TestAppointmentID = insertedID;
             }
-            catch { }
-            finally { connection.Close(); }
+            catch (Exception ex)
+            {
+                // طباعة تفاصيل الخطأ في الـ Output لمعرفتها فوراً مستقبلاً
+                Console.WriteLine("DAL Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
 
             return TestAppointmentID;
         }
-
-     public static bool UpdateTestAppointment(int TestAppointmentID, int TestTypeID,
+        public static bool UpdateTestAppointment(int TestAppointmentID, int TestTypeID,
             int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, decimal PaidFees,
-            int CreatedByUserID, bool IsLocked, int RetestTestAppointmentID)
+            int CreatedByUserID, bool IsLocked, int RetakeTestApplicationID)
         {
             bool isUpdated = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
+            // تم تصحيح اسم العمود واسم البرامتر ليكون المطابق لجدول الداتابيز RetakeTestApplicationID
             string query = @"UPDATE TestAppointments SET 
-                        TestTypeID = @TestTypeID,
-                        LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID,
-                        AppointmentDate = @AppointmentDate,
-                        PaidFees = @PaidFees,
-                        CreatedByUserID = @CreatedByUserID,
-                        IsLocked = @IsLocked,
-                        RetestTestAppointmentID = @RetestTestAppointmentID
-                      WHERE TestAppointmentID = @TestAppointmentID";
+                TestTypeID = @TestTypeID,
+                LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID,
+                AppointmentDate = @AppointmentDate,
+                PaidFees = @PaidFees,
+                CreatedByUserID = @CreatedByUserID,
+                IsLocked = @IsLocked,
+                RetakeTestApplicationID = @RetakeTestApplicationID
+              WHERE TestAppointmentID = @TestAppointmentID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
@@ -148,10 +158,11 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             command.Parameters.AddWithValue("@IsLocked", IsLocked);
 
-            if (RetestTestAppointmentID == -1)
-                command.Parameters.AddWithValue("@RetestTestAppointmentID", DBNull.Value);
+            // تحويل الـ -1 إلى DBNull.Value لمنع خطأ Foreign Key في SQL Server
+            if (RetakeTestApplicationID == -1)
+                command.Parameters.AddWithValue("@RetakeTestApplicationID", DBNull.Value);
             else
-                command.Parameters.AddWithValue("@RetestTestAppointmentID", RetestTestAppointmentID);
+                command.Parameters.AddWithValue("@RetakeTestApplicationID", RetakeTestApplicationID);
 
             try
             {
@@ -159,8 +170,15 @@ namespace DataAccessLayer
                 int rows = command.ExecuteNonQuery();
                 if (rows > 0) isUpdated = true;
             }
-            catch { }
-            finally { connection.Close(); }
+            catch (Exception ex)
+            {
+                // طباعة تفاصيل الخطأ لو حدثت مشكلة مستقبلاً
+                Console.WriteLine("DAL Update Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
 
             return isUpdated;
         }

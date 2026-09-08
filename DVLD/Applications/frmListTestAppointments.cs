@@ -75,41 +75,25 @@ namespace DVLD.Applications
 
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
-            //    clsBLLocalDrivingLicenseApplication localDrivingLicenseApplication =
-            //clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
+            int localDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
+            clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType; // VisionTest, WrittenTest, or StreetTest
 
-            //    if (localDrivingLicenseApplication.IsThereAnActiveScheduledTest((clsBLTestType.enTestType)_TestType))
-            //    {
-            //        MessageBox.Show("Person already has an active appointment for this test, You cannot add a new appointment", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
+            frmScheduleTest frm = new frmScheduleTest(localDrivingLicenseApplicationID, testTypeID);
+            frm.ShowDialog();
 
-            //    clsBLTest lastTest = localDrivingLicenseApplication.GetLastTestPerTestType((clsBLTestType.enTestType)_TestType);
-
-            //    if (lastTest != null && lastTest.TestResult == true)
-            //    {
-            //        MessageBox.Show("This person already passed this test before. You can only retake failed tests.", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-
-            //    frmScheduleTest frm = new frmScheduleTest(_LocalDrivingLicenseApplicationID, (clsBLTestType.enTestType)_TestType);
-            //    frm.ShowDialog();
-
-            //    _RefreshAppointmentsList();
+            _RefreshAppointmentsList();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            {
-                //int appointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+            int appointmentID = (int)dgvAppointments.CurrentRow.Cells["TestAppointmentID"].Value;
+            int localDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
+            clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType;
 
-                //// فتح شاشة الجدولة وتمرير ID الموعد للتعديل عليه
-                //frmScheduleTest frm = new frmScheduleTest(_LocalDrivingLicenseApplicationID, (clsBLTestType.enTestType)_TestType, appointmentID);
-                //frm.ShowDialog();
+            frmScheduleTest frm = new frmScheduleTest(localDrivingLicenseApplicationID, testTypeID, appointmentID);
+            frm.ShowDialog();
 
-                //// إعادة تحديث القائمة بعد التعديل
-                //_RefreshAppointmentsList();
-            }
+            _RefreshAppointmentsList();
         }
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)

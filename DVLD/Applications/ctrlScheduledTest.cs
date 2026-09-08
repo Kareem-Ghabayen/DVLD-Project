@@ -1,4 +1,5 @@
-﻿using BusinessLayer;
+﻿using BuisnessLayer;
+using BusinessLayer;
 using DVLD_BLL;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,11 @@ namespace DVLD.Applications
         private clsBLTestAppointment _TestAppointment;
         private clsBLLocalDrivingLicenseApplication _LocalDrivingLicenseApplication;
 
+        // الإضافة: خاصية رقم طلب الإعادة الممرر من الفورم
+        public int RetakeTestApplicationID { get; set; } = -1;
+
         public clsBLTestType.enTestType TestTypeID => _TestTypeID;
         public int TestAppointmentID => _TestAppointmentID;
-        public int TestID => _TestAppointment?.TestAppointmentID ?? -1;
         public bool IsAppointmentValidForSave { get; private set; } = true;
         public float TestFees => !string.IsNullOrEmpty(lblFees.Text) ? Convert.ToSingle(lblFees.Text) : 0;
 
@@ -40,6 +43,7 @@ namespace DVLD.Applications
         {
             InitializeComponent();
         }
+
         public void LoadInfo(int LocalDrivingLicenseApplicationID, clsBLTestType.enTestType TestTypeID, int AppointmentID = -1)
         {
             _TestTypeID = TestTypeID;
@@ -82,6 +86,55 @@ namespace DVLD.Applications
             // فحص قيود المواعيد النشطة والمقفلة
             _HandleActiveAndLockedAppointments();
         }
+
+        // وظيفتها تفعيل فحص الشروط ادا كان موعد جديد + ادا كان تحديث والموعد مغلق يسكرو عليه
+        private void _HandleActiveAndLockedAppointments()
+        {
+            if (_Mode == enMode.AddNew && clsBLTestAppointment.IsThereAnActiveAppointment(_LocalDrivingLicenseApplicationID, (int)_TestTypeID))
+            {
+                lblUserMessage.Text = "Person already has an active appointment for this test";
+                lblUserMessage.Visible = true;
+                dtpAppointmentDate.Enabled = false;
+                IsAppointmentValidForSave = false;
+                return;
+            }
+
+            if (_Mode == enMode.Update && _TestAppointment.IsLocked)
+            {
+                lblUserMessage.Text = "Person already sat for the test, appointment locked.";
+                lblUserMessage.Visible = true;
+                dtpAppointmentDate.Enabled = false;
+                IsAppointmentValidForSave = false;
+                return;
+            }
+
+            lblUserMessage.Visible = false;
+            dtpAppointmentDate.Enabled = true;
+            IsAppointmentValidForSave = true;
+        }
+
+        private bool _LoadAppointmentData()
+        {
+            _TestAppointment = clsBLTestAppointment.Find(_TestAppointmentID);
+
+            if (_TestAppointment == null)
+            {
+                MessageBox.Show("Error: No Appointment with ID = " + _TestAppointmentID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                IsAppointmentValidForSave = false;
+                return false;
+            }
+
+            lblFees.Text = _TestAppointment.PaidFees.ToString();
+
+            if (DateTime.Compare(DateTime.Now, _TestAppointment.AppointmentDate) < 0)
+                dtpAppointmentDate.MinDate = DateTime.Now;
+            else
+                dtpAppointmentDate.MinDate = _TestAppointment.AppointmentDate;
+
+            dtpAppointmentDate.Value = _TestAppointment.AppointmentDate;
+            return true;
+        }
+
         private void _SetTestTypeUI()
         {
             switch (_TestTypeID)
@@ -105,6 +158,70 @@ namespace DVLD.Applications
                     break;
             }
         }
+
+        public bool Save()
+        {
+            // 1. فحص شروط الحفظ الخاصة بالواجهة
+            if (!IsAppointmentValidForSave)
+            {
+                MessageBox.Show("DEBUG: فشل الفحص المبدئي IsAppointmentValidForSave (قد يكون هناك موعد نشط أو غير مستوفٍ للشروط).",
+                                "Trace Step 1", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (_Mode == enMode.AddNew)
+            {
+                // 2. حالة الحجز للمرة الأولى
+                if (RetakeTestApplicationID == -1)
+                {
+                    if (clsBLTestAppointment.ScheduleNewTestAppointment(
+                        _LocalDrivingLicenseApplicationID,
+                        (int)_TestTypeID,
+                        dtpAppointmentDate.Value))
+                    {
+                        _Mode = enMode.Update;
+                        return true;
+                    }
+
+                    MessageBox.Show("DEBUG: فشلت الميثود ScheduleNewTestAppointment داخل الـ BLL! تحقق من قيود قاعدة البيانات (Foreign Keys) أو قيم null.",
+                                    "Trace Step 2A - New Test Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                // 3. حالة إعادة الاختبار
+                else
+                {
+                    _TestAppointment = clsBLTestAppointment.ScheduleRetakeTest(
+                        _LocalDrivingLicenseApplicationID,
+                        (int)_TestTypeID,
+                        dtpAppointmentDate.Value);
+
+                    if (_TestAppointment != null)
+                    {
+                        _Mode = enMode.Update;
+                        _TestAppointmentID = _TestAppointment.TestAppointmentID;
+                        return true;
+                    }
+
+                    MessageBox.Show("DEBUG: فشلت الميثود ScheduleRetakeTest وأرجعت null! تحقق من شرط الرسوب أو إنشاء طلب الإعادة داخل البزنس.",
+                                    "Trace Step 2B - Retake Test Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            else // 4. حالة التعديل Update
+            {
+                _TestAppointment.AppointmentDate = dtpAppointmentDate.Value;
+
+                if (_TestAppointment.Save())
+                {
+                    return true;
+                }
+
+                MessageBox.Show("DEBUG: فشلت عملية التعديل _TestAppointment.Save() أثناء التحديث في قاعدة البيانات.",
+                                "Trace Step 3 - Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         private void dtpAppointmentDate_ValueChanged(object sender, EventArgs e)
         {
 
@@ -128,6 +245,11 @@ namespace DVLD.Applications
         private void pictureBox7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gbTestType_Enter(object sender, EventArgs e)
+        {
+             
         }
     }
 }
