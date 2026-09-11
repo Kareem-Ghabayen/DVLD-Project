@@ -99,14 +99,17 @@ namespace DVLD.Applications
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             {
-                //int appointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+                int testAppointmentID = (int)dgvAppointments.CurrentRow.Cells["TestAppointmentID"].Value;
 
-                //// فتح شاشة إجراء الاختبار وتمرير ID الموعد
-                //frmTakeTest frm = new frmTakeTest(appointmentID, (clsBLTestType.enTestType)_TestType);
-                //frm.ShowDialog();
+  
+                clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType;
+                frmTakeTest frm = new frmTakeTest(_LocalDrivingLicenseApplicationID, testTypeID, testAppointmentID);
 
-                //// إعادة تحديث القائمة لإغلاق الموعد (IsLocked = true) إذا تم تقديم الاختبار
-                //_RefreshAppointmentsList();
+                // 3. عرض الشاشة كـ Dialog
+                frm.ShowDialog();
+
+                // 4. إعادة تحميل الجدول لتحديث القائمة وإظهار الموعد المقفول (IsLocked = true)
+                _RefreshAppointmentsList();
             }
         }
 

@@ -109,5 +109,10 @@ namespace DVLD.Applications.Controls
 
             LoadApplicationInfoByLocalDrivingAppID(_LocalDrivingLicenseApplicationID);
         }
+
+        private void gbApplicationBasicInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

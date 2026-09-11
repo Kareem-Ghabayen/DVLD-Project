@@ -76,7 +76,16 @@ namespace DVLD.Applications
                 dtpAppointmentDate.MinDate = DateTime.Now;
                 dtpAppointmentDate.Value = DateTime.Now;
                 _TestAppointment = new clsBLTestAppointment();
-            }
+                if (_LocalDrivingLicenseApplication.TotalTrialsPerTest(_TestTypeID) > 0)
+                {
+                    // نغير القيمة عن -1 لتجهيز الإشارة لحالة الإعادة
+                    RetakeTestApplicationID = 0;
+                }
+                else
+                {
+                    RetakeTestApplicationID = -1;
+                }
+                }
             else
             {
                 if (!_LoadAppointmentData())
@@ -90,6 +99,15 @@ namespace DVLD.Applications
         // وظيفتها تفعيل فحص الشروط ادا كان موعد جديد + ادا كان تحديث والموعد مغلق يسكرو عليه
         private void _HandleActiveAndLockedAppointments()
         {
+            // 1. فحص النجاح المسبق باستخدام clsBLTest
+            if (_Mode == enMode.AddNew && clsBLTest.DoesPassTestType(_LocalDrivingLicenseApplicationID, (int)_TestTypeID))
+            {
+                lblUserMessage.Text = "Person already passed this test, appointment cannot be scheduled.";
+                lblUserMessage.Visible = true;
+                dtpAppointmentDate.Enabled = false;
+                IsAppointmentValidForSave = false;
+                return;
+            }
             if (_Mode == enMode.AddNew && clsBLTestAppointment.IsThereAnActiveAppointment(_LocalDrivingLicenseApplicationID, (int)_TestTypeID))
             {
                 lblUserMessage.Text = "Person already has an active appointment for this test";
@@ -199,6 +217,7 @@ namespace DVLD.Applications
                     {
                         _Mode = enMode.Update;
                         _TestAppointmentID = _TestAppointment.TestAppointmentID;
+                        RetakeTestApplicationID = _TestAppointment.RetakeTestApplicationID;
                         return true;
                     }
 

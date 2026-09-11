@@ -260,10 +260,18 @@ namespace DVLD.Applications
 
         private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
-            //frmIssueDriverLicenseFirstTime frm = new frmIssueDriverLicenseFirstTime(localDrivingLicenseApplicationID);
-            //frm.ShowDialog();
-            //_RefreshLocalDrivingLicenseApplicationsList();
+            if (dgvLocalDrivingLicenseApplications.CurrentRow == null)
+                return;
+
+            // 2. جلب رقم الطلب المحلي من السطر المحدد
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells["LocalDrivingLicenseApplicationID"].Value;
+
+            // 3. فتح شاشة إصدار الرخصة لأول مرة وتمرير الرقم
+            frmIssueDriverLicenseFirstTime frm = new frmIssueDriverLicenseFirstTime(localDrivingLicenseApplicationID);
+            frm.ShowDialog();
+
+            // 4. إعادة تحميل الجدول لتحديث حالة الطلب فور إغلاق الشاشة
+            frmListLocalDrivingLicenseApplications_Load(null, null);
         }
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,26 +288,14 @@ namespace DVLD.Applications
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells["LocalDrivingLicenseApplicationID"].Value;
 
-            //// جلب كائن الطلب للوصول لرقم الرخصة المرتبطة به
-            //clsBLLocalDrivingLicenseApplication localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseAppID(localDrivingLicenseApplicationID);
+            int licenseID = clsBLLocalDrivingLicenseApplication
+                                .FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID)
+                                .GetActiveLicenseID();
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(licenseID);
 
-            //if (localApp != null)
-            //{
-            //    // جلب رقم الرخصة النشطة لهذا الطلب المحلي
-            //    int licenseID = localApp.GetActiveLicenseID();
-
-            //    if (licenseID != -1)
-            //    {
-            //        frmShowLicenseInfo frm = new frmShowLicenseInfo(licenseID);
-            //        frm.ShowDialog();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("No License Found for this application!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+            frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

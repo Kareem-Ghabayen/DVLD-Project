@@ -8,7 +8,7 @@ namespace DataAccessLayer
     {
         public static bool GetTestAppointmentByID(int TestAppointmentID, ref int TestTypeID,
             ref int LocalDrivingLicenseApplicationID, ref DateTime AppointmentDate,
-            ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked, ref int RetestTestAppointmentID)
+            ref decimal PaidFees, ref int CreatedByUserID, ref bool IsLocked, ref int RetakeTestApplicationID)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
@@ -24,21 +24,28 @@ namespace DataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
-                    TestTypeID = (int)reader["TestTypeID"];
-                    LocalDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
-                    AppointmentDate = (DateTime)reader["AppointmentDate"];
-                    PaidFees = (decimal)reader["PaidFees"];
-                    CreatedByUserID = (int)reader["CreatedByUserID"];
-                    IsLocked = (bool)reader["IsLocked"];
 
-                    if (reader["RetestTestAppointmentID"] != DBNull.Value)
-                        RetestTestAppointmentID = (int)reader["RetestTestAppointmentID"];
+                    // استخدام Convert ينقذ الكود من أخطاء التحويل الصريح
+                    TestTypeID = Convert.ToInt32(reader["TestTypeID"]);
+                    LocalDrivingLicenseApplicationID = Convert.ToInt32(reader["LocalDrivingLicenseApplicationID"]);
+                    AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
+                    PaidFees = Convert.ToDecimal(reader["PaidFees"]);
+                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
+                    IsLocked = Convert.ToBoolean(reader["IsLocked"]);
+
+                    if (reader["RetakeTestApplicationID"] != DBNull.Value)
+                        RetakeTestApplicationID = Convert.ToInt32(reader["RetakeTestApplicationID"]);
                     else
-                        RetestTestAppointmentID = -1;
+                        //throw new Exception($"RetakeTestApplicationID is NULL in Database for TestAppointmentID: {TestAppointmentID}");
+                    RetakeTestApplicationID = -1;
                 }
                 reader.Close();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("DAL Error in GetTestAppointmentByID: " + ex.Message);
+                isFound = false;
+            }
             finally { connection.Close(); }
 
             return isFound;

@@ -14,12 +14,19 @@ namespace BuisnessLayer
         public int CreatedByUserID { set; get; }
         public DateTime CreatedDate { set; get; }
 
+        // =========================================================
+        // الخاصية المضافة للوصول لبيانات الشخص (بما فيها الاسم الكامل)
+        // =========================================================
+        public clsBLSPeople PersonInfo { set; get; }
+        // =========================================================
+
         public clsBLDriver()
         {
             this.DriverID = -1;
             this.PersonID = -1;
             this.CreatedByUserID = -1;
             this.CreatedDate = DateTime.MinValue;
+            this.PersonInfo = null;
 
             Mode = enMode.AddNew;
         }
@@ -30,6 +37,9 @@ namespace BuisnessLayer
             this.PersonID = PersonID;
             this.CreatedByUserID = CreatedByUserID;
             this.CreatedDate = CreatedDate;
+            
+            // جلب بيانات الشخص بمجرد تحميل السائق
+            this.PersonInfo = clsBLSPeople.FindByID(this.PersonID);
 
             Mode = enMode.Update;
         }
@@ -63,6 +73,7 @@ namespace BuisnessLayer
                 return null;
             }
         }
+
         public static clsBLDriver FindByNationalNo(string NationalNo)
         {
             int DriverID = -1, PersonID = -1, CreatedByUserID = -1;
@@ -77,6 +88,7 @@ namespace BuisnessLayer
                 return null;
             }
         }
+
         public static DataTable GetAllDrivers()
         {
             return clsDALDriver.GetAllDrivers();
@@ -92,12 +104,6 @@ namespace BuisnessLayer
         {
             return clsDALDriver.UpdateDriver(this.DriverID, this.PersonID, this.CreatedByUserID, CreatedDate);
         }
-
-
-
-
-
-
 
         public bool Save()
         {
@@ -140,28 +146,26 @@ namespace BuisnessLayer
         {
             return clsDALDriver.IsDriverExistByPersonID(PersonID);
         }
+
         public static int GetOrCreateDriverID(int personID)
         {
-            // 1. هل الشخص مسجل كسايق من قبل؟ نبحث عنه بواسطة رقم الشخص
             clsBLDriver driver = clsBLDriver.FindByPersonID(personID);
 
             if (driver != null)
             {
-                return driver.DriverID; // لو لقيناه، بنرجع رقمه الجاهز مباشرة
+                return driver.DriverID;
             }
 
-            // 2. لو مش مسجل (أول مرة بحياته)، بننشئ له سجل سائق جديد
             clsBLDriver newDriver = new clsBLDriver();
             newDriver.PersonID = personID;
             newDriver.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-            // أخذه من العالمي مباشرة            newDriver.CreatedDate = DateTime.Now;
 
             if (newDriver.Save())
             {
-                return newDriver.DriverID; // بنرجع رقم السائق الجديد اللي انولد
+                return newDriver.DriverID;
             }
 
-            return -1; // فشل الإنشـاء
+            return -1;
         }
     }
 }

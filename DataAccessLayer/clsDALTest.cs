@@ -242,25 +242,23 @@ namespace DataAccessLayer
 
             return isPassed;
         }
-        public static bool DoesFailTestType(int personID, int testTypeID)
+        public static bool DoesFailTestType(int localDrivingLicenseApplicationID, int testTypeID)
         {
             bool isFailed = false;
 
-            // استعلام SQL بيجيب نتيجة أحدث اختبار لهذا الشخص ونوع الاختبار
+            // استعلام مباشر بجدول المواعيد بدون الحاجة لـ JOINs زائدة مع جدول الأشخاص
             string query = @"SELECT TOP 1 Tests.TestResult 
                      FROM Tests 
                      INNER JOIN TestAppointments ON Tests.TestAppointmentID = TestAppointments.TestAppointmentID
-                     INNER JOIN LocalDrivingLicenseApplications ON TestAppointments.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
-                     INNER JOIN Applications ON LocalDrivingLicenseApplications.ApplicationID = Applications.ApplicationID
-                     WHERE Applications.ApplicantPersonID = @PersonID 
+                     WHERE TestAppointments.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID 
                        AND TestAppointments.TestTypeID = @TestTypeID
-                     ORDER BY TestAppointments.AppointmentDate DESC";
+                     ORDER BY Tests.TestID DESC";
 
-            using (SqlConnection connection = new SqlConnection( Connection.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@PersonID", personID);
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
                     command.Parameters.AddWithValue("@TestTypeID", testTypeID);
 
                     try
@@ -270,19 +268,18 @@ namespace DataAccessLayer
 
                         if (result != null && bool.TryParse(result.ToString(), out bool testResult))
                         {
-                            // لو النتيجة false معناها رسب، وإذا true معناها نجح
-                            // احنا بدنا نعرف هل هو "راسب" (يعني TestResult == false)
+                            // لو النتيجة false (راسب) ترجع isFailed = true
                             isFailed = !testResult;
                         }
                     }
                     catch (Exception ex)
                     {
-                        // التعامل مع الخطأ
+                        // Handling Exception
                     }
                 }
             }
 
-            return isFailed; // بترجع true لو آخر محاولة كانت رسوب
+            return isFailed;
         }
     }
 }

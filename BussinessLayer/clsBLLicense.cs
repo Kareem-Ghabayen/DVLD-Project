@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer;
+using DataAccessLayer;
 using DVLD_BLL;
 using DVLD_DataAccess;
 using System;
@@ -12,6 +13,7 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         public enum enMode { AddNew = 0, Update = 1 }
         public enMode Mode = enMode.AddNew;
         public enum enIssueReason { FirstTime = 1, Renew = 2, DamagedReplacement = 3, LostReplacement = 4 };
+
         public int LicenseID { get; set; }
         public int ApplicationID { get; set; }
         public int DriverID { get; set; }
@@ -23,7 +25,39 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         public bool IsActive { get; set; }
         public byte IssueReason { get; set; }
         public int CreatedByUserID { get; set; }
+
         public clsBLDriver DriverInfo { get; set; }
+
+        // =========================================================
+        // الخصائص المضافة لدعم واجهة عرض الرخصة (ctrlDriverLicenseInfo)
+        // =========================================================
+
+        public clsBLLicenseClass LicenseClassInfo => clsBLLicenseClass.Find(this.LicenseClass);
+
+        public string IssueReasonText
+        {
+            get
+            {
+                switch ((enIssueReason)this.IssueReason)
+                {
+                    case enIssueReason.FirstTime:
+                        return "First Time";
+                    case enIssueReason.Renew:
+                        return "Renew";
+                    case enIssueReason.DamagedReplacement:
+                        return "Replacement for Damaged";
+                    case enIssueReason.LostReplacement:
+                        return "Replacement for Lost";
+                    default:
+                        return "First Time";
+                }
+            }
+        }
+
+        public bool IsDetained => clsBLDetainedLicense.IsLicenseDetained(this.LicenseID);
+
+        // =========================================================
+
         public clsBLLicense()
         {
             this.LicenseID = -1;
@@ -54,7 +88,7 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             this.IsActive = isActive;
             this.IssueReason = issueReason;
             this.CreatedByUserID = createdByUserID;
-            this.DriverInfo= clsBLDriver.FindByDriverID(this.DriverID);
+            this.DriverInfo = clsBLDriver.FindByDriverID(this.DriverID);
             Mode = enMode.Update;
         }
 
@@ -88,17 +122,12 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         {
             return clsDALLicenses.GetAllLicenses();
         }
-        //public static clsBLLicense FindByLicenseID(int licenseID)
-        //{
-        //    // هاي الدالة بترجع لك كائن كامل بيحتوي على كل بيانات الرخصة (الفئة، تاريخ الانتهاء، الحالة، الـ DriverID، إلخ)
-        //    return clsDALLicenses.FindByLicenseID(licenseID);
-        //}
+
         public static DataTable GetDriverLicenses(int DriverID)
         {
             return clsDALLicenses.GetDriverLicenses(DriverID);
         }
 
-        //  هان طبعا فيه هيتم شروط كثيرة على طريقة الاضافة يجب تجاوزها 
         private bool _AddNewLicense()
         {
             this.LicenseID = clsDALLicenses.AddNewLicense(
@@ -143,16 +172,16 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             return clsDALLicenses.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
         }
 
-        public  bool IsLicenseActiveByLicenseID( )
+        public bool IsLicenseActiveByLicenseID()
         {
             return clsDALLicenses.IsLicenseActiveByLicenseID(LicenseID);
         }
-
 
         public static bool IsLicenseExistByPersonIDAndLicenseClass(int PersonID, int LicenseClass)
         {
             return clsDALLicenses.IsLicenseExistByPersonIDAndLicenseClass(PersonID, LicenseClass);
         }
+
         public static bool IsLicenseExist(int licenseID)
         {
             return clsDALLicenses.IsLicenseExist(licenseID);
@@ -165,23 +194,23 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             {
                 return null;
             }
-            
+
             if (oldLicense.IsLicenseActiveByLicenseID())
             {
                 return null;
             }
-                        if (clsBLApplication.IsThereAnActiveApplicationInSameLicenses(oldLicense.DriverInfo.PersonID, (int)enApplicationType.RenewDrivingLicense, oldLicense.LicenseClass))
-            {
-                return null; 
-            }
 
+            if (clsBLApplication.IsThereAnActiveApplicationInSameLicenses(oldLicense.DriverInfo.PersonID, (int)enApplicationType.RenewDrivingLicense, oldLicense.LicenseClass))
+            {
+                return null;
+            }
 
             clsBLApplication application = new clsBLApplication();
 
             application.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
             application.ApplicationDate = DateTime.Now;
             application.ApplicationTypeID = (int)enApplicationType.RenewDrivingLicense;
-            application.ApplicationStatus = 1; 
+            application.ApplicationStatus = 1;
             application.LastStatusDate = DateTime.Now;
             application.PaidFees = clsBLApplicationType.Find((int)enApplicationType.RenewDrivingLicense).ApplicationFees;
             application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
@@ -191,9 +220,6 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             {
                 return null;
             }
-
-
-            //  هان لازم احط شرط يربط نتيجة فحص النظر طيب 
 
             if (!application.Save())
             {
@@ -229,6 +255,7 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
             return newLicense;
         }
+
         public int IssueLicenseFirstTime(int localDrivingLicenseApplicationID, string notes = "")
         {
             // 1. جلب الطلب المحلي وفحص هل اجتاز الـ 3 اختبارات
@@ -246,20 +273,22 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             int driverID = clsBLDriver.GetOrCreateDriverID(baseApplication.ApplicantPersonID);
             if (driverID == -1)
                 return -1; // لو فشل في جلب أو إنشاء السائق
+
             clsBLLicenseClass licenseClassInfo = clsBLLicenseClass.Find(localApp.LicenseClassID);
             if (licenseClassInfo == null)
                 return -1;
+
             // 4. تعبئة بيانات الرخصة
             this.ApplicationID = localApp.ApplicationID;
             this.DriverID = driverID; // رقم السائق الصحيح
             this.LicenseClass = localApp.LicenseClassID;
             this.IssueDate = DateTime.Now;
-            this.ExpirationDate = DateTime.Now.AddYears(licenseClassInfo.DefaultValidityLength); // جبناها من كلاس الفئة صح
-                                                                                                 // this.Notes = notes; // لو فاضية بتضل فاضية
+            this.ExpirationDate = DateTime.Now.AddYears(licenseClassInfo.DefaultValidityLength);
+            this.Notes = notes;
             this.PaidFees = licenseClassInfo.ClassFees;
             this.IsActive = true;
             this.IssueReason = 1; // First Time
-            this.CreatedByUserID = clsGlobal.CurrentUser.UserID; // جبناه من الكلاس العالمي مباشرة
+            this.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
             // 5. الحفظ وتحديث حالة الطلب
             if (this.Save())
@@ -275,7 +304,7 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         {
             // 1. إلغاء تفعيل الرخصة القديمة الحالية
             this.IsActive = false;
-            this.Save(); // أو ميثود خاصة بإلغاء التفعيل
+            this.Save();
 
             // 2. إنشاء رخصة جديدة كبديل للرخصة الحالية
             clsBLLicense newLicense = new clsBLLicense();
@@ -285,7 +314,6 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             newLicense.LicenseClass = this.LicenseClass;
             newLicense.IssueDate = DateTime.Now;
 
-            // حساب تاريخ انتهاء الرخصة بناءً على فئة الرخصة (License Class Default Validity Length)
             clsBLLicenseClass licenseClassInfo = clsBLLicenseClass.Find(this.LicenseClass);
             if (licenseClassInfo != null)
             {
@@ -293,22 +321,22 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             }
             else
             {
-                newLicense.ExpirationDate = DateTime.Now.AddYears(10); // قيمة افتراضية مثلاً
+                newLicense.ExpirationDate = DateTime.Now.AddYears(10);
             }
 
             newLicense.PaidFees = licenseClassInfo != null ? licenseClassInfo.ClassFees : 0;
             newLicense.IsActive = true;
-            newLicense.IssueReason = (byte)issueReason; // هنا رح تكون Lost (مثلاً 3 أو حسب إعدادات السيستم)
+            newLicense.IssueReason = (byte)issueReason;
             newLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
-            // 3. حفظ الرخصة الجديدة في الداتابيز
             if (!newLicense.Save())
             {
                 return null;
             }
 
-            return newLicense; // إرجاع أوبجيكت الرخصة الجديدة الناجحة
+            return newLicense;
         }
+
         public static clsBLLicense GetActiveClass3LicenseByNationalNo(string nationalNo)
         {
             int licenseID = -1;
@@ -323,13 +351,11 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             byte issueReason = 0;
             int createdByUserID = -1;
 
-            // استدعاء داتابيز
             if (clsDALLicenses.GetActiveClass3LicenseInfoByNationalNo(nationalNo,
                 ref licenseID, ref applicationID, ref driverID, ref licenseClass,
                 ref issueDate, ref expirationDate, ref notes, ref paidFees,
                 ref isActive, ref issueReason, ref createdByUserID))
             {
-                // إرجاع كائن رخصة جديد جاهز بالبيانات
                 return new clsBLLicense(licenseID, applicationID, driverID, licenseClass,
                     issueDate, expirationDate, notes, paidFees, isActive, issueReason, createdByUserID);
             }
@@ -337,6 +363,11 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             {
                 return null;
             }
+
+        }
+        public static int GetActiveLicenseIDByApplicationID(int ApplicationID)
+        {
+            return clsDALLicenses.GetActiveLicenseIDByApplicationID(ApplicationID);
         }
     }
 }

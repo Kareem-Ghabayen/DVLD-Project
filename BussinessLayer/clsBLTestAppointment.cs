@@ -200,44 +200,64 @@ namespace BusinessLayer
 
         public static clsBLTestAppointment ScheduleRetakeTest(int localDrivingLicenseApplicationID, int testTypeID, DateTime appointmentDate)
         {
-            // 1. التأكد أولاً أن المتقدم رسب في الاختبار الأخير لنفس النوع
+            // 1. التحقق من الرسوب في أحدث اختبار
             if (!clsBLTest.DoesFailTestType(localDrivingLicenseApplicationID, testTypeID))
             {
-                return null; // لا يمكنه إعادة الاختبار إن لم يكن راسباً
-            }
-
-            // 2. التأكد أنه ليس لديه موعد نشط حالياً لنفس الفحص
-            if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
-            {
+                Console.WriteLine("DEBUG: الشخص ليس راسباً في هذا الاختبار!");
                 return null;
             }
 
-            // ملاحظة هامة: تم إلغاء إنشاء الطلب من هان، لأنه تم إنشاؤه مسبقاً في الشاشة السابقة وتم إرسال رقمه كباراميتر (retakeTestApplicationID)
-
-            // 3. إنشاء موعد الاختبار الجديد وربطه بطلب الإعادة الجاهز
-            clsBLTestAppointment appointment = new clsBLTestAppointment();
-            appointment.RetakeTestApplicationID = GetActiveRetakeTestApplicationID(localDrivingLicenseApplicationID, testTypeID);
-            if (appointment.RetakeTestApplicationID == -1)
+            // 2. التحقق من عدم وجود موعد نشط حالياً
+            if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
             {
-                return null; // لم يتم تقديم طلب إعادة فحص، ترفض المعاملة بالكامل!
+                Console.WriteLine("DEBUG: يوجد موعد نشط بالفعل لهذا الاختبار!");
+                return null;
             }
+
+            // 3. جلب بيانات طلب الرخصة المحلي للحصول على رقم الشخص
+            clsBLLocalDrivingLicenseApplication localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
+            if (localApp == null)
+            {
+                Console.WriteLine("DEBUG: لم يتم العثور على طلب الرخصة المحلي!");
+                return null;
+            }
+
+            // 4. إنشاء طلب إعادة الاختبار وحفظه في جدول Applications (بدلاً من البحث عن طلب سابق)
+            clsBLApplication retakeApplication = new clsBLApplication();
+            retakeApplication.ApplicantPersonID = localApp.BaseApplicationInfo.ApplicantPersonID;
+            retakeApplication.ApplicationDate = DateTime.Now;
+            retakeApplication.ApplicationTypeID = (int)clsBLApplication.enApplicationType.RetakeTest;
+            retakeApplication.ApplicationStatus = (int)clsBLApplication.enStatus.Completed;
+            retakeApplication.LastStatusDate = DateTime.Now;
+            retakeApplication.PaidFees = clsBLApplicationType.Find((int)clsBLApplication.enApplicationType.RetakeTest).ApplicationFees;
+            retakeApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+
+            if (!retakeApplication.Save())
+            {
+                Console.WriteLine("DEBUG: فشل حفظ طلب الإعادة الجديد في جدول Applications!");
+                return null;
+            }
+
+            // 5. إنشاء موعد الاختبار وربطه برقم طلب الإعادة الجديد المتولد تلقائياً
+            clsBLTestAppointment appointment = new clsBLTestAppointment();
             appointment.TestTypeID = testTypeID;
             appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
             appointment.AppointmentDate = appointmentDate;
-
-            // رسوم الموعد الأساسية للفحص
             appointment.PaidFees = (decimal)clsBLTestType.Find(testTypeID).TestTypeFees;
             appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID;
             appointment.IsLocked = false;
 
-            // الربط الهام جداً: تمرير رقم طلب إعادة الفحص الجاهز الذي تم إنشاؤه مسبقاً!
+            // هان نقطة الربط الجوهرية: إسناد الـ ID الجديد للطلب الذي أنشأناه لتوّنا
+            appointment.RetakeTestApplicationID = retakeApplication.ApplicationID;
 
-            // 4. حفظ الموعد
+            // 6. حفظ الموعد في جدول TestAppointments
             if (!appointment.Save())
             {
+                Console.WriteLine("DEBUG: فشل حفظ الموعد في قاعدة البيانات!");
                 return null;
             }
 
+            Console.WriteLine("DEBUG: تم حفظ طلب الإعادة والموعد بنجاح!");
             return appointment;
         }
         public static int GetActiveRetakeTestApplicationID(int localDrivingLicenseApplicationID, int testTypeID)

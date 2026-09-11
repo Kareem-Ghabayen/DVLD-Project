@@ -35,7 +35,6 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.llEditPersonInfo = new System.Windows.Forms.LinkLabel();
             this.pbPersonImage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -58,6 +57,7 @@
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbPersonID = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.llEditPersonInfo = new System.Windows.Forms.LinkLabel();
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -176,18 +176,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 53;
             this.pictureBox6.TabStop = false;
-            // 
-            // llEditPersonInfo
-            // 
-            this.llEditPersonInfo.AutoSize = true;
-            this.llEditPersonInfo.LinkColor = System.Drawing.Color.Black;
-            this.llEditPersonInfo.Location = new System.Drawing.Point(571, 62);
-            this.llEditPersonInfo.Name = "llEditPersonInfo";
-            this.llEditPersonInfo.Size = new System.Drawing.Size(112, 20);
-            this.llEditPersonInfo.TabIndex = 52;
-            this.llEditPersonInfo.TabStop = true;
-            this.llEditPersonInfo.Text = "Edit Person Info";
-            this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked_1);
             // 
             // pbPersonImage
             // 
@@ -438,6 +426,18 @@
             this.lbPersonID.TabIndex = 3;
             this.lbPersonID.Text = "Person ID:";
             // 
+            // llEditPersonInfo
+            // 
+            this.llEditPersonInfo.AutoSize = true;
+            this.llEditPersonInfo.LinkColor = System.Drawing.Color.Black;
+            this.llEditPersonInfo.Location = new System.Drawing.Point(571, 62);
+            this.llEditPersonInfo.Name = "llEditPersonInfo";
+            this.llEditPersonInfo.Size = new System.Drawing.Size(112, 20);
+            this.llEditPersonInfo.TabIndex = 52;
+            this.llEditPersonInfo.TabStop = true;
+            this.llEditPersonInfo.Text = "Edit Person Info";
+            this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked_1);
+            // 
             // ctrlPersonCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -486,12 +486,12 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2PictureBox pbPersonImage;
-        private System.Windows.Forms.LinkLabel llEditPersonInfo;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblCountry;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPhone;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDateOfBirth;
         private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.LinkLabel llEditPersonInfo;
     }
 }

@@ -7,7 +7,37 @@ namespace DVLD_DataAccess
 {
     public class clsDALLicenses
     {
+        public static int GetActiveLicenseIDByApplicationID(int ApplicationID)
+        {
+            int LicenseID = -1;
 
+            using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
+            {
+                string query = @"SELECT LicenseID FROM Licenses WHERE ApplicationID = @ApplicationID AND IsActive = 1;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            LicenseID = id;
+                        }
+                    }
+                    catch
+                    {
+                        LicenseID = -1;
+                    }
+                }
+            }
+
+            return LicenseID;
+        }
         public static bool IsLicenseExist(int licenseID)
         {
             bool isFound = false;

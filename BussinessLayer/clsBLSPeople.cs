@@ -184,6 +184,14 @@ namespace BuisnessLayer
             }
             return false;
         }
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {SecondName} {ThirdName} {LastName}".Trim();
+            }
+        }
     }
+
 
 }

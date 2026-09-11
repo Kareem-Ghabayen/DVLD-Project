@@ -178,5 +178,9 @@ namespace DVLD_BLL
         {
             return clsDALLocalDrivingLicenseApplication.GetTotalTrialsPerTest(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
+        public int GetActiveLicenseID()
+        {
+            return clsBLLicense.GetActiveLicenseIDByApplicationID(this.ApplicationID);
+        }
     }
 }

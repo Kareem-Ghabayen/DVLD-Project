@@ -130,7 +130,7 @@ namespace BusinessLayer
 
         public static bool TakeTest(int testAppointmentID, bool testResult, string notes)
         {
-            if (FindByTestAppointmentID(testAppointmentID)==null) 
+            if (FindByTestAppointmentID(testAppointmentID)!=null) 
             {
                 return false;
             }
@@ -155,10 +155,10 @@ namespace BusinessLayer
 
             return false;
         }
-        public static bool DoesFailTestType(int personID, int testTypeID)
+        public static bool DoesFailTestType(int localDrivingLicenseApplicationID, int testTypeID)
         {
-            // بنستدعي داتا لاير بتجيب لنا قيمة البوليان (نجاح/رسوب) لآخر اختبار قدمه هذا الشخص لهذا النوع
-            return clsDALTest.DoesFailTestType(personID, testTypeID);
+            // استدعاء الداتا لاير بتمرير رقم طلب الرخصة المحلي
+            return clsDALTest.DoesFailTestType(localDrivingLicenseApplicationID, testTypeID);
         }
     }
 }
