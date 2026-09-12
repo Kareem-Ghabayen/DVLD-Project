@@ -171,6 +171,12 @@
     <Compile Include="Driver\frmListDrivers.Designer.cs">
       <DependentUpon>frmListDrivers.cs</DependentUpon>
     </Compile>
+    <Compile Include="International\ctrlDriverLicenseInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="International\ctrlDriverLicenseInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\clsLogin.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
@@ -300,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmListDrivers.resx">
       <DependentUpon>frmListDrivers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="International\ctrlDriverLicenseInfoWithFilter.resx">
+      <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -548,6 +557,7 @@
     <Folder Include="Applications\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Icons\LicenseView 400.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\icon.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net40\Guna.UI2.dll" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net45\Guna.UI2.dll" />
