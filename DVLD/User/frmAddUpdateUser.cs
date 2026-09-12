@@ -82,7 +82,7 @@ namespace DVLD.User
 
         private void frmAddUpdateUser_Load(object sender, EventArgs e)
         {
-            _ResetDefualtValues();
+                 _ResetDefualtValues();
 
             if (_Mode == enMode.Update)
                 _LoadData();

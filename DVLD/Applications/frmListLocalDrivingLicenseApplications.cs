@@ -276,14 +276,23 @@ namespace DVLD.Applications
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string nationalNo = (string)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[2].Value;
-            //clsBLPerson person = clsBLPerson.Find(nationalNo);
+            // 1. جلب رقم الطلب المحلي من السطر المحدد في الجدول
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
 
-            //if (person != null)
-            //{
-            //    frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(person.PersonID);
-            //    frm.ShowDialog();
-            //}
+            // 2. البحث عن بيانات الطلب للحصول على رقم الشخص (ApplicantPersonID)
+            clsBLLocalDrivingLicenseApplication LocalDrivingLicenseApplication =
+                clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
+
+            if (LocalDrivingLicenseApplication != null)
+            {
+                // 3. تمرير رقم الشخص للكونستركتور وفتح الشاشة
+                frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(LocalDrivingLicenseApplication.BaseApplicationInfo.ApplicantPersonID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Application Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)

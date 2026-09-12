@@ -63,6 +63,12 @@
     <Compile Include="Applications\ctrlDriverLicenseInfo.Designer.cs">
       <DependentUpon>ctrlDriverLicenseInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\ctrlDriverLicenses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Applications\ctrlDriverLicenses.Designer.cs">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Applications\ctrlLocalDrivingLicenseApplicationInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </Compile>
     <EmbeddedResource Include="Applications\ctrlDriverLicenseInfo.resx">
       <DependentUpon>ctrlDriverLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Applications\ctrlDriverLicenses.resx">
+      <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\ctrlLocalDrivingLicenseApplicationInfo.resx">
       <DependentUpon>ctrlLocalDrivingLicenseApplicationInfo.cs</DependentUpon>

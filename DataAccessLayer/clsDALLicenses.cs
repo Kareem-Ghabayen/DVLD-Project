@@ -213,7 +213,12 @@ namespace DVLD_DataAccess
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            string query = "SELECT * FROM Licenses WHERE DriverID = @DriverID";
+            // تم تصحيح Licenses.LicenseClassID إلى Licenses.LicenseClass
+            string query = @"SELECT Licenses.LicenseID, Licenses.ApplicationID, LicenseClasses.ClassName, Licenses.IssueDate, Licenses.ExpirationDate, Licenses.IsActive 
+                     FROM Licenses 
+                     INNER JOIN LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID 
+                     WHERE DriverID = @DriverID 
+                     ORDER BY IsActive DESC, ExpirationDate DESC";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DriverID", DriverID);
@@ -221,7 +226,6 @@ namespace DVLD_DataAccess
             try
             {
                 connection.Open();
-
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
@@ -233,6 +237,8 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
+                // طباعة الخطأ في نافذة الـ Output للتتبع
+                System.Diagnostics.Debug.WriteLine("Error in GetDriverLicenses: " + ex.Message);
             }
             finally
             {
@@ -241,7 +247,6 @@ namespace DVLD_DataAccess
 
             return dt;
         }
-
         public static int AddNewLicense(int ApplicationID, int DriverID, int LicenseClass, DateTime IssueDate, DateTime ExpirationDate, string Notes, decimal PaidFees, bool IsActive, byte IssueReason, int CreatedByUserID)
         {
             int licenseID = -1;

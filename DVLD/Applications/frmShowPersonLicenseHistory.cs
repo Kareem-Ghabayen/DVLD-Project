@@ -12,9 +12,63 @@ namespace DVLD.Applications
 {
     public partial class frmShowPersonLicenseHistory : Form
     {
+        private int _PersonID = -1;
+
         public frmShowPersonLicenseHistory()
         {
             InitializeComponent();
+        }
+
+        public frmShowPersonLicenseHistory(int PersonID)
+        {
+            InitializeComponent();
+            _PersonID = PersonID;
+        }
+        private void lblRecordsCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmShowPersonLicenseHistory_Load(object sender, EventArgs e)
+        {
+            if (_PersonID != -1)
+            {
+                // هذا السطر يجلب بيانات الشخص ويشغل OnPersonSelected تلقائياً
+                ctrlPersonCardWithFilter1.LoadPersonInfo(_PersonID);
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
+
+                // احذف السطر التالي لأنه يسبب الاستدعاء الثاني المكرر:
+                // ctrlDriverLicenses1.LoadInfoByPersonID(_PersonID);
+            }
+            else
+            {
+                ctrlPersonCardWithFilter1.FilterEnabled = true;
+                ctrlPersonCardWithFilter1.FilterFocus();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ctrlPersonCardWithFilter1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrlPersonCardWithFilter1_OnPersonSelected(int PersonID)
+        {
+            _PersonID = PersonID;
+
+            if (_PersonID == -1)
+            {
+                ctrlDriverLicenses1.Clear();
+            }
+            else
+            {
+                ctrlDriverLicenses1.LoadInfoByPersonID(_PersonID);
+            }
         }
     }
 }
