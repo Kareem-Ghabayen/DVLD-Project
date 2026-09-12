@@ -37,15 +37,15 @@
             this.gbDriverLicenses = new Guna.UI2.WinForms.Guna2GroupBox();
             this.tcDriverLicenses = new Guna.UI2.WinForms.Guna2TabControl();
             this.tpLocalLicenses = new System.Windows.Forms.TabPage();
-            this.lblLocalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvLocalLicensesHistory = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tpInternationalLicenses = new System.Windows.Forms.TabPage();
-            this.lblInternationalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvInternationalLicensesHistory = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblLocalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblInternationalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.gbDriverLicenses.SuspendLayout();
             this.tcDriverLicenses.SuspendLayout();
             this.tpLocalLicenses.SuspendLayout();
@@ -98,9 +98,9 @@
             // tpLocalLicenses
             // 
             this.tpLocalLicenses.Controls.Add(this.lblLocalLicensesRecords);
+            this.tpLocalLicenses.Controls.Add(this.guna2HtmlLabel1);
             this.tpLocalLicenses.Controls.Add(this.dgvLocalLicensesHistory);
             this.tpLocalLicenses.Controls.Add(this.guna2HtmlLabel3);
-            this.tpLocalLicenses.Controls.Add(this.lblRecordsCount);
             this.tpLocalLicenses.Location = new System.Drawing.Point(4, 44);
             this.tpLocalLicenses.Name = "tpLocalLicenses";
             this.tpLocalLicenses.Padding = new System.Windows.Forms.Padding(3);
@@ -108,19 +108,6 @@
             this.tpLocalLicenses.TabIndex = 0;
             this.tpLocalLicenses.Text = "Local";
             this.tpLocalLicenses.UseVisualStyleBackColor = true;
-            // 
-            // lblLocalLicensesRecords
-            // 
-            this.lblLocalLicensesRecords.AutoSize = false;
-            this.lblLocalLicensesRecords.BackColor = System.Drawing.Color.Transparent;
-            this.lblLocalLicensesRecords.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocalLicensesRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblLocalLicensesRecords.Location = new System.Drawing.Point(148, 200);
-            this.lblLocalLicensesRecords.Name = "lblLocalLicensesRecords";
-            this.lblLocalLicensesRecords.Size = new System.Drawing.Size(36, 23);
-            this.lblLocalLicensesRecords.TabIndex = 22;
-            this.lblLocalLicensesRecords.Text = "0";
-            this.lblLocalLicensesRecords.Click += new System.EventHandler(this.lblLocalLicensesRecords_Click);
             // 
             // dgvLocalLicensesHistory
             // 
@@ -156,7 +143,7 @@
             this.dgvLocalLicensesHistory.RowHeadersVisible = false;
             this.dgvLocalLicensesHistory.RowHeadersWidth = 51;
             this.dgvLocalLicensesHistory.RowTemplate.Height = 26;
-            this.dgvLocalLicensesHistory.Size = new System.Drawing.Size(849, 115);
+            this.dgvLocalLicensesHistory.Size = new System.Drawing.Size(849, 59);
             this.dgvLocalLicensesHistory.TabIndex = 72;
             this.dgvLocalLicensesHistory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvLocalLicensesHistory.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -192,24 +179,12 @@
             this.guna2HtmlLabel3.TabIndex = 71;
             this.guna2HtmlLabel3.Text = "Local Licenses History:";
             // 
-            // lblRecordsCount
-            // 
-            this.lblRecordsCount.AutoSize = false;
-            this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
-            this.lblRecordsCount.Location = new System.Drawing.Point(19, 200);
-            this.lblRecordsCount.Name = "lblRecordsCount";
-            this.lblRecordsCount.Size = new System.Drawing.Size(109, 23);
-            this.lblRecordsCount.TabIndex = 20;
-            this.lblRecordsCount.Text = "# Records:";
-            // 
             // tpInternationalLicenses
             // 
             this.tpInternationalLicenses.Controls.Add(this.lblInternationalLicensesRecords);
+            this.tpInternationalLicenses.Controls.Add(this.guna2HtmlLabel6);
             this.tpInternationalLicenses.Controls.Add(this.dgvInternationalLicensesHistory);
             this.tpInternationalLicenses.Controls.Add(this.guna2HtmlLabel2);
-            this.tpInternationalLicenses.Controls.Add(this.guna2HtmlLabel4);
             this.tpInternationalLicenses.Location = new System.Drawing.Point(4, 44);
             this.tpInternationalLicenses.Name = "tpInternationalLicenses";
             this.tpInternationalLicenses.Padding = new System.Windows.Forms.Padding(3);
@@ -217,18 +192,6 @@
             this.tpInternationalLicenses.TabIndex = 1;
             this.tpInternationalLicenses.Text = "International";
             this.tpInternationalLicenses.UseVisualStyleBackColor = true;
-            // 
-            // lblInternationalLicensesRecords
-            // 
-            this.lblInternationalLicensesRecords.AutoSize = false;
-            this.lblInternationalLicensesRecords.BackColor = System.Drawing.Color.Transparent;
-            this.lblInternationalLicensesRecords.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInternationalLicensesRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblInternationalLicensesRecords.Location = new System.Drawing.Point(178, 182);
-            this.lblInternationalLicensesRecords.Name = "lblInternationalLicensesRecords";
-            this.lblInternationalLicensesRecords.Size = new System.Drawing.Size(34, 23);
-            this.lblInternationalLicensesRecords.TabIndex = 74;
-            this.lblInternationalLicensesRecords.Text = "0";
             // 
             // dgvInternationalLicensesHistory
             // 
@@ -264,7 +227,7 @@
             this.dgvInternationalLicensesHistory.RowHeadersVisible = false;
             this.dgvInternationalLicensesHistory.RowHeadersWidth = 51;
             this.dgvInternationalLicensesHistory.RowTemplate.Height = 26;
-            this.dgvInternationalLicensesHistory.Size = new System.Drawing.Size(853, 140);
+            this.dgvInternationalLicensesHistory.Size = new System.Drawing.Size(853, 78);
             this.dgvInternationalLicensesHistory.TabIndex = 76;
             this.dgvInternationalLicensesHistory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvInternationalLicensesHistory.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -296,21 +259,57 @@
             this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(19, 6);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(193, 24);
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(223, 34);
             this.guna2HtmlLabel2.TabIndex = 75;
             this.guna2HtmlLabel2.Text = "Local Licenses History:";
             // 
-            // guna2HtmlLabel4
+            // guna2HtmlLabel1
             // 
-            this.guna2HtmlLabel4.AutoSize = false;
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(6, 182);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(128, 23);
-            this.guna2HtmlLabel4.TabIndex = 73;
-            this.guna2HtmlLabel4.Text = "# Records:";
+            this.guna2HtmlLabel1.AutoSize = false;
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(6, 138);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(248, 36);
+            this.guna2HtmlLabel1.TabIndex = 73;
+            this.guna2HtmlLabel1.Text = "# Records:";
+            // 
+            // lblLocalLicensesRecords
+            // 
+            this.lblLocalLicensesRecords.AutoSize = false;
+            this.lblLocalLicensesRecords.BackColor = System.Drawing.Color.Transparent;
+            this.lblLocalLicensesRecords.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocalLicensesRecords.ForeColor = System.Drawing.Color.Black;
+            this.lblLocalLicensesRecords.Location = new System.Drawing.Point(113, 138);
+            this.lblLocalLicensesRecords.Name = "lblLocalLicensesRecords";
+            this.lblLocalLicensesRecords.Size = new System.Drawing.Size(248, 36);
+            this.lblLocalLicensesRecords.TabIndex = 74;
+            this.lblLocalLicensesRecords.Text = "؟؟؟؟";
+            // 
+            // lblInternationalLicensesRecords
+            // 
+            this.lblInternationalLicensesRecords.AutoSize = false;
+            this.lblInternationalLicensesRecords.BackColor = System.Drawing.Color.Transparent;
+            this.lblInternationalLicensesRecords.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInternationalLicensesRecords.ForeColor = System.Drawing.Color.Black;
+            this.lblInternationalLicensesRecords.Location = new System.Drawing.Point(273, 140);
+            this.lblInternationalLicensesRecords.Name = "lblInternationalLicensesRecords";
+            this.lblInternationalLicensesRecords.Size = new System.Drawing.Size(248, 36);
+            this.lblInternationalLicensesRecords.TabIndex = 78;
+            this.lblInternationalLicensesRecords.Text = "؟؟؟؟";
+            // 
+            // guna2HtmlLabel6
+            // 
+            this.guna2HtmlLabel6.AutoSize = false;
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(19, 140);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(248, 36);
+            this.guna2HtmlLabel6.TabIndex = 77;
+            this.guna2HtmlLabel6.Text = "# Records:";
             // 
             // ctrlDriverLicenses
             // 
@@ -334,14 +333,14 @@
         private Guna.UI2.WinForms.Guna2GroupBox gbDriverLicenses;
         private Guna.UI2.WinForms.Guna2TabControl tcDriverLicenses;
         private System.Windows.Forms.TabPage tpLocalLicenses;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblLocalLicensesRecords;
         private Guna.UI2.WinForms.Guna2DataGridView dgvLocalLicensesHistory;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblRecordsCount;
         private System.Windows.Forms.TabPage tpInternationalLicenses;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblInternationalLicensesRecords;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInternationalLicensesHistory;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblLocalLicensesRecords;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblInternationalLicensesRecords;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
     }
 }

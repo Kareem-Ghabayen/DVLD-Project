@@ -32,7 +32,7 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ctrlPersonCardWithFilter1 = new DVLD.people.ctrlPersonCardWithFilter();
-            this.ctrlDriverLicenses1 = new DVLD.Applications.ctrlDriverLicenses();
+            this.B = new DVLD.Applications.ctrlDriverLicenses();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +42,7 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(437, 33);
+            this.lblTitle.Location = new System.Drawing.Point(404, 12);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(225, 40);
             this.lblTitle.TabIndex = 12;
@@ -58,7 +58,7 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.Image = global::DVLD.Properties.Resources.cross_32;
-            this.btnClose.Location = new System.Drawing.Point(781, 795);
+            this.btnClose.Location = new System.Drawing.Point(781, 777);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(85, 31);
             this.btnClose.TabIndex = 21;
@@ -68,7 +68,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.PersonLicenseHistory_512;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 228);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 139);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(158, 195);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -78,26 +78,26 @@
             // ctrlPersonCardWithFilter1
             // 
             this.ctrlPersonCardWithFilter1.FilterEnabled = true;
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(185, 94);
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(176, 66);
             this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(690, 421);
             this.ctrlPersonCardWithFilter1.TabIndex = 0;
             this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
             this.ctrlPersonCardWithFilter1.Load += new System.EventHandler(this.ctrlPersonCardWithFilter1_Load);
             // 
-            // ctrlDriverLicenses1
+            // B
             // 
-            this.ctrlDriverLicenses1.Location = new System.Drawing.Point(0, 521);
-            this.ctrlDriverLicenses1.Name = "ctrlDriverLicenses1";
-            this.ctrlDriverLicenses1.Size = new System.Drawing.Size(875, 268);
-            this.ctrlDriverLicenses1.TabIndex = 22;
+            this.B.Location = new System.Drawing.Point(12, 493);
+            this.B.Name = "B";
+            this.B.Size = new System.Drawing.Size(875, 278);
+            this.B.TabIndex = 22;
             // 
             // frmShowPersonLicenseHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 846);
-            this.Controls.Add(this.ctrlDriverLicenses1);
+            this.ClientSize = new System.Drawing.Size(878, 820);
+            this.Controls.Add(this.B);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitle);
@@ -117,6 +117,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
-        private ctrlDriverLicenses ctrlDriverLicenses1;
+        private ctrlDriverLicenses B;
     }
 }

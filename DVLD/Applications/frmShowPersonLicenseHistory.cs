@@ -63,11 +63,11 @@ namespace DVLD.Applications
 
             if (_PersonID == -1)
             {
-                ctrlDriverLicenses1.Clear();
+                B.Clear();
             }
             else
             {
-                ctrlDriverLicenses1.LoadInfoByPersonID(_PersonID);
+                B.LoadInfoByPersonID(_PersonID);
             }
         }
     }
