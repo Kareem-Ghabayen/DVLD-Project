@@ -24,6 +24,8 @@ namespace DVLD.International
 
         private void frmNewInternationalLicenseApplication_Load(object sender, EventArgs e)
         {
+            llShowLicensesHistory.Cursor = Cursors.Hand;
+            llShowLicensesInfo.Cursor = Cursors.Hand;
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             lblIssueDate.Text = DateTime.Now.ToShortDateString();
@@ -33,10 +35,13 @@ namespace DVLD.International
         }
         private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicenseID)
         {
+            MessageBox.Show($"Returned LocalLicenseID = {LocalLicenseID}\nSelectedLicenseInfo is null? : {ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo == null}");
             if (LocalLicenseID == -1)
             {
                 btnIssue.Enabled = false;
-                return;
+                lblLocalLicenseID.Text = "[???]";
+                llShowLicensesHistory.Enabled = false;
+                return; // خروج مباشر لمنع القراءة من SelectedLicenseInfo
             }
 
             lblLocalLicenseID.Text = LocalLicenseID.ToString();

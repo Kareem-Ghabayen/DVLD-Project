@@ -24,6 +24,7 @@ namespace DVLD.Applications
 
             if (_License == null)
             {
+                _LicenseID = -1;
                 MessageBox.Show($"Could not find License ID = {LicenseID}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _ResetDefaultValues();
                 return;

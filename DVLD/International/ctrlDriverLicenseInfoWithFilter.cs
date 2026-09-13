@@ -54,10 +54,13 @@ namespace DVLD.International
             int licenseID = int.Parse(txtLicenseID.Text.Trim());
             ctrlDriverLicenseInfo1.LoadInfo(licenseID);
 
-            // إطلاق الحدث وإرسال رقم الرخصة مباشرة للشاشة الرئيسية إذا تم العثور عليها
             if (ctrlDriverLicenseInfo1.LicenseID != -1)
             {
                 OnLicenseSelected?.Invoke(ctrlDriverLicenseInfo1.LicenseID);
+            }
+            else
+            {
+                OnLicenseSelected?.Invoke(-1); // تنبيه الشاشة الرئيسية لتطفي الزر!
             }
         }
         public void FilterFocus()

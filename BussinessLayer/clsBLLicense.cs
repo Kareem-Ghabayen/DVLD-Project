@@ -339,6 +339,10 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public static clsBLLicense GetActiveClass3LicenseByNationalNo(string nationalNo)
         {
+            if (string.IsNullOrEmpty(nationalNo))
+            {
+                throw new Exception("Debugging: 'nationalNo' passed to BLL is NULL or Empty!");
+            }
             int licenseID = -1;
             int applicationID = -1;
             int driverID = -1;
