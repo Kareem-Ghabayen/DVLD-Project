@@ -129,5 +129,10 @@ namespace DVLD.people
                 btnFind.PerformClick();
             }
         }
+
+        private void gbFilter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

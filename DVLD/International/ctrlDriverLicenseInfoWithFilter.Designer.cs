@@ -30,9 +30,9 @@
         {
             this.ctrlDriverLicenseInfo1 = new DVLD.Applications.ctrlDriverLicenseInfo();
             this.gbFilter = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.btnFind = new Guna.UI2.WinForms.Guna2Button();
             this.txtLicenseID = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblFilterBy = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnFind = new Guna.UI2.WinForms.Guna2Button();
             this.gbFilter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +55,25 @@
             this.gbFilter.Size = new System.Drawing.Size(691, 102);
             this.gbFilter.TabIndex = 1;
             this.gbFilter.Text = "Filter";
+            this.gbFilter.Click += new System.EventHandler(this.gbFilter_Click);
+            // 
+            // btnFind
+            // 
+            this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnFind.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnFind.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnFind.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnFind.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnFind.FillColor = System.Drawing.Color.Transparent;
+            this.btnFind.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnFind.ForeColor = System.Drawing.Color.White;
+            this.btnFind.Image = global::DVLD.Properties.Resources.LicenseView_4001;
+            this.btnFind.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnFind.Location = new System.Drawing.Point(362, 57);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(62, 36);
+            this.btnFind.TabIndex = 51;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // txtLicenseID
             // 
@@ -76,6 +95,7 @@
             this.txtLicenseID.SelectedText = "";
             this.txtLicenseID.Size = new System.Drawing.Size(241, 36);
             this.txtLicenseID.TabIndex = 50;
+            this.txtLicenseID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLicenseID_KeyPress);
             // 
             // lblFilterBy
             // 
@@ -88,23 +108,6 @@
             this.lblFilterBy.Size = new System.Drawing.Size(103, 36);
             this.lblFilterBy.TabIndex = 49;
             this.lblFilterBy.Text = "License ID";
-            // 
-            // btnFind
-            // 
-            this.btnFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnFind.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnFind.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnFind.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnFind.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnFind.FillColor = System.Drawing.Color.Transparent;
-            this.btnFind.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnFind.ForeColor = System.Drawing.Color.White;
-            this.btnFind.Image = global::DVLD.Properties.Resources.LicenseView_4001;
-            this.btnFind.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnFind.Location = new System.Drawing.Point(362, 57);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(62, 36);
-            this.btnFind.TabIndex = 51;
             // 
             // ctrlDriverLicenseInfoWithFilter
             // 

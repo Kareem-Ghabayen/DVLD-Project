@@ -53,6 +53,7 @@
             this.gbFilter.Size = new System.Drawing.Size(690, 123);
             this.gbFilter.TabIndex = 0;
             this.gbFilter.Text = "Filter";
+            this.gbFilter.Click += new System.EventHandler(this.gbFilter_Click);
             // 
             // btnAddPerson
             // 

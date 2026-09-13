@@ -177,6 +177,12 @@
     <Compile Include="International\ctrlDriverLicenseInfoWithFilter.Designer.cs">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="International\frmNewInternationalLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="International\frmNewInternationalLicenseApplication.Designer.cs">
+      <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\clsLogin.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="International\ctrlDriverLicenseInfoWithFilter.resx">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="International\frmNewInternationalLicenseApplication.resx">
+      <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

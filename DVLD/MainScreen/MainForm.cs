@@ -1,5 +1,6 @@
 ﻿using BuisnessLayer;
 using DVLD.Applications;
+using DVLD.International;
 using DVLD.Login;
 using DVLD.people;
 using DVLD.User;
@@ -111,6 +112,12 @@ namespace DVLD.MainScreen
         private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmListLocalDrivingLicenseApplications frm = new frmListLocalDrivingLicenseApplications();
+            frm.ShowDialog();
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewInternationalLicenseApplication frm = new frmNewInternationalLicenseApplication();
             frm.ShowDialog();
         }
     }
