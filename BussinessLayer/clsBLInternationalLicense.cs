@@ -1,5 +1,5 @@
 ﻿using BuisnessLayer;
-using DataAccessLayer; // أو DVLD_DataAccess حسب مساحة الأسماء عندك
+using DataAccessLayer;
 using DVLD_DataAccess;
 using System;
 using System.Data;
@@ -14,6 +14,7 @@ namespace BusinessLayer
         public int InternationalLicenseID { set; get; }
         public int ApplicationID { set; get; }
         public int DriverID { set; get; }
+        public clsBLDriver DriverInfo { set; get; } // كائن السائق للوصول لبياناته مباشرة من الخارج
         public int IssuedUsingLocalLicenseID { set; get; }
         public DateTime IssueDate { set; get; }
         public DateTime ExpirationDate { set; get; }
@@ -25,6 +26,7 @@ namespace BusinessLayer
             this.InternationalLicenseID = -1;
             this.ApplicationID = -1;
             this.DriverID = -1;
+            this.DriverInfo = null;
             this.IssuedUsingLocalLicenseID = -1;
             this.IssueDate = DateTime.Now;
             this.ExpirationDate = DateTime.Now;
@@ -39,6 +41,7 @@ namespace BusinessLayer
             this.InternationalLicenseID = internationalLicenseID;
             this.ApplicationID = applicationID;
             this.DriverID = driverID;
+            this.DriverInfo = clsBLDriver.FindByDriverID(driverID); // تحميل بيانات السائق تلقائياً
             this.IssuedUsingLocalLicenseID = issuedUsingLocalLicenseID;
             this.IssueDate = issueDate;
             this.ExpirationDate = expirationDate;
@@ -127,13 +130,14 @@ namespace BusinessLayer
 
             return false;
         }
+
         public static int IssueInternationalLicenseByNationalNo(string nationalNo)
         {
             clsBLLicense localLicense = clsBLLicense.GetActiveClass3LicenseByNationalNo(nationalNo);
 
             if (localLicense == null)
             {
-                return -1; 
+                return -1;
             }
 
             if (clsBLDetainedLicense.IsLicenseDetained(localLicense.LicenseID))
@@ -147,7 +151,7 @@ namespace BusinessLayer
                 activeInternationalLicense.IsActive = false;
                 if (!activeInternationalLicense.Save())
                 {
-                    return -1; 
+                    return -1;
                 }
             }
 
@@ -155,14 +159,14 @@ namespace BusinessLayer
             application.ApplicantPersonID = localLicense.DriverInfo.PersonID;
             application.ApplicationDate = DateTime.Now;
             application.ApplicationTypeID = (int)clsBLApplication.enApplicationType.NewInternationalLicense;
-            application.ApplicationStatus = 1; 
+            application.ApplicationStatus = 1;
             application.LastStatusDate = DateTime.Now;
 
             application.PaidFees = clsBLApplicationType.Find((int)clsBLApplication.enApplicationType.NewInternationalLicense).ApplicationFees;
             application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
             if (!application.Save())
             {
-                return -1; 
+                return -1;
             }
 
             clsBLInternationalLicense internationalLicense = new clsBLInternationalLicense();
@@ -170,7 +174,7 @@ namespace BusinessLayer
             internationalLicense.DriverID = localLicense.DriverID;
             internationalLicense.IssuedUsingLocalLicenseID = localLicense.LicenseID;
             internationalLicense.IssueDate = DateTime.Now;
-            internationalLicense.ExpirationDate = DateTime.Now.AddYears(1); 
+            internationalLicense.ExpirationDate = DateTime.Now.AddYears(1);
             internationalLicense.IsActive = true;
             internationalLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 

@@ -24,6 +24,8 @@ namespace DVLD.International
 
         private void frmNewInternationalLicenseApplication_Load(object sender, EventArgs e)
         {
+            llShowLicensesHistory.IsSelectionEnabled = false;
+            llShowLicensesInfo.IsSelectionEnabled = false;
             llShowLicensesHistory.Cursor = Cursors.Hand;
             llShowLicensesInfo.Cursor = Cursors.Hand;
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
@@ -33,54 +35,53 @@ namespace DVLD.International
             lblFees.Text = clsBLApplicationType.Find((int)clsBLApplicationType.enApplicationType.NewInternationalLicense).ApplicationFees.ToString();
             lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
         }
-        private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicenseID)
+   
+private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicenseID)
         {
-            MessageBox.Show($"Returned LocalLicenseID = {LocalLicenseID}\nSelectedLicenseInfo is null? : {ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo == null}");
-            if (LocalLicenseID == -1)
+            int selectedLicenseID = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseID;
+
+            lblLocalLicenseID.Text = selectedLicenseID.ToString();
+            llShowLicensesHistory.Enabled = (selectedLicenseID != -1);
+
+            if (selectedLicenseID == -1)
             {
-                btnIssue.Enabled = false;
-                lblLocalLicenseID.Text = "[???]";
-                llShowLicensesHistory.Enabled = false;
-                return; // خروج مباشر لمنع القراءة من SelectedLicenseInfo
+                return;
             }
 
-            lblLocalLicenseID.Text = LocalLicenseID.ToString();
-            llShowLicensesHistory.Enabled = true;
-
-            // الشرط 1: يجب أن تكون الرخصة من الفئة 3 (Ordinary driving license)
+            // 1. الفحص الأول: التأكد من أن فئة الرخصة هي الفئة الثالثة (Class 3)
             if (ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseClass != 3)
             {
-                MessageBox.Show("License class must be Ordinary License Class 3!", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selected License should be Class 3, please select another license.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnIssue.Enabled = false;
                 return;
             }
 
-            // الشرط 2: هل الرخصة فاعلة؟
-            if (!ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsActive)
+            // 2. الفحص الثاني: البحث عن رخصة دولية نشطة سابقة لنفس السائق
+            clsBLInternationalLicense activeInternationalLicense =
+                clsBLInternationalLicense.GetActiveInternationalLicenseByDriverID(ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.DriverID);
+
+            if (activeInternationalLicense != null)
             {
-                MessageBox.Show("Selected License is not Active!", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Person already has an active international license with ID = {activeInternationalLicense.InternationalLicenseID}",
+                                "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // تخزين الرقم وجلب البيانات لملء اللابلز بالأسفل
+                _InternationalLicenseID = activeInternationalLicense.InternationalLicenseID;
+                lblInternationalLicenseID.Text = activeInternationalLicense.InternationalLicenseID.ToString();
+                lblApplicationID.Text = activeInternationalLicense.ApplicationID.ToString();
+
                 btnIssue.Enabled = false;
+                llShowLicensesInfo.Enabled = true; // تفعيل الرابط لفتح شاشة التفاصيل
                 return;
             }
 
-            // الشرط 3: هل تمتلك السائق رخصة دولية سارية مسبقاً؟
-            // 1. استقبال الكائن مباشرة
-            clsBLInternationalLicense ActiveInternationalLicense = clsBLInternationalLicense.GetActiveInternationalLicenseByDriverID(ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.DriverID);
-
-            // 2. الفحص إذا كان الكائن موجوداً (أي يمتلك رخصة دولية فاعلة)
-            if (ActiveInternationalLicense != null)
-            {
-                int ActiveInternationalLicenseID = ActiveInternationalLicense.InternationalLicenseID;
-
-                MessageBox.Show($"Person already has an active international license with ID = {ActiveInternationalLicenseID}", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lblInternationalLicenseID.Text = ActiveInternationalLicenseID.ToString();
-                llShowLicensesInfo.Enabled = true;
-                btnIssue.Enabled = false;
-                return;
-            }
-
-            // تفعيل زر الإصدار إذا اجتازت كل الشروط
+            // 3. في حال عدم وجود رخصة دولية نشطة (جاهز للإصدار الجديد)
             btnIssue.Enabled = true;
+            llShowLicensesInfo.Enabled = false;
+            lblInternationalLicenseID.Text = "[???]";
+            lblApplicationID.Text = "[???]";
+            _InternationalLicenseID = -1;
+        
         }
 
         private void btnIssue_Click(object sender, EventArgs e)
@@ -129,13 +130,18 @@ namespace DVLD.International
 
         private void llShowLicensesInfo_Click(object sender, EventArgs e)
         {
-            //frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo(_InternationalLicenseID);
-            //frm.ShowDialog();
+            frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo(_InternationalLicenseID);
+            frm.ShowDialog();
         }
 
         private void frmNewInternationalLicenseApplication_Shown(object sender, EventArgs e)
         {
             ctrlDriverLicenseInfoWithFilter1.FilterFocus();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

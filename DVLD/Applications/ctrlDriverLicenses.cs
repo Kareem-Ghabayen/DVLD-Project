@@ -28,7 +28,6 @@ namespace DVLD.Applications
         private void _LoadLocalLicenses()
         {
             _dtDriverLocalLicensesHistory = clsBLLicense.GetDriverLicenses(_DriverID);
-            MessageBox.Show("عدد الرخص اللى رجعت للسائق من الداتابيز = " + _dtDriverLocalLicensesHistory.Rows.Count, "Debug Rows");
             dgvLocalLicensesHistory.DataSource = _dtDriverLocalLicensesHistory;
             lblLocalLicensesRecords.Text = dgvLocalLicensesHistory.Rows.Count.ToString();
 
