@@ -203,13 +203,13 @@
             this.cmsPeople.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.cmsPeople.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
             this.cmsPeople.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsPeople.Size = new System.Drawing.Size(215, 188);
+            this.cmsPeople.Size = new System.Drawing.Size(192, 160);
             // 
             // showDetailsToolStripMenuItem
             // 
             this.showDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_321;
             this.showDetailsToolStripMenuItem.Name = "showDetailsToolStripMenuItem";
-            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.showDetailsToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.showDetailsToolStripMenuItem.Text = " Show Details";
             this.showDetailsToolStripMenuItem.Click += new System.EventHandler(this.showDetailsToolStripMenuItem_Click);
             // 
@@ -217,7 +217,7 @@
             // 
             this.addNewPersonToolStripMenuItem.Image = global::DVLD.Properties.Resources.AddPerson_322;
             this.addNewPersonToolStripMenuItem.Name = "addNewPersonToolStripMenuItem";
-            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.addNewPersonToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.addNewPersonToolStripMenuItem.Text = "Add New Person";
             this.addNewPersonToolStripMenuItem.Click += new System.EventHandler(this.addNewPersonToolStripMenuItem_Click);
             // 
@@ -225,7 +225,7 @@
             // 
             this.editToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -233,7 +233,7 @@
             // 
             this.deleteToolStripMenuItem.Image = global::DVLD.Properties.Resources.Delete_32;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -241,14 +241,14 @@
             // 
             this.sendEmailToolStripMenuItem.Image = global::DVLD.Properties.Resources.send_email_32;
             this.sendEmailToolStripMenuItem.Name = "sendEmailToolStripMenuItem";
-            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.sendEmailToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.sendEmailToolStripMenuItem.Text = "Send Email";
             // 
             // phoneCallToolStripMenuItem
             // 
             this.phoneCallToolStripMenuItem.Image = global::DVLD.Properties.Resources.call_32;
             this.phoneCallToolStripMenuItem.Name = "phoneCallToolStripMenuItem";
-            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.phoneCallToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.phoneCallToolStripMenuItem.Text = "Phone Call";
             // 
             // lblRecordsCount

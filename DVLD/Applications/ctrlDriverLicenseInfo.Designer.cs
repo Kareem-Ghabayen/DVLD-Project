@@ -54,11 +54,11 @@
             this.lblIssueReason = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblCountry = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblExpirationDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDriverID = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblDateOfBirth = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pbPersonImage = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.lblExpirationDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblExpirationDate1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -222,11 +222,11 @@
             this.gbDriverLicenseInfo.Controls.Add(this.lblIssueReason);
             this.gbDriverLicenseInfo.Controls.Add(this.pictureBox10);
             this.gbDriverLicenseInfo.Controls.Add(this.guna2HtmlLabel10);
-            this.gbDriverLicenseInfo.Controls.Add(this.lblCountry);
+            this.gbDriverLicenseInfo.Controls.Add(this.lblExpirationDate);
             this.gbDriverLicenseInfo.Controls.Add(this.lblDriverID);
             this.gbDriverLicenseInfo.Controls.Add(this.lblDateOfBirth);
             this.gbDriverLicenseInfo.Controls.Add(this.pbPersonImage);
-            this.gbDriverLicenseInfo.Controls.Add(this.lblExpirationDate);
+            this.gbDriverLicenseInfo.Controls.Add(this.lblExpirationDate1);
             this.gbDriverLicenseInfo.Controls.Add(this.guna2HtmlLabel6);
             this.gbDriverLicenseInfo.Controls.Add(this.guna2HtmlLabel4);
             this.gbDriverLicenseInfo.Controls.Add(this.lblIssueDate);
@@ -423,17 +423,17 @@
             this.guna2HtmlLabel10.TabIndex = 59;
             this.guna2HtmlLabel10.Text = "Issue Reason:";
             // 
-            // lblCountry
+            // lblExpirationDate
             // 
-            this.lblCountry.AutoSize = false;
-            this.lblCountry.BackColor = System.Drawing.Color.Transparent;
-            this.lblCountry.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountry.ForeColor = System.Drawing.Color.Black;
-            this.lblCountry.Location = new System.Drawing.Point(434, 234);
-            this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(129, 24);
-            this.lblCountry.TabIndex = 58;
-            this.lblCountry.Text = "[???]";
+            this.lblExpirationDate.AutoSize = false;
+            this.lblExpirationDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblExpirationDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpirationDate.ForeColor = System.Drawing.Color.Black;
+            this.lblExpirationDate.Location = new System.Drawing.Point(434, 234);
+            this.lblExpirationDate.Name = "lblExpirationDate";
+            this.lblExpirationDate.Size = new System.Drawing.Size(129, 24);
+            this.lblExpirationDate.TabIndex = 58;
+            this.lblExpirationDate.Text = "[???]";
             // 
             // lblDriverID
             // 
@@ -470,17 +470,17 @@
             this.pbPersonImage.TabIndex = 51;
             this.pbPersonImage.TabStop = false;
             // 
-            // lblExpirationDate
+            // lblExpirationDate1
             // 
-            this.lblExpirationDate.AutoSize = false;
-            this.lblExpirationDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblExpirationDate.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpirationDate.ForeColor = System.Drawing.Color.Black;
-            this.lblExpirationDate.Location = new System.Drawing.Point(264, 234);
-            this.lblExpirationDate.Name = "lblExpirationDate";
-            this.lblExpirationDate.Size = new System.Drawing.Size(125, 24);
-            this.lblExpirationDate.TabIndex = 49;
-            this.lblExpirationDate.Text = "Expiration Date";
+            this.lblExpirationDate1.AutoSize = false;
+            this.lblExpirationDate1.BackColor = System.Drawing.Color.Transparent;
+            this.lblExpirationDate1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpirationDate1.ForeColor = System.Drawing.Color.Black;
+            this.lblExpirationDate1.Location = new System.Drawing.Point(264, 234);
+            this.lblExpirationDate1.Name = "lblExpirationDate1";
+            this.lblExpirationDate1.Size = new System.Drawing.Size(125, 24);
+            this.lblExpirationDate1.TabIndex = 49;
+            this.lblExpirationDate1.Text = "Expiration Date";
             // 
             // guna2HtmlLabel6
             // 
@@ -644,11 +644,11 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblIssueReason;
         private System.Windows.Forms.PictureBox pictureBox10;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblCountry;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblExpirationDate;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDriverID;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDateOfBirth;
         private Guna.UI2.WinForms.Guna2PictureBox pbPersonImage;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblExpirationDate;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblExpirationDate1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private System.Windows.Forms.PictureBox pictureBox2;

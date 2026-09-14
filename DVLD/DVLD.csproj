@@ -183,6 +183,12 @@
     <Compile Include="International\ctrlDriverLicenseInfoWithFilter.Designer.cs">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="International\frmListInternationalLicenseApplications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="International\frmListInternationalLicenseApplications.Designer.cs">
+      <DependentUpon>frmListInternationalLicenseApplications.cs</DependentUpon>
+    </Compile>
     <Compile Include="International\frmNewInternationalLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="International\ctrlDriverLicenseInfoWithFilter.resx">
       <DependentUpon>ctrlDriverLicenseInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="International\frmListInternationalLicenseApplications.resx">
+      <DependentUpon>frmListInternationalLicenseApplications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="International\frmNewInternationalLicenseApplication.resx">
       <DependentUpon>frmNewInternationalLicenseApplication.cs</DependentUpon>
@@ -585,6 +594,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icons\LicenseView 400.png" />
+    <None Include="Icons\Applications.png" />
+    <None Include="Icons\New Application 64.png" />
+    <None Include="Icons\PersonLicenseHistory 32.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\icon.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net40\Guna.UI2.dll" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net45\Guna.UI2.dll" />

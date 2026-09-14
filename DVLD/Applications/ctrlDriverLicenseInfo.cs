@@ -40,7 +40,7 @@ namespace DVLD.Applications
             lblIsActive.Text = _License.IsActive ? "Yes" : "No";
             lblDateOfBirth.Text = _License.DriverInfo.PersonInfo.DateOfBirth.ToString("dd/MMM/yyyy");
             lblDriverID.Text = _License.DriverID.ToString();
-            lblExpirationDate.Text = _License.ExpirationDate.ToString("dd/MMM/yyyy");
+            lblExpirationDate1.Text = _License.ExpirationDate.ToString("dd/MMM/yyyy");
             lblIsDetained.Text = _License.IsDetained ? "Yes" : "No";
 
             _LoadPersonImage();
@@ -73,7 +73,7 @@ namespace DVLD.Applications
             lblIsActive.Text = "[???]";
             lblDateOfBirth.Text = "[???]";
             lblDriverID.Text = "[???]";
-            lblExpirationDate.Text = "[???]";
+            lblExpirationDate1.Text = "[???]";
             lblIsDetained.Text = "[???]";
             pbPersonImage.Image = Properties.Resources.Male_512;
         }

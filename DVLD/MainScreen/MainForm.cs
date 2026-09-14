@@ -120,5 +120,12 @@ namespace DVLD.MainScreen
             frmNewInternationalLicenseApplication frm = new frmNewInternationalLicenseApplication();
             frm.ShowDialog();
         }
+
+        private void internationalLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListInternationalLicenseApplications frm = new frmListInternationalLicenseApplications();
+            frm.ShowDialog();
+
+        }
     }
 }
