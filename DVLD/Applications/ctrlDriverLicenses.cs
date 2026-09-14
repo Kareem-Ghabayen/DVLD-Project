@@ -1,5 +1,6 @@
 ﻿using BuisnessLayer;
 using BusinessLayer;
+using DVLD.International;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -88,6 +89,28 @@ namespace DVLD.Applications
         private void gbDriverLicenses_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void showPersonDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvLocalLicensesHistory.CurrentRow == null)
+                return;
+
+            int licenseID = (int)dgvLocalLicensesHistory.CurrentRow.Cells["LicenseID"].Value;
+
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(licenseID);
+            frm.ShowDialog();
+        }
+
+        private void showInternationalLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvInternationalLicensesHistory.CurrentRow == null)
+                return;
+
+            int internationalLicenseID = (int)dgvInternationalLicensesHistory.CurrentRow.Cells["InternationalLicenseID"].Value;
+
+            frmShowInternationalLicenseInfo frm = new frmShowInternationalLicenseInfo(internationalLicenseID);
+            frm.ShowDialog();
         }
     }
 }

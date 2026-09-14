@@ -1,4 +1,5 @@
 ﻿using BuisnessLayer;
+using DVLD.Applications;
 using DVLD.people;
 using System;
 using System.Data;
@@ -105,11 +106,13 @@ namespace DVLD
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //int personID = (int)dgvDrivers.CurrentRow.Cells["PersonID"].Value;
-            //frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(personID);
-            //frm.ShowDialog();
-        }
+            {
+                int personID = (int)dgvDrivers.CurrentRow.Cells["PersonID"].Value;
 
+                frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(personID);
+                frm.ShowDialog();
+            }
+        }
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int personID = (int)dgvDrivers.CurrentRow.Cells["PersonID"].Value;

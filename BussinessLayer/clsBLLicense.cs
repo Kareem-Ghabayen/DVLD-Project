@@ -187,71 +187,44 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             return clsDALLicenses.IsLicenseExist(licenseID);
         }
 
-        public static clsBLLicense RenewLicense(int oldLicenseID)
+        public clsBLLicense RenewLicense(string Notes, int CreatedByUserID)
         {
-            clsBLLicense oldLicense = clsBLLicense.FindByLicenseID(oldLicenseID);
-            if (oldLicense == null)
-            {
-                return null;
-            }
-
-            if (oldLicense.IsLicenseActiveByLicenseID())
-            {
-                return null;
-            }
-
-            if (clsBLApplication.IsThereAnActiveApplicationInSameLicenses(oldLicense.DriverInfo.PersonID, (int)enApplicationType.RenewDrivingLicense, oldLicense.LicenseClass))
-            {
-                return null;
-            }
-
+            // 1. إنشاء طلب تجديد جديد بجدول Applications
             clsBLApplication application = new clsBLApplication();
-
-            application.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
+            application.ApplicantPersonID = this.DriverInfo.PersonID;
             application.ApplicationDate = DateTime.Now;
             application.ApplicationTypeID = (int)enApplicationType.RenewDrivingLicense;
-            application.ApplicationStatus = 1;
+            application.ApplicationStatus = (byte)clsBLApplication.enStatus.Completed;
             application.LastStatusDate = DateTime.Now;
             application.PaidFees = clsBLApplicationType.Find((int)enApplicationType.RenewDrivingLicense).ApplicationFees;
-            application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-
-            float requiredFees = clsBLApplicationType.Find(application.ApplicationTypeID).ApplicationFees;
-            if (application.PaidFees != requiredFees)
-            {
-                return null;
-            }
+            application.CreatedByUserID = CreatedByUserID;
 
             if (!application.Save())
-            {
                 return null;
-            }
 
-            oldLicense.IsActive = false;
-            if (!oldLicense.Save())
-            {
+            // 2. إلغاء تفعيل الرخصة القديمة
+            this.IsActive = false;
+            if (!this.Save())
                 return null;
-            }
 
+            // 3. إصدار الرخصة الجديدة
             clsBLLicense newLicense = new clsBLLicense();
-
             newLicense.ApplicationID = application.ApplicationID;
-            newLicense.DriverID = oldLicense.DriverID;
-            newLicense.LicenseClass = oldLicense.LicenseClass;
+            newLicense.DriverID = this.DriverID;
+            newLicense.LicenseClass = this.LicenseClass;
             newLicense.IssueDate = DateTime.Now;
 
-            byte validityLength = clsBLLicenseClass.Find(oldLicense.LicenseClass).DefaultValidityLength;
+            byte validityLength = this.LicenseClassInfo.DefaultValidityLength;
             newLicense.ExpirationDate = DateTime.Now.AddYears(validityLength);
 
-            newLicense.Notes = "";
-            newLicense.PaidFees = clsBLLicenseClass.Find(oldLicense.LicenseClass).ClassFees;
+            newLicense.Notes = Notes;
+            newLicense.PaidFees = this.LicenseClassInfo.ClassFees;
             newLicense.IsActive = true;
-            newLicense.IssueReason = (int)enIssueReason.Renew;
-            newLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            newLicense.IssueReason = (byte)enIssueReason.Renew;
+            newLicense.CreatedByUserID = CreatedByUserID;
 
             if (!newLicense.Save())
-            {
                 return null;
-            }
 
             return newLicense;
         }
@@ -304,7 +277,10 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         {
             // 1. إلغاء تفعيل الرخصة القديمة الحالية
             this.IsActive = false;
-            this.Save();
+            if (!this.Save())
+            {
+                return null;
+            }
 
             // 2. إنشاء رخصة جديدة كبديل للرخصة الحالية
             clsBLLicense newLicense = new clsBLLicense();
@@ -314,17 +290,11 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             newLicense.LicenseClass = this.LicenseClass;
             newLicense.IssueDate = DateTime.Now;
 
-            clsBLLicenseClass licenseClassInfo = clsBLLicenseClass.Find(this.LicenseClass);
-            if (licenseClassInfo != null)
-            {
-                newLicense.ExpirationDate = this.ExpirationDate;
-            }
-            else
-            {
-                newLicense.ExpirationDate = DateTime.Now.AddYears(10);
-            }
+            // الاحتفاظ بنفس تاريخ الانتهاء القديم دون تغيير
+            newLicense.ExpirationDate = this.ExpirationDate;
 
-            newLicense.PaidFees = licenseClassInfo != null ? licenseClassInfo.ClassFees : 0;
+            newLicense.Notes = this.Notes;
+            newLicense.PaidFees = 0; // الرسوم 0 لأن رسوم الاستبدال تدفع في Application Fees فقط
             newLicense.IsActive = true;
             newLicense.IssueReason = (byte)issueReason;
             newLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;
@@ -372,6 +342,10 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
         public static int GetActiveLicenseIDByApplicationID(int ApplicationID)
         {
             return clsDALLicenses.GetActiveLicenseIDByApplicationID(ApplicationID);
+        }
+        public bool IsLicenseExpired()
+        {
+            return (this.ExpirationDate < DateTime.Now);
         }
     }
 }

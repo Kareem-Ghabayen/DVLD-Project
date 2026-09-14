@@ -1,5 +1,7 @@
 ﻿using BuisnessLayer;
 using DVLD.Applications;
+using DVLD.Applications.RenewApplications;
+using DVLD.Applications.Replacement;
 using DVLD.International;
 using DVLD.Login;
 using DVLD.people;
@@ -41,7 +43,8 @@ namespace DVLD.MainScreen
 
         private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmListLocalDrivingLicenseApplications frm = new frmListLocalDrivingLicenseApplications();
+            frm.ShowDialog();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -126,6 +129,18 @@ namespace DVLD.MainScreen
             frmListInternationalLicenseApplications frm = new frmListInternationalLicenseApplications();
             frm.ShowDialog();
 
+        }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRenewLocalDrivingLicense frm = new frmRenewLocalDrivingLicense();
+            frm.ShowDialog();
+        }
+
+        private void replacementForLostOrDamagedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplaceLostOrDamagedLicenseApplication frm = new frmReplaceLostOrDamagedLicenseApplication();
+            frm.ShowDialog();
         }
     }
 }
