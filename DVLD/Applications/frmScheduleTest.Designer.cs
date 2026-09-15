@@ -224,6 +224,7 @@
             this.Controls.Add(this.gbRetakeTestInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmScheduleTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Schedule Test";
             this.Load += new System.EventHandler(this.frmScheduleTest_Load);
             this.gbRetakeTestInfo.ResumeLayout(false);

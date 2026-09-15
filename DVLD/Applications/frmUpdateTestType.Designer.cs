@@ -239,6 +239,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmUpdateTestType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update Test Type";
             this.Load += new System.EventHandler(this.frmUpdateTestType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

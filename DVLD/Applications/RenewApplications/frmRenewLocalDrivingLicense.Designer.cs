@@ -607,6 +607,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmRenewLocalDrivingLicense";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Renew Local Driving License";
             this.Load += new System.EventHandler(this.frmRenewLocalDrivingLicense_Load);
             this.gbRenewLicenseInfo.ResumeLayout(false);

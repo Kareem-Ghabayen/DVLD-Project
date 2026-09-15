@@ -431,6 +431,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmReplaceLostOrDamagedLicenseApplication";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Replace Lost Or Damaged License Application";
             this.Load += new System.EventHandler(this.frmReplaceLostOrDamagedLicenseApplication_Load);
             this.gbApplicationInfo.ResumeLayout(false);

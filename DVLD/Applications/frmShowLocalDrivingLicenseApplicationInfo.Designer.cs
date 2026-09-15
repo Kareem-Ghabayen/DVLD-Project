@@ -67,6 +67,7 @@
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowLocalDrivingLicenseApplicationInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Show Local Driving License Application Info";
             this.Load += new System.EventHandler(this.frmShowLocalDrivingLicenseApplicationInfo_Load_1);
             this.ResumeLayout(false);

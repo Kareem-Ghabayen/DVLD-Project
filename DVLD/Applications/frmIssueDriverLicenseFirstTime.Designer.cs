@@ -135,6 +135,7 @@
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmIssueDriverLicenseFirstTime";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Issue Driver License First Time";
             this.Load += new System.EventHandler(this.frmIssueDriverLicenseFirstTime_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();

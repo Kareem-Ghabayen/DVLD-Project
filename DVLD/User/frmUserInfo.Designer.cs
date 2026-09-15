@@ -65,6 +65,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
             this.Name = "frmUserInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmUserInfo";
             this.Load += new System.EventHandler(this.frmUserInfo_Load_1);
             this.ResumeLayout(false);

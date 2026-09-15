@@ -266,6 +266,7 @@
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListTestAppointments";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "List Test Appointments";
             this.Load += new System.EventHandler(this.frmListTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).EndInit();

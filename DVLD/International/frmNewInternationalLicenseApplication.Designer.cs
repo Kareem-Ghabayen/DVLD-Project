@@ -474,7 +474,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNewInternationalLicenseApplication";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New International License Application";
             this.Load += new System.EventHandler(this.frmNewInternationalLicenseApplication_Load);
             this.Shown += new System.EventHandler(this.frmNewInternationalLicenseApplication_Shown);

@@ -104,6 +104,7 @@
             this.Controls.Add(this.ctrlPersonCardWithFilter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowPersonLicenseHistory";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Show Person License History";
             this.Load += new System.EventHandler(this.frmShowPersonLicenseHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -29,8 +29,17 @@
         private void InitializeComponent()
         {
             this.gbDetainInfo = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblTotalFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblApplicationFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblFineFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblDetainDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblDetainID = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -46,28 +55,19 @@
             this.guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.ctrlDriverLicenseInfoWithFilter1 = new DVLD.International.ctrlDriverLicenseInfoWithFilter();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblDetainDate = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblFineFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblApplicationFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lblTotalFees = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.llShowLicensesHistory = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.llShowLicensesInfo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnRelease = new Guna.UI2.WinForms.Guna2Button();
             this.gbDetainInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDetainInfo
@@ -104,6 +104,96 @@
             this.gbDetainInfo.TabIndex = 90;
             this.gbDetainInfo.Text = "Detain Info";
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::DVLD.Properties.Resources.Number_32;
+            this.pictureBox3.Location = new System.Drawing.Point(552, 102);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 108;
+            this.pictureBox3.TabStop = false;
+            // 
+            // lblTotalFees
+            // 
+            this.lblTotalFees.AutoSize = false;
+            this.lblTotalFees.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFees.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalFees.Location = new System.Drawing.Point(217, 193);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(96, 24);
+            this.lblTotalFees.TabIndex = 107;
+            this.lblTotalFees.Text = "[???]";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::DVLD.Properties.Resources.money_322;
+            this.pictureBox5.Location = new System.Drawing.Point(146, 193);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 106;
+            this.pictureBox5.TabStop = false;
+            // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.AutoSize = false;
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(11, 193);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(145, 24);
+            this.guna2HtmlLabel7.TabIndex = 105;
+            this.guna2HtmlLabel7.Text = "Total Fees:";
+            // 
+            // lblApplicationFees
+            // 
+            this.lblApplicationFees.AutoSize = false;
+            this.lblApplicationFees.BackColor = System.Drawing.Color.Transparent;
+            this.lblApplicationFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApplicationFees.ForeColor = System.Drawing.Color.Black;
+            this.lblApplicationFees.Location = new System.Drawing.Point(215, 146);
+            this.lblApplicationFees.Name = "lblApplicationFees";
+            this.lblApplicationFees.Size = new System.Drawing.Size(96, 24);
+            this.lblApplicationFees.TabIndex = 104;
+            this.lblApplicationFees.Text = "[???]";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DVLD.Properties.Resources.money_322;
+            this.pictureBox2.Location = new System.Drawing.Point(146, 146);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 24);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 103;
+            this.pictureBox2.TabStop = false;
+            // 
+            // guna2HtmlLabel3
+            // 
+            this.guna2HtmlLabel3.AutoSize = false;
+            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(9, 146);
+            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(145, 24);
+            this.guna2HtmlLabel3.TabIndex = 102;
+            this.guna2HtmlLabel3.Text = "Application Fees:";
+            // 
+            // lblFineFees
+            // 
+            this.lblFineFees.AutoSize = false;
+            this.lblFineFees.BackColor = System.Drawing.Color.Transparent;
+            this.lblFineFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFineFees.ForeColor = System.Drawing.Color.Black;
+            this.lblFineFees.Location = new System.Drawing.Point(592, 193);
+            this.lblFineFees.Name = "lblFineFees";
+            this.lblFineFees.Size = new System.Drawing.Size(96, 24);
+            this.lblFineFees.TabIndex = 101;
+            this.lblFineFees.Text = "[???]";
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::DVLD.Properties.Resources.Calendar_321;
@@ -123,6 +213,18 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 98;
             this.pictureBox1.TabStop = false;
+            // 
+            // lblDetainDate
+            // 
+            this.lblDetainDate.AutoSize = false;
+            this.lblDetainDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblDetainDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetainDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDetainDate.Location = new System.Drawing.Point(210, 102);
+            this.lblDetainDate.Name = "lblDetainDate";
+            this.lblDetainDate.Size = new System.Drawing.Size(129, 24);
+            this.lblDetainDate.TabIndex = 90;
+            this.lblDetainDate.Text = "[???]";
             // 
             // pictureBox6
             // 
@@ -293,108 +395,6 @@
             this.lblTitle.TabIndex = 88;
             this.lblTitle.Text = "Detain License";
             // 
-            // lblDetainDate
-            // 
-            this.lblDetainDate.AutoSize = false;
-            this.lblDetainDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblDetainDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetainDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDetainDate.Location = new System.Drawing.Point(210, 102);
-            this.lblDetainDate.Name = "lblDetainDate";
-            this.lblDetainDate.Size = new System.Drawing.Size(129, 24);
-            this.lblDetainDate.TabIndex = 90;
-            this.lblDetainDate.Text = "[???]";
-            // 
-            // lblFineFees
-            // 
-            this.lblFineFees.AutoSize = false;
-            this.lblFineFees.BackColor = System.Drawing.Color.Transparent;
-            this.lblFineFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFineFees.ForeColor = System.Drawing.Color.Black;
-            this.lblFineFees.Location = new System.Drawing.Point(592, 193);
-            this.lblFineFees.Name = "lblFineFees";
-            this.lblFineFees.Size = new System.Drawing.Size(96, 24);
-            this.lblFineFees.TabIndex = 101;
-            this.lblFineFees.Text = "[???]";
-            // 
-            // lblApplicationFees
-            // 
-            this.lblApplicationFees.AutoSize = false;
-            this.lblApplicationFees.BackColor = System.Drawing.Color.Transparent;
-            this.lblApplicationFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApplicationFees.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicationFees.Location = new System.Drawing.Point(215, 146);
-            this.lblApplicationFees.Name = "lblApplicationFees";
-            this.lblApplicationFees.Size = new System.Drawing.Size(96, 24);
-            this.lblApplicationFees.TabIndex = 104;
-            this.lblApplicationFees.Text = "[???]";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DVLD.Properties.Resources.money_322;
-            this.pictureBox2.Location = new System.Drawing.Point(146, 146);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 103;
-            this.pictureBox2.TabStop = false;
-            // 
-            // guna2HtmlLabel3
-            // 
-            this.guna2HtmlLabel3.AutoSize = false;
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(9, 146);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(145, 24);
-            this.guna2HtmlLabel3.TabIndex = 102;
-            this.guna2HtmlLabel3.Text = "Application Fees:";
-            // 
-            // lblTotalFees
-            // 
-            this.lblTotalFees.AutoSize = false;
-            this.lblTotalFees.BackColor = System.Drawing.Color.Transparent;
-            this.lblTotalFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFees.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalFees.Location = new System.Drawing.Point(217, 193);
-            this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(96, 24);
-            this.lblTotalFees.TabIndex = 107;
-            this.lblTotalFees.Text = "[???]";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::DVLD.Properties.Resources.money_322;
-            this.pictureBox5.Location = new System.Drawing.Point(146, 193);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 106;
-            this.pictureBox5.TabStop = false;
-            // 
-            // guna2HtmlLabel7
-            // 
-            this.guna2HtmlLabel7.AutoSize = false;
-            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(11, 193);
-            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            this.guna2HtmlLabel7.Size = new System.Drawing.Size(145, 24);
-            this.guna2HtmlLabel7.TabIndex = 105;
-            this.guna2HtmlLabel7.Text = "Total Fees:";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox3.Location = new System.Drawing.Point(552, 102);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 24);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 108;
-            this.pictureBox3.TabStop = false;
-            // 
             // llShowLicensesHistory
             // 
             this.llShowLicensesHistory.AutoSize = false;
@@ -474,17 +474,18 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmReleaseDetainedLicenseApplication";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Release Detained License Application";
             this.Load += new System.EventHandler(this.frmReleaseDetainedLicenseApplication_Load);
             this.gbDetainInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

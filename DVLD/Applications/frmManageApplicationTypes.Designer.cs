@@ -33,14 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvApplicationTypes = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cmsApplicationTypes = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmsApplicationTypes = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsApplicationTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecordsCount
@@ -71,7 +71,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvApplicationTypes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvApplicationTypes.ColumnHeadersHeight = 4;
+            this.dgvApplicationTypes.ColumnHeadersHeight = 40;
             this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvApplicationTypes.ContextMenuStrip = this.cmsApplicationTypes;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -103,7 +103,7 @@
             this.dgvApplicationTypes.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Tahoma", 8F);
             this.dgvApplicationTypes.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvApplicationTypes.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvApplicationTypes.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvApplicationTypes.ThemeStyle.HeaderStyle.Height = 40;
             this.dgvApplicationTypes.ThemeStyle.ReadOnly = true;
             this.dgvApplicationTypes.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvApplicationTypes.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -112,6 +112,31 @@
             this.dgvApplicationTypes.ThemeStyle.RowsStyle.Height = 26;
             this.dgvApplicationTypes.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvApplicationTypes.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // cmsApplicationTypes
+            // 
+            this.cmsApplicationTypes.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsApplicationTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editApplicationTypeToolStripMenuItem});
+            this.cmsApplicationTypes.Name = "cmsPeople";
+            this.cmsApplicationTypes.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.cmsApplicationTypes.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.cmsApplicationTypes.RenderStyle.ColorTable = null;
+            this.cmsApplicationTypes.RenderStyle.RoundedEdges = true;
+            this.cmsApplicationTypes.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.cmsApplicationTypes.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmsApplicationTypes.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.cmsApplicationTypes.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.cmsApplicationTypes.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.cmsApplicationTypes.Size = new System.Drawing.Size(225, 30);
+            // 
+            // editApplicationTypeToolStripMenuItem
+            // 
+            this.editApplicationTypeToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
+            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
+            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editApplicationTypeToolStripMenuItem.Text = "Edit Application Type";
+            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.editApplicationTypeToolStripMenuItem_Click);
             // 
             // lblTitle
             // 
@@ -151,31 +176,6 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // cmsApplicationTypes
-            // 
-            this.cmsApplicationTypes.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsApplicationTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editApplicationTypeToolStripMenuItem});
-            this.cmsApplicationTypes.Name = "cmsPeople";
-            this.cmsApplicationTypes.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsApplicationTypes.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.cmsApplicationTypes.RenderStyle.ColorTable = null;
-            this.cmsApplicationTypes.RenderStyle.RoundedEdges = true;
-            this.cmsApplicationTypes.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsApplicationTypes.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cmsApplicationTypes.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsApplicationTypes.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.cmsApplicationTypes.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsApplicationTypes.Size = new System.Drawing.Size(225, 30);
-            // 
-            // editApplicationTypeToolStripMenuItem
-            // 
-            this.editApplicationTypeToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
-            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
-            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.editApplicationTypeToolStripMenuItem.Text = "Edit Application Type";
-            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.editApplicationTypeToolStripMenuItem_Click);
-            // 
             // frmManageApplicationTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -188,11 +188,12 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmManageApplicationTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Application Types";
             this.Load += new System.EventHandler(this.frmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsApplicationTypes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

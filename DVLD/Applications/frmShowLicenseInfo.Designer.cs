@@ -93,6 +93,7 @@
             this.Controls.Add(this.ctrlDriverLicenseInfo1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowLicenseInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Show License Info";
             this.Load += new System.EventHandler(this.frmShowLicenseInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

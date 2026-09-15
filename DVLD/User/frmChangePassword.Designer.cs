@@ -247,6 +247,7 @@
             this.Controls.Add(this.lblCurrentPassword);
             this.Controls.Add(this.ctrlUserCard1);
             this.Name = "frmChangePassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmChangePassword";
             this.Load += new System.EventHandler(this.frmChangePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

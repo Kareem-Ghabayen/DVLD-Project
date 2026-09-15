@@ -79,6 +79,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlPersonCard1);
             this.Name = "frmShowPersonInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ShowPersonInfo";
             this.ResumeLayout(false);
 

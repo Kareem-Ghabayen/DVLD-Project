@@ -33,10 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvTestTypes = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cmsTestTypes = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.editTestTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypes)).BeginInit();
             this.cmsTestTypes.SuspendLayout();
@@ -71,7 +71,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvTestTypes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTestTypes.ColumnHeadersHeight = 4;
+            this.dgvTestTypes.ColumnHeadersHeight = 40;
             this.dgvTestTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvTestTypes.ContextMenuStrip = this.cmsTestTypes;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -103,7 +103,7 @@
             this.dgvTestTypes.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Tahoma", 8F);
             this.dgvTestTypes.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvTestTypes.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvTestTypes.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvTestTypes.ThemeStyle.HeaderStyle.Height = 40;
             this.dgvTestTypes.ThemeStyle.ReadOnly = true;
             this.dgvTestTypes.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvTestTypes.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -112,17 +112,6 @@
             this.dgvTestTypes.ThemeStyle.RowsStyle.Height = 26;
             this.dgvTestTypes.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvTestTypes.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(283, 150);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(226, 30);
-            this.lblTitle.TabIndex = 16;
-            this.lblTitle.Text = "Manage Test Types";
             // 
             // cmsTestTypes
             // 
@@ -141,6 +130,25 @@
             this.cmsTestTypes.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.cmsTestTypes.Size = new System.Drawing.Size(174, 30);
             // 
+            // editTestTypeToolStripMenuItem
+            // 
+            this.editTestTypeToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
+            this.editTestTypeToolStripMenuItem.Name = "editTestTypeToolStripMenuItem";
+            this.editTestTypeToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.editTestTypeToolStripMenuItem.Text = "Edit Test Type";
+            this.editTestTypeToolStripMenuItem.Click += new System.EventHandler(this.editTestTypeToolStripMenuItem_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Red;
+            this.lblTitle.Location = new System.Drawing.Point(283, 150);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(226, 30);
+            this.lblTitle.TabIndex = 16;
+            this.lblTitle.Text = "Manage Test Types";
+            // 
             // btnClose
             // 
             this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -157,14 +165,6 @@
             this.btnClose.TabIndex = 19;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // editTestTypeToolStripMenuItem
-            // 
-            this.editTestTypeToolStripMenuItem.Image = global::DVLD.Properties.Resources.edit_32;
-            this.editTestTypeToolStripMenuItem.Name = "editTestTypeToolStripMenuItem";
-            this.editTestTypeToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
-            this.editTestTypeToolStripMenuItem.Text = "Edit Test Type";
-            this.editTestTypeToolStripMenuItem.Click += new System.EventHandler(this.editTestTypeToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -188,6 +188,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListTestTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "List Test Types";
             this.Load += new System.EventHandler(this.frmListTestTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypes)).EndInit();

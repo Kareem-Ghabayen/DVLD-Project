@@ -81,7 +81,7 @@
             this.ctrlDriverInternationalLicenseInfo1.Size = new System.Drawing.Size(730, 277);
             this.ctrlDriverInternationalLicenseInfo1.TabIndex = 103;
             // 
-            // frmShowInternationalLicenseInfocs
+            // frmShowInternationalLicenseInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,7 +91,8 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmShowInternationalLicenseInfocs";
+            this.Name = "frmShowInternationalLicenseInfo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmShowInternationalLicenseInfocs";
             this.Load += new System.EventHandler(this.frmShowInternationalLicenseInfocs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

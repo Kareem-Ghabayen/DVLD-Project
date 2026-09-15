@@ -35,6 +35,7 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.llEditPersonInfo = new System.Windows.Forms.LinkLabel();
             this.pbPersonImage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -57,7 +58,6 @@
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lbPersonID = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.llEditPersonInfo = new System.Windows.Forms.LinkLabel();
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -117,9 +117,9 @@
             this.lblCountry.BackColor = System.Drawing.Color.Transparent;
             this.lblCountry.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountry.ForeColor = System.Drawing.Color.Black;
-            this.lblCountry.Location = new System.Drawing.Point(420, 234);
+            this.lblCountry.Location = new System.Drawing.Point(472, 234);
             this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(129, 24);
+            this.lblCountry.Size = new System.Drawing.Size(82, 24);
             this.lblCountry.TabIndex = 58;
             this.lblCountry.Text = "[???]";
             // 
@@ -129,9 +129,9 @@
             this.lblPhone.BackColor = System.Drawing.Color.Transparent;
             this.lblPhone.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhone.ForeColor = System.Drawing.Color.Black;
-            this.lblPhone.Location = new System.Drawing.Point(420, 190);
+            this.lblPhone.Location = new System.Drawing.Point(472, 190);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(129, 24);
+            this.lblPhone.Size = new System.Drawing.Size(82, 24);
             this.lblPhone.TabIndex = 57;
             this.lblPhone.Text = "[???]";
             // 
@@ -141,16 +141,16 @@
             this.lblDateOfBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblDateOfBirth.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateOfBirth.ForeColor = System.Drawing.Color.Black;
-            this.lblDateOfBirth.Location = new System.Drawing.Point(420, 146);
+            this.lblDateOfBirth.Location = new System.Drawing.Point(472, 146);
             this.lblDateOfBirth.Name = "lblDateOfBirth";
-            this.lblDateOfBirth.Size = new System.Drawing.Size(129, 24);
+            this.lblDateOfBirth.Size = new System.Drawing.Size(82, 24);
             this.lblDateOfBirth.TabIndex = 56;
             this.lblDateOfBirth.Text = "[???]";
             // 
             // pictureBox9
             // 
             this.pictureBox9.Image = global::DVLD.Properties.Resources.Country_32;
-            this.pictureBox9.Location = new System.Drawing.Point(385, 234);
+            this.pictureBox9.Location = new System.Drawing.Point(437, 234);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(22, 24);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -160,7 +160,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox5.Location = new System.Drawing.Point(385, 146);
+            this.pictureBox5.Location = new System.Drawing.Point(437, 146);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(22, 24);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -170,18 +170,30 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::DVLD.Properties.Resources.Phone_321;
-            this.pictureBox6.Location = new System.Drawing.Point(385, 190);
+            this.pictureBox6.Location = new System.Drawing.Point(437, 190);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(22, 24);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 53;
             this.pictureBox6.TabStop = false;
             // 
+            // llEditPersonInfo
+            // 
+            this.llEditPersonInfo.AutoSize = true;
+            this.llEditPersonInfo.LinkColor = System.Drawing.Color.Black;
+            this.llEditPersonInfo.Location = new System.Drawing.Point(584, 62);
+            this.llEditPersonInfo.Name = "llEditPersonInfo";
+            this.llEditPersonInfo.Size = new System.Drawing.Size(112, 20);
+            this.llEditPersonInfo.TabIndex = 52;
+            this.llEditPersonInfo.TabStop = true;
+            this.llEditPersonInfo.Text = "Edit Person Info";
+            this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked_1);
+            // 
             // pbPersonImage
             // 
             this.pbPersonImage.Image = global::DVLD.Properties.Resources.Male_512;
             this.pbPersonImage.ImageRotate = 0F;
-            this.pbPersonImage.Location = new System.Drawing.Point(555, 102);
+            this.pbPersonImage.Location = new System.Drawing.Point(575, 102);
             this.pbPersonImage.Name = "pbPersonImage";
             this.pbPersonImage.Size = new System.Drawing.Size(121, 124);
             this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -194,7 +206,7 @@
             this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(264, 234);
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(316, 234);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             this.guna2HtmlLabel8.Size = new System.Drawing.Size(97, 24);
             this.guna2HtmlLabel8.TabIndex = 49;
@@ -205,7 +217,7 @@
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(264, 190);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(316, 190);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(58, 24);
             this.guna2HtmlLabel6.TabIndex = 48;
@@ -217,7 +229,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(264, 146);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(316, 146);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(125, 24);
             this.guna2HtmlLabel4.TabIndex = 47;
@@ -425,18 +437,6 @@
             this.lbPersonID.Size = new System.Drawing.Size(129, 24);
             this.lbPersonID.TabIndex = 3;
             this.lbPersonID.Text = "Person ID:";
-            // 
-            // llEditPersonInfo
-            // 
-            this.llEditPersonInfo.AutoSize = true;
-            this.llEditPersonInfo.LinkColor = System.Drawing.Color.Black;
-            this.llEditPersonInfo.Location = new System.Drawing.Point(571, 62);
-            this.llEditPersonInfo.Name = "llEditPersonInfo";
-            this.llEditPersonInfo.Size = new System.Drawing.Size(112, 20);
-            this.llEditPersonInfo.TabIndex = 52;
-            this.llEditPersonInfo.TabStop = true;
-            this.llEditPersonInfo.Text = "Edit Person Info";
-            this.llEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llEditPersonInfo_LinkClicked_1);
             // 
             // ctrlPersonCard
             // 

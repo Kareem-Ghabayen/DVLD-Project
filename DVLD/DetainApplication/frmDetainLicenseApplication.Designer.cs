@@ -358,6 +358,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmDetainLicenseApplication";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Detain License Application";
             this.Load += new System.EventHandler(this.frmDetainLicenseApplication_Load);
             this.gbDetainInfo.ResumeLayout(false);

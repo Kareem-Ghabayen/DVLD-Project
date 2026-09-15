@@ -141,7 +141,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPeople.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvPeople.ColumnHeadersHeight = 4;
+            this.dgvPeople.ColumnHeadersHeight = 40;
             this.dgvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvPeople.ContextMenuStrip = this.cmsPeople;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -173,7 +173,7 @@
             this.dgvPeople.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Tahoma", 8F);
             this.dgvPeople.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvPeople.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvPeople.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvPeople.ThemeStyle.HeaderStyle.Height = 40;
             this.dgvPeople.ThemeStyle.ReadOnly = true;
             this.dgvPeople.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvPeople.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
