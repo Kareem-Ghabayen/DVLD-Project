@@ -153,15 +153,27 @@ namespace BusinessLayer
                 return -1;
             }
 
-            clsBLApplication application = new clsBLApplication();
             clsBLLicense license = clsBLLicense.FindByLicenseID(detainedLicense.LicenseID);
+            if (license == null || license.DriverInfo == null)
+            {
+                return -1;
+            }
+
+            clsBLApplicationType appType = clsBLApplicationType.Find((int)clsBLApplication.enApplicationType.ReleaseDetainedDrivingLicense);
+            if (appType == null)
+            {
+                return -1;
+            }
+
+            clsBLApplication application = new clsBLApplication();
             application.ApplicantPersonID = license.DriverInfo.PersonID;
             application.ApplicationDate = DateTime.Now;
             application.ApplicationTypeID = (int)clsBLApplication.enApplicationType.ReleaseDetainedDrivingLicense;
-            application.ApplicationStatus = 1; 
+            application.ApplicationStatus = 1;
             application.LastStatusDate = DateTime.Now;
 
-            application.PaidFees = clsBLApplicationType.Find((int)clsBLApplication.enApplicationType.ReleaseDetainedDrivingLicense).ApplicationFees + (int)detainedLicense.FineFees;
+            // الجمع بنوع decimal دون إلغاء الكسور العشرية
+            application.PaidFees = appType.ApplicationFees + Convert.ToSingle(detainedLicense.FineFees);
             application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
             if (!application.Save())
@@ -175,11 +187,13 @@ namespace BusinessLayer
             {
                 return -1;
             }
-            application.ApplicationStatus = 3;
+
+            application.ApplicationStatus = 3; // Completed
             if (!application.Save())
             {
                 return -1;
             }
+
             return application.ApplicationID;
         }
         public static clsBLDetainedLicense FindByLicenseID(int licenseID)

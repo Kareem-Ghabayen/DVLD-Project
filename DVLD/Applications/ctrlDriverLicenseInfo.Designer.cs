@@ -260,7 +260,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::DVLD.Properties.Resources.Question_32;
-            this.pictureBox11.Location = new System.Drawing.Point(395, 278);
+            this.pictureBox11.Location = new System.Drawing.Point(415, 278);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(22, 24);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -270,7 +270,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::DVLD.Properties.Resources.Calendar_322;
-            this.pictureBox9.Location = new System.Drawing.Point(395, 234);
+            this.pictureBox9.Location = new System.Drawing.Point(415, 234);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(22, 24);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -280,7 +280,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Calendar_322;
-            this.pictureBox5.Location = new System.Drawing.Point(395, 146);
+            this.pictureBox5.Location = new System.Drawing.Point(415, 146);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(22, 24);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -290,7 +290,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox6.Location = new System.Drawing.Point(395, 190);
+            this.pictureBox6.Location = new System.Drawing.Point(415, 190);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(22, 24);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -313,7 +313,7 @@
             this.lblIsDetained.BackColor = System.Drawing.Color.Transparent;
             this.lblIsDetained.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsDetained.ForeColor = System.Drawing.Color.Black;
-            this.lblIsDetained.Location = new System.Drawing.Point(434, 276);
+            this.lblIsDetained.Location = new System.Drawing.Point(454, 276);
             this.lblIsDetained.Name = "lblIsDetained";
             this.lblIsDetained.Size = new System.Drawing.Size(129, 24);
             this.lblIsDetained.TabIndex = 70;
@@ -325,7 +325,7 @@
             this.guna2HtmlLabel16.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel16.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel16.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel16.Location = new System.Drawing.Point(264, 276);
+            this.guna2HtmlLabel16.Location = new System.Drawing.Point(284, 276);
             this.guna2HtmlLabel16.Name = "guna2HtmlLabel16";
             this.guna2HtmlLabel16.Size = new System.Drawing.Size(125, 24);
             this.guna2HtmlLabel16.TabIndex = 68;
@@ -337,16 +337,16 @@
             this.lblIsActive.BackColor = System.Drawing.Color.Transparent;
             this.lblIsActive.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsActive.ForeColor = System.Drawing.Color.Black;
-            this.lblIsActive.Location = new System.Drawing.Point(434, 102);
+            this.lblIsActive.Location = new System.Drawing.Point(454, 102);
             this.lblIsActive.Name = "lblIsActive";
-            this.lblIsActive.Size = new System.Drawing.Size(115, 24);
+            this.lblIsActive.Size = new System.Drawing.Size(101, 24);
             this.lblIsActive.TabIndex = 67;
             this.lblIsActive.Text = "[???]";
             // 
             // pictureBox12
             // 
             this.pictureBox12.Image = global::DVLD.Properties.Resources.Question_32;
-            this.pictureBox12.Location = new System.Drawing.Point(395, 102);
+            this.pictureBox12.Location = new System.Drawing.Point(415, 102);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(22, 24);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -359,7 +359,7 @@
             this.guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel14.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel14.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel14.Location = new System.Drawing.Point(264, 102);
+            this.guna2HtmlLabel14.Location = new System.Drawing.Point(284, 102);
             this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
             this.guna2HtmlLabel14.Size = new System.Drawing.Size(125, 24);
             this.guna2HtmlLabel14.TabIndex = 65;
@@ -397,7 +397,7 @@
             this.lblIssueReason.ForeColor = System.Drawing.Color.Black;
             this.lblIssueReason.Location = new System.Drawing.Point(181, 315);
             this.lblIssueReason.Name = "lblIssueReason";
-            this.lblIssueReason.Size = new System.Drawing.Size(129, 24);
+            this.lblIssueReason.Size = new System.Drawing.Size(208, 26);
             this.lblIssueReason.TabIndex = 61;
             this.lblIssueReason.Text = "[???]";
             // 
@@ -429,7 +429,7 @@
             this.lblExpirationDate.BackColor = System.Drawing.Color.Transparent;
             this.lblExpirationDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpirationDate.ForeColor = System.Drawing.Color.Black;
-            this.lblExpirationDate.Location = new System.Drawing.Point(434, 234);
+            this.lblExpirationDate.Location = new System.Drawing.Point(454, 234);
             this.lblExpirationDate.Name = "lblExpirationDate";
             this.lblExpirationDate.Size = new System.Drawing.Size(129, 24);
             this.lblExpirationDate.TabIndex = 58;
@@ -441,7 +441,7 @@
             this.lblDriverID.BackColor = System.Drawing.Color.Transparent;
             this.lblDriverID.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriverID.ForeColor = System.Drawing.Color.Black;
-            this.lblDriverID.Location = new System.Drawing.Point(434, 190);
+            this.lblDriverID.Location = new System.Drawing.Point(454, 190);
             this.lblDriverID.Name = "lblDriverID";
             this.lblDriverID.Size = new System.Drawing.Size(36, 19);
             this.lblDriverID.TabIndex = 57;
@@ -453,9 +453,9 @@
             this.lblDateOfBirth.BackColor = System.Drawing.Color.Transparent;
             this.lblDateOfBirth.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateOfBirth.ForeColor = System.Drawing.Color.Black;
-            this.lblDateOfBirth.Location = new System.Drawing.Point(434, 146);
+            this.lblDateOfBirth.Location = new System.Drawing.Point(454, 146);
             this.lblDateOfBirth.Name = "lblDateOfBirth";
-            this.lblDateOfBirth.Size = new System.Drawing.Size(105, 24);
+            this.lblDateOfBirth.Size = new System.Drawing.Size(95, 24);
             this.lblDateOfBirth.TabIndex = 56;
             this.lblDateOfBirth.Text = "[???]";
             // 
@@ -476,7 +476,7 @@
             this.lblExpirationDate1.BackColor = System.Drawing.Color.Transparent;
             this.lblExpirationDate1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpirationDate1.ForeColor = System.Drawing.Color.Black;
-            this.lblExpirationDate1.Location = new System.Drawing.Point(264, 234);
+            this.lblExpirationDate1.Location = new System.Drawing.Point(284, 234);
             this.lblExpirationDate1.Name = "lblExpirationDate1";
             this.lblExpirationDate1.Size = new System.Drawing.Size(125, 24);
             this.lblExpirationDate1.TabIndex = 49;
@@ -487,7 +487,7 @@
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(264, 190);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(284, 190);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(74, 24);
             this.guna2HtmlLabel6.TabIndex = 48;
@@ -499,7 +499,7 @@
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(264, 146);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(284, 146);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(125, 24);
             this.guna2HtmlLabel4.TabIndex = 47;

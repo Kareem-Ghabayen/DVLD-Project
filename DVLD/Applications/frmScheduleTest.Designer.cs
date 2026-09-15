@@ -211,6 +211,7 @@
             this.ctrlScheduledTest1.SelectedDate = new System.DateTime(2026, 9, 6, 22, 20, 29, 700);
             this.ctrlScheduledTest1.Size = new System.Drawing.Size(426, 411);
             this.ctrlScheduledTest1.TabIndex = 98;
+            this.ctrlScheduledTest1.Load += new System.EventHandler(this.ctrlScheduledTest1_Load);
             // 
             // frmScheduleTest
             // 

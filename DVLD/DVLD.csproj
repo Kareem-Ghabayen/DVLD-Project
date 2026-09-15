@@ -171,6 +171,24 @@
     <Compile Include="Applications\Replacement\frmReplaceLostOrDamagedLicenseApplication.Designer.cs">
       <DependentUpon>frmReplaceLostOrDamagedLicenseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetainApplication\frmDetainLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetainApplication\frmDetainLicenseApplication.Designer.cs">
+      <DependentUpon>frmDetainLicenseApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetainApplication\frmListDetainedLicenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetainApplication\frmListDetainedLicenses.Designer.cs">
+      <DependentUpon>frmListDetainedLicenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetainApplication\frmReleaseDetainedLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetainApplication\frmReleaseDetainedLicenseApplication.Designer.cs">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +363,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Applications\Replacement\frmReplaceLostOrDamagedLicenseApplication.resx">
       <DependentUpon>frmReplaceLostOrDamagedLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetainApplication\frmDetainLicenseApplication.resx">
+      <DependentUpon>frmDetainLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetainApplication\frmListDetainedLicenses.resx">
+      <DependentUpon>frmListDetainedLicenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetainApplication\frmReleaseDetainedLicenseApplication.resx">
+      <DependentUpon>frmReleaseDetainedLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmListDrivers.resx">
       <DependentUpon>frmListDrivers.cs</DependentUpon>
@@ -614,6 +641,7 @@
     <None Include="Icons\New Application 64.png" />
     <None Include="Icons\PersonLicenseHistory 32.png" />
     <None Include="Icons\LocalDriving License.png" />
+    <None Include="Icons\Detain 512.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\icon.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net40\Guna.UI2.dll" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net45\Guna.UI2.dll" />

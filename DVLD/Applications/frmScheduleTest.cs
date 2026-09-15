@@ -124,5 +124,10 @@ namespace DVLD.Applications
         {
             this.Close();
         }
+
+        private void ctrlScheduledTest1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -242,34 +242,20 @@ namespace BuisnessLayer
         public static clsBLLicense ReplaceLostDrivingLicense(int licenseID)
         {
             clsBLLicense oldLicense = clsBLLicense.FindByLicenseID(licenseID);
-            if (oldLicense == null)
+            if (oldLicense == null || !oldLicense.IsActive)
             {
                 return null;
             }
 
-            if (!oldLicense.IsActive)
-            {
-                return null; 
-            }
-
             clsBLApplication replacementApplication = new clsBLApplication();
-
             replacementApplication.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
             replacementApplication.ApplicationDate = DateTime.Now;
-            replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForDamaged; 
-           replacementApplication.ApplicationStatus = 1;
+            replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForLost; // تم التعديل هنا
+            replacementApplication.ApplicationStatus = 3; // تعيين الحالة مباشرة كـ Completed قبل الحفظ
             replacementApplication.LastStatusDate = DateTime.Now;
 
             clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.ReplacementForLost);
-            if (appType != null)
-            {
-                replacementApplication.PaidFees = appType.ApplicationFees; 
-            }
-            else
-            {
-                replacementApplication.PaidFees = 20; 
-            }
-
+            replacementApplication.PaidFees = (appType != null) ? appType.ApplicationFees : 20;
             replacementApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
             if (!replacementApplication.Save())
@@ -277,35 +263,26 @@ namespace BuisnessLayer
                 return null;
             }
 
-            clsBLLicense newLicense = oldLicense.Replace(enIssueReason.LostReplacement, replacementApplication.ApplicationID);
-            replacementApplication.ApplicationStatus = 3; 
-            return newLicense;
+            return oldLicense.Replace(enIssueReason.LostReplacement, replacementApplication.ApplicationID);
         }
+
         public static clsBLLicense ReplaceDamagedDrivingLicense(int licenseID)
         {
             clsBLLicense oldLicense = clsBLLicense.FindByLicenseID(licenseID);
-            if (oldLicense == null)
+            if (oldLicense == null || !oldLicense.IsActive)
             {
                 return null;
             }
-
-            if (!oldLicense.IsActive)
-            {
-                return null;
-            }
-
 
             clsBLApplication replacementApplication = new clsBLApplication();
-
             replacementApplication.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
             replacementApplication.ApplicationDate = DateTime.Now;
             replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForDamaged;
-            replacementApplication.ApplicationStatus = 1;
+            replacementApplication.ApplicationStatus = 3; // تعيين الحالة مباشرة كـ Completed قبل الحفظ
             replacementApplication.LastStatusDate = DateTime.Now;
 
             clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.ReplacementForDamaged);
             replacementApplication.PaidFees = (appType != null) ? appType.ApplicationFees : 20;
-
             replacementApplication.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
             if (!replacementApplication.Save())
@@ -313,10 +290,7 @@ namespace BuisnessLayer
                 return null;
             }
 
-            clsBLLicense newLicense = oldLicense.Replace(enIssueReason.DamagedReplacement, replacementApplication.ApplicationID);
-            replacementApplication.ApplicationStatus = 3;
-
-            return newLicense;
+            return oldLicense.Replace(enIssueReason.DamagedReplacement, replacementApplication.ApplicationID);
         }
     }
 }

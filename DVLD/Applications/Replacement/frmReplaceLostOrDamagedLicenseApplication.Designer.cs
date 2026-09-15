@@ -53,8 +53,8 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.btnIssueReplacement = new Guna.UI2.WinForms.Guna2Button();
             this.gbReplacementFor = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.rbDamagedLicense = new System.Windows.Forms.CheckBox();
-            this.rbLostLicense = new System.Windows.Forms.CheckBox();
+            this.rbLostLicense = new System.Windows.Forms.RadioButton();
+            this.rbDamagedLicense = new System.Windows.Forms.RadioButton();
             this.ctrlDriverLicenseInfoWithFilter1 = new DVLD.International.ctrlDriverLicenseInfoWithFilter();
             this.gbApplicationInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -385,27 +385,27 @@
             this.gbReplacementFor.TabIndex = 87;
             this.gbReplacementFor.Text = "Replacement For:";
             // 
-            // rbDamagedLicense
-            // 
-            this.rbDamagedLicense.AutoSize = true;
-            this.rbDamagedLicense.Location = new System.Drawing.Point(16, 44);
-            this.rbDamagedLicense.Name = "rbDamagedLicense";
-            this.rbDamagedLicense.Size = new System.Drawing.Size(149, 24);
-            this.rbDamagedLicense.TabIndex = 0;
-            this.rbDamagedLicense.Text = "Damaged License";
-            this.rbDamagedLicense.UseVisualStyleBackColor = true;
-            this.rbDamagedLicense.CheckedChanged += new System.EventHandler(this.rbDamagedLicense_CheckedChanged);
-            // 
             // rbLostLicense
             // 
             this.rbLostLicense.AutoSize = true;
-            this.rbLostLicense.Location = new System.Drawing.Point(16, 79);
+            this.rbLostLicense.Location = new System.Drawing.Point(11, 73);
             this.rbLostLicense.Name = "rbLostLicense";
-            this.rbLostLicense.Size = new System.Drawing.Size(110, 24);
-            this.rbLostLicense.TabIndex = 1;
+            this.rbLostLicense.Size = new System.Drawing.Size(109, 24);
+            this.rbLostLicense.TabIndex = 3;
+            this.rbLostLicense.TabStop = true;
             this.rbLostLicense.Text = "Lost License";
             this.rbLostLicense.UseVisualStyleBackColor = true;
-            this.rbLostLicense.CheckedChanged += new System.EventHandler(this.rbLostLicense_CheckedChanged);
+            // 
+            // rbDamagedLicense
+            // 
+            this.rbDamagedLicense.AutoSize = true;
+            this.rbDamagedLicense.Location = new System.Drawing.Point(11, 43);
+            this.rbDamagedLicense.Name = "rbDamagedLicense";
+            this.rbDamagedLicense.Size = new System.Drawing.Size(148, 24);
+            this.rbDamagedLicense.TabIndex = 2;
+            this.rbDamagedLicense.TabStop = true;
+            this.rbDamagedLicense.Text = "Damaged License";
+            this.rbDamagedLicense.UseVisualStyleBackColor = true;
             // 
             // ctrlDriverLicenseInfoWithFilter1
             // 
@@ -475,7 +475,7 @@
         private Guna.UI2.WinForms.Guna2Button btnClose;
         private Guna.UI2.WinForms.Guna2Button btnIssueReplacement;
         private Guna.UI2.WinForms.Guna2GroupBox gbReplacementFor;
-        private System.Windows.Forms.CheckBox rbLostLicense;
-        private System.Windows.Forms.CheckBox rbDamagedLicense;
+        private System.Windows.Forms.RadioButton rbLostLicense;
+        private System.Windows.Forms.RadioButton rbDamagedLicense;
     }
 }

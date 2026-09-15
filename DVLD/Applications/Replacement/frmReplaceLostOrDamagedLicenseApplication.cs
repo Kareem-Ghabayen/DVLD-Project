@@ -94,25 +94,18 @@ namespace DVLD.Applications.Replacement
                 return;
             }
 
-            // 1. إنشاء سجل الطلب (Application) أولاً
-            clsBLApplication application = new clsBLApplication();
+            int selectedLicenseID = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseID;
+            clsBLLicense newLicense = null;
 
-            application.ApplicantPersonID = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.DriverInfo.PersonID;
-            application.ApplicationDate = DateTime.Now;
-            application.ApplicationTypeID = (int)_GetApplicationType();
-            application.ApplicationStatus = (int)clsBLApplication.enStatus.Completed;
-            application.LastStatusDate = DateTime.Now;
-            application.PaidFees = Convert.ToSingle(lblApplicationFees.Text);
-            application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
-
-            if (!application.Save())
+            // استدعاء ميثود الـ BLL المباشرة حسب تحديد المستخدم
+            if (rbDamagedLicense.Checked)
             {
-                MessageBox.Show("Failed to create application!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                newLicense = clsBLApplication.ReplaceDamagedDrivingLicense(selectedLicenseID);
             }
-
-            // 2. إلغاء الرخصة القديمة وإصدار الجديدة عبر دالة Replace
-            clsBLLicense newLicense = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.Replace(_GetIssueReason(), application.ApplicationID);
+            else
+            {
+                newLicense = clsBLApplication.ReplaceLostDrivingLicense(selectedLicenseID);
+            }
 
             if (newLicense == null)
             {
@@ -122,13 +115,14 @@ namespace DVLD.Applications.Replacement
 
             _NewLicenseID = newLicense.LicenseID;
 
-            // 3. تحديث عناصر الواجهة بعد النجاح
-            lblLRApplicationID.Text = application.ApplicationID.ToString();
+            // عرض رقم الطلب والرخصة الجديدة على الشاشة
+            lblLRApplicationID.Text = newLicense.ApplicationID.ToString();
             lblReplacedLicenseID.Text = _NewLicenseID.ToString();
 
             MessageBox.Show($"Replacement License Issued Successfully with ID = {_NewLicenseID}", "License Issued",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // تعطيل العناصر لمنع التكرار وتفعيل رابط تفاصيل الرخصة
             btnIssueReplacement.Enabled = false;
             gbReplacementFor.Enabled = false;
             ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
