@@ -642,6 +642,8 @@
     <None Include="Icons\PersonLicenseHistory 32.png" />
     <None Include="Icons\LocalDriving License.png" />
     <None Include="Icons\Detain 512.png" />
+    <None Include="Icons\Delete 32 2.png" />
+    <None Include="Icons\IssueDrivingLicense 32.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\icon.png" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net40\Guna.UI2.dll" />
     <Content Include="packages\Guna.UI2.WinForms.2.0.4.6\lib\net45\Guna.UI2.dll" />

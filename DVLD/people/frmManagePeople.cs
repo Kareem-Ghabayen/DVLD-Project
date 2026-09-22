@@ -64,13 +64,10 @@ namespace DVLD.people
         {
             frmAddEditPerson frm = new frmAddEditPerson();
             frm.DataBack += Frm_DataBack;
-            // 1. إسناد المالك صراحة
             frm.Owner = this;
 
-            // 2. التموضع في منتصف الشاشة الأب
             frm.StartPosition = FormStartPosition.CenterParent;
 
-            // 3. الفتح بنظام Dialog
             frm.ShowDialog(this);
             _RefreshPeopleList();
         }
@@ -99,7 +96,6 @@ namespace DVLD.people
         }
         private void Frm_DataBack(object sender, int PersonID)
         {
-            // عند استقبال الـ PersonID الجديد نقوم بتحديث الجدول
             _RefreshPeopleList();
         }
 
@@ -109,13 +105,11 @@ namespace DVLD.people
 
             int personID = (int)dgvPeople.CurrentRow.Cells["PersonID"].Value;
 
-            // 1. تاكيد عملية الحذف من المستخدم
             if (MessageBox.Show($"Are you sure you want to delete Person [{personID}]?",
                                 "Confirm Delete",
                                 MessageBoxButtons.OKCancel,
                                 MessageBoxIcon.Question) == DialogResult.OK)
             {
-                // 2. محاولة الحذف وفحص النتيجة
                 if (clsBLSPeople.DeletePerson(personID))
                 {
                     MessageBox.Show("Person Deleted Successfully.",
@@ -123,7 +117,8 @@ namespace DVLD.people
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
 
-                    _RefreshPeopleList(); // إعادة تحديث الجدول
+                    _RefreshPeopleList(); 
+
                 }
                 else
                 {
@@ -139,13 +134,10 @@ namespace DVLD.people
         {
             frmAddEditPerson frm = new frmAddEditPerson();
             frm.DataBack += Frm_DataBack;
-            // 1. إسناد المالك صراحة
             frm.Owner = this;
 
-            // 2. التموضع في منتصف الشاشة الأب
             frm.StartPosition = FormStartPosition.CenterParent;
 
-            // 3. الفتح بنظام Dialog
             frm.ShowDialog(this);
             _RefreshPeopleList();
         }
@@ -154,14 +146,11 @@ namespace DVLD.people
         {
             if (dgvPeople.CurrentRow == null) return;
 
-            // 2. قراءة PersonID من السطر المظلل حالياً
             int personID = (int)dgvPeople.CurrentRow.Cells["PersonID"].Value;
 
-            // 3. إنشاء شاشة التفاصيل وتمرير المعرف لها
             frmShowPersonInfo frm = new frmShowPersonInfo(personID);
             frm.ShowDialog();
 
-            // 4. إعادة تحديث الجدول بعد إغلاق الشاشة (تحسباً لو تم تعديل البيانات من الداخل)
             _RefreshPeopleList();
         }
     }

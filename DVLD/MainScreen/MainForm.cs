@@ -28,7 +28,6 @@ namespace DVLD.MainScreen
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Application.Exit(); // هذا بينهي كل التطبيق والباك جراوند من الفيجوال ستوديو فوراً
 
         }
 
@@ -61,7 +60,7 @@ namespace DVLD.MainScreen
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmListUserscs frm = new frmListUserscs(); // استخدم frmManageUsers إذا كان هذا اسم الشاشة لديك
+            frmListUserscs frm = new frmListUserscs();
             frm.ShowDialog();
 
         }
@@ -76,7 +75,7 @@ namespace DVLD.MainScreen
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsGlobal.CurrentUser = null;
-            this.Close(); //
+            this.Close(); 
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,8 +106,7 @@ namespace DVLD.MainScreen
         {
             frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication();
 
-            // الاشتراك في الـ Delegate لتحديث الجدول عند الحفظ
-            //frm.DataBack += Frm_DataBack;
+
 
             frm.ShowDialog();
         }

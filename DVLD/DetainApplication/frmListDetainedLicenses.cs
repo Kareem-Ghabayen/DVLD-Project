@@ -24,17 +24,14 @@ namespace DVLD.DetainApplication
 
         private void cmsDetainedLicenses_Opening(object sender, CancelEventArgs e)
         {
-            // 1. التأكد من تحديد صف داخل الجدول
             if (dgvDetainedLicenses.CurrentRow == null)
             {
                 e.Cancel = true;
                 return;
             }
 
-            // 2. جلب قيمة IsReleased للصف الحالي
             bool isReleased = Convert.ToBoolean(dgvDetainedLicenses.CurrentRow.Cells["IsReleased"].Value);
 
-            // 3. إذا كانت مفرّج عنها أصلاً (IsReleased = true) يتم تعطيل الخيار، والعكس صحيح
             releaseDetainedLicenseToolStripMenuItem.Enabled = !isReleased;
         }
         private void _RefreshDetainedLicensesList()

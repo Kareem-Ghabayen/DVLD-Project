@@ -55,12 +55,13 @@
             // 
             // lblRecordsCount
             // 
+            this.lblRecordsCount.AutoSize = false;
             this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
             this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
             this.lblRecordsCount.Location = new System.Drawing.Point(20, 419);
             this.lblRecordsCount.Name = "lblRecordsCount";
-            this.lblRecordsCount.Size = new System.Drawing.Size(97, 23);
+            this.lblRecordsCount.Size = new System.Drawing.Size(114, 23);
             this.lblRecordsCount.TabIndex = 16;
             this.lblRecordsCount.Text = "# Records:";
             // 
@@ -225,23 +226,25 @@
             // 
             // lblFilterBy
             // 
+            this.lblFilterBy.AutoSize = false;
             this.lblFilterBy.BackColor = System.Drawing.Color.Transparent;
             this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilterBy.ForeColor = System.Drawing.Color.Black;
-            this.lblFilterBy.Location = new System.Drawing.Point(20, 187);
+            this.lblFilterBy.Location = new System.Drawing.Point(9, 187);
             this.lblFilterBy.Name = "lblFilterBy";
-            this.lblFilterBy.Size = new System.Drawing.Size(80, 23);
+            this.lblFilterBy.Size = new System.Drawing.Size(91, 23);
             this.lblFilterBy.TabIndex = 11;
             this.lblFilterBy.Text = "Filter By:";
             // 
             // lblTitle
             // 
+            this.lblTitle.AutoSize = false;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
             this.lblTitle.Location = new System.Drawing.Point(305, 127);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(180, 30);
+            this.lblTitle.Size = new System.Drawing.Size(218, 30);
             this.lblTitle.TabIndex = 10;
             this.lblTitle.Text = "Manage People";
             // 
@@ -250,7 +253,7 @@
             this.lblRecords.BackColor = System.Drawing.Color.Transparent;
             this.lblRecords.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblRecords.Location = new System.Drawing.Point(129, 419);
+            this.lblRecords.Location = new System.Drawing.Point(140, 419);
             this.lblRecords.Name = "lblRecords";
             this.lblRecords.Size = new System.Drawing.Size(43, 23);
             this.lblRecords.TabIndex = 48;

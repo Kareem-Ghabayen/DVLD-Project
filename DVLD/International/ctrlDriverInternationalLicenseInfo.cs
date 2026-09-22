@@ -37,13 +37,11 @@ namespace DVLD.International
                 return;
             }
 
-            // تعبئة البيانات في اللابلز
             lblInternationalLicenseID.Text = _InternationalLicense.InternationalLicenseID.ToString();
             lblApplicationID.Text = _InternationalLicense.ApplicationID.ToString();
             lblLocalLicenseID.Text = _InternationalLicense.IssuedUsingLocalLicenseID.ToString();
             lblIsActive.Text = _InternationalLicense.IsActive ? "Yes" : "No";
 
-            // جلب بيانات السائق والشخص
             lblName.Text = _InternationalLicense.DriverInfo.PersonInfo.FullName;
             lblNationalNo.Text = _InternationalLicense.DriverInfo.PersonInfo.NationalNo;
             lblGendor.Text = _InternationalLicense.DriverInfo.PersonInfo.Gendor == 0 ? "Male" : "Female";

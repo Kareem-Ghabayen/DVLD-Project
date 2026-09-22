@@ -15,7 +15,6 @@ namespace DVLD.Applications.Replacement
     {
         private int _NewLicenseID = -1;
 
-        // تحديد سبب التبديل بناءً على الراديو المختار
         private clsBLLicense.enIssueReason _GetIssueReason()
         {
             return rbDamagedLicense.Checked ?
@@ -23,7 +22,6 @@ namespace DVLD.Applications.Replacement
                 clsBLLicense.enIssueReason.LostReplacement;
         }
 
-        // تحديد نوع الطلب في قاعدة البيانات
         private clsBLApplication.enApplicationType _GetApplicationType()
         {
             return rbDamagedLicense.Checked ?
@@ -74,7 +72,6 @@ namespace DVLD.Applications.Replacement
 
             llShowLicensesHistory.Enabled = true;
 
-            // التحقق من أن الرخصة فعالة (IsActive)
             if (!ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsActive)
             {
                 MessageBox.Show("Selected License is NOT Active, choose an active license.", "Not allowed",
@@ -97,7 +94,6 @@ namespace DVLD.Applications.Replacement
             int selectedLicenseID = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseID;
             clsBLLicense newLicense = null;
 
-            // استدعاء ميثود الـ BLL المباشرة حسب تحديد المستخدم
             if (rbDamagedLicense.Checked)
             {
                 newLicense = clsBLApplication.ReplaceDamagedDrivingLicense(selectedLicenseID);
@@ -115,14 +111,12 @@ namespace DVLD.Applications.Replacement
 
             _NewLicenseID = newLicense.LicenseID;
 
-            // عرض رقم الطلب والرخصة الجديدة على الشاشة
             lblLRApplicationID.Text = newLicense.ApplicationID.ToString();
             lblReplacedLicenseID.Text = _NewLicenseID.ToString();
 
             MessageBox.Show($"Replacement License Issued Successfully with ID = {_NewLicenseID}", "License Issued",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // تعطيل العناصر لمنع التكرار وتفعيل رابط تفاصيل الرخصة
             btnIssueReplacement.Enabled = false;
             gbReplacementFor.Enabled = false;
             ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;

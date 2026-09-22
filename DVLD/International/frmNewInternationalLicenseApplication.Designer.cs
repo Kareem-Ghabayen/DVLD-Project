@@ -108,12 +108,13 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.AutoSize = false;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(96, 24);
+            this.lblTitle.Location = new System.Drawing.Point(147, 21);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(390, 30);
+            this.lblTitle.Size = new System.Drawing.Size(442, 38);
             this.lblTitle.TabIndex = 52;
             this.lblTitle.Text = "International License Application";
             // 
@@ -216,7 +217,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox8.Location = new System.Drawing.Point(146, 102);
+            this.pictureBox8.Location = new System.Drawing.Point(157, 102);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(34, 24);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -229,7 +230,7 @@
             this.lblApplicationDate.BackColor = System.Drawing.Color.Transparent;
             this.lblApplicationDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationDate.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicationDate.Location = new System.Drawing.Point(210, 102);
+            this.lblApplicationDate.Location = new System.Drawing.Point(221, 102);
             this.lblApplicationDate.Name = "lblApplicationDate";
             this.lblApplicationDate.Size = new System.Drawing.Size(129, 24);
             this.lblApplicationDate.TabIndex = 90;
@@ -241,7 +242,7 @@
             this.lblFees.BackColor = System.Drawing.Color.Transparent;
             this.lblFees.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFees.ForeColor = System.Drawing.Color.Black;
-            this.lblFees.Location = new System.Drawing.Point(210, 190);
+            this.lblFees.Location = new System.Drawing.Point(221, 190);
             this.lblFees.Name = "lblFees";
             this.lblFees.Size = new System.Drawing.Size(129, 24);
             this.lblFees.TabIndex = 89;
@@ -253,7 +254,7 @@
             this.lblIssueDate.BackColor = System.Drawing.Color.Transparent;
             this.lblIssueDate.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIssueDate.ForeColor = System.Drawing.Color.Black;
-            this.lblIssueDate.Location = new System.Drawing.Point(210, 146);
+            this.lblIssueDate.Location = new System.Drawing.Point(221, 146);
             this.lblIssueDate.Name = "lblIssueDate";
             this.lblIssueDate.Size = new System.Drawing.Size(129, 24);
             this.lblIssueDate.TabIndex = 88;
@@ -262,7 +263,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::DVLD.Properties.Resources.Application_Types_641;
-            this.pictureBox5.Location = new System.Drawing.Point(146, 190);
+            this.pictureBox5.Location = new System.Drawing.Point(157, 190);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(34, 24);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -272,7 +273,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::DVLD.Properties.Resources.money_322;
-            this.pictureBox6.Location = new System.Drawing.Point(146, 146);
+            this.pictureBox6.Location = new System.Drawing.Point(157, 146);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(34, 24);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -282,7 +283,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::DVLD.Properties.Resources.Number_32;
-            this.pictureBox9.Location = new System.Drawing.Point(146, 58);
+            this.pictureBox9.Location = new System.Drawing.Point(157, 58);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(34, 24);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -295,7 +296,7 @@
             this.lblApplicationID.BackColor = System.Drawing.Color.Transparent;
             this.lblApplicationID.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationID.ForeColor = System.Drawing.Color.Black;
-            this.lblApplicationID.Location = new System.Drawing.Point(210, 58);
+            this.lblApplicationID.Location = new System.Drawing.Point(221, 58);
             this.lblApplicationID.Name = "lblApplicationID";
             this.lblApplicationID.Size = new System.Drawing.Size(129, 24);
             this.lblApplicationID.TabIndex = 84;
@@ -345,7 +346,7 @@
             this.lbPersonID.ForeColor = System.Drawing.Color.Black;
             this.lbPersonID.Location = new System.Drawing.Point(11, 58);
             this.lbPersonID.Name = "lbPersonID";
-            this.lbPersonID.Size = new System.Drawing.Size(129, 24);
+            this.lbPersonID.Size = new System.Drawing.Size(154, 24);
             this.lbPersonID.TabIndex = 80;
             this.lbPersonID.Text = "I.L.Application ID";
             // 
@@ -488,7 +489,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

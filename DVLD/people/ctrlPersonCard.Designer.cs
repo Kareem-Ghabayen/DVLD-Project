@@ -107,7 +107,7 @@
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.guna2GroupBox1.Location = new System.Drawing.Point(0, 0);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(709, 309);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(720, 309);
             this.guna2GroupBox1.TabIndex = 0;
             this.guna2GroupBox1.Text = "Person Information";
             // 
@@ -180,6 +180,7 @@
             // llEditPersonInfo
             // 
             this.llEditPersonInfo.AutoSize = true;
+            this.llEditPersonInfo.Enabled = false;
             this.llEditPersonInfo.LinkColor = System.Drawing.Color.Black;
             this.llEditPersonInfo.Location = new System.Drawing.Point(584, 62);
             this.llEditPersonInfo.Name = "llEditPersonInfo";
@@ -444,7 +445,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.guna2GroupBox1);
             this.Name = "ctrlPersonCard";
-            this.Size = new System.Drawing.Size(709, 309);
+            this.Size = new System.Drawing.Size(720, 309);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();

@@ -79,6 +79,7 @@ namespace DVLD.Applications
             _dtDriverInternationalLicensesHistory?.Clear();
             lblLocalLicensesRecords.Text = "0";
             lblInternationalLicensesRecords.Text = "0";
+
         }
 
         private void lblLocalLicensesRecords_Click(object sender, EventArgs e)

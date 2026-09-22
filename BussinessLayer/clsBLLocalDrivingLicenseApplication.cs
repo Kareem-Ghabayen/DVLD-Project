@@ -10,18 +10,14 @@ namespace DVLD_BLL
 {
     public class clsBLLocalDrivingLicenseApplication
     {
-        // خصائص الكلاس (Properties)
         public int LocalDrivingLicenseApplicationID { get; set; }
         public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
 
-        // كلاس الأب (Composition للـ Application الأساسي)
         public clsBLApplication BaseApplicationInfo { get; set; }
 
-        // Composition لفئة الرخصة
         public clsBLLicenseClass LicenseClassInfo { get; set; }
 
-        // Constructor افتراضي
         public clsBLLocalDrivingLicenseApplication()
         {
             this.LocalDrivingLicenseApplicationID = -1;
@@ -30,7 +26,6 @@ namespace DVLD_BLL
             this.LicenseClassInfo = null;
         }
 
-        // Constructor خاص بالبحث
         private clsBLLocalDrivingLicenseApplication(int localDrivingLicenseApplicationID, int applicationID, int licenseClassID)
         {
             this.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
@@ -40,7 +35,6 @@ namespace DVLD_BLL
             this.LicenseClassInfo = clsBLLicenseClass.Find(licenseClassID);
         }
 
-        // 1. ميثود البحث باستخدام ID الطلب المحلي
         public static clsBLLocalDrivingLicenseApplication FindByLocalDrivingLicenseApplicationID(int localDrivingLicenseApplicationID)
         {
             int applicationID = -1;
@@ -57,7 +51,6 @@ namespace DVLD_BLL
             return null;
         }
 
-        //// 2. ميثود البحث باستخدام ID الطلب الأساسي
         public static clsBLLocalDrivingLicenseApplication FindByApplicationID(int applicationID)
         {
             int localDrivingLicenseApplicationID = -1;
@@ -74,7 +67,6 @@ namespace DVLD_BLL
             return null;
         }
 
-        // 3. ميثود الحفظ (Save)
         public bool Save()
         {
             switch (LocalDrivingLicenseApplicationID)
@@ -84,13 +76,12 @@ namespace DVLD_BLL
                 default:
                     int oldClassID = FindByLocalDrivingLicenseApplicationID(this.LocalDrivingLicenseApplicationID).LicenseClassID;
 
-                    // 2. إذا غير المستخدم الفئة من الشاشة، نفحص الفئة الجديدة
                     if (this.LicenseClassID != oldClassID)
                     {
                         if (clsBLLicense.IsLicenseExistByPersonIDAndLicenseClass(BaseApplicationInfo.ApplicantPersonID, this.LicenseClassID) ||
                             clsBLApplication.IsThereAnActiveApplicationInSameLicenses(BaseApplicationInfo.ApplicantPersonID, (int)clsBLApplicationType.enApplicationType.NewDrivingLicense, this.LicenseClassID))
                         {
-                            return false; // يرفض التعديل لو الفئة الجديدة مكررة
+                            return false; 
                         }
                     }
 
@@ -112,29 +103,25 @@ namespace DVLD_BLL
                 this.LocalDrivingLicenseApplicationID, this.ApplicationID, this.LicenseClassID);
         }
 
-        // 4. فحص عدد الاختبارات التي اجتازها المتقدم
         public int GetPassedTestCount()
         {
             return clsBLTest.GetPassedTestCount(this.LocalDrivingLicenseApplicationID);
         }
 
-        // 5. ميثود إضافة طلب رخصة قيادة جديد باستخدام رقم الهوية (NationalNo)
         public static clsBLLocalDrivingLicenseApplication AddNewLocalDrivingLicenseApplication(int applicantPersonID, int licenseClassID)
         {
-            // 1. البحث عن الشخص باستخدام رقم الهوية (NationalNo) بدلاً من الـ ID
             clsBLSPeople person = clsBLSPeople.FindByID(applicantPersonID);
             if (person == null)
             {
-                return null; // الشخص غير مسجل بالنظام أصلاً
+                return null; 
             }
 
-            // 2. إنشاء الطلب الأساسي (Application)
             clsBLApplication application = new clsBLApplication();
 
-            application.ApplicantPersonID = person.ID; // أخذنا الـ ID الحقيقي من بيانات الشخص الذي وجدناه
+            application.ApplicantPersonID = person.ID; 
             application.ApplicationDate = DateTime.Now;
             application.ApplicationTypeID = (int)enApplicationType.NewDrivingLicense;
-            application.ApplicationStatus = 1; // New
+            application.ApplicationStatus = 1; 
             application.LastStatusDate = DateTime.Now;
 
             clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.NewDrivingLicense);
@@ -143,7 +130,6 @@ namespace DVLD_BLL
             application.PaidFees = appType.ApplicationFees;
             application.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
-            // 3. التحقق من الشروط والقواعد (عدم وجود طلب فعال لنفس الفئة أو رخصة سابقة)
             if (application.PaidFees != appType.ApplicationFees ||
                 IsThereAnActiveApplicationInSameLicenses(application.ApplicantPersonID, application.ApplicationTypeID, licenseClassID) ||
                 clsBLLicense.IsLicenseExistByPersonIDAndLicenseClass(application.ApplicantPersonID, licenseClassID))
@@ -151,13 +137,11 @@ namespace DVLD_BLL
                 return null;
             }
 
-            // 4. حفظ الطلب الأساسي
             if (!application.Save())
             {
                 return null;
             }
 
-            // 5. إنشاء وتعبئة الطلب المحلي (Local Driving License Application)
             clsBLLocalDrivingLicenseApplication localApp = new clsBLLocalDrivingLicenseApplication();
 
             localApp.ApplicationID = application.ApplicationID;

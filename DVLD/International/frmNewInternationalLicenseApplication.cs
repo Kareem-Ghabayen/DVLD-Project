@@ -38,6 +38,14 @@ namespace DVLD.International
    
 private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicenseID)
         {
+            if (LocalLicenseID == -1)
+            {
+                lblLocalLicenseID.Text = "[???]";
+                llShowLicensesHistory.Enabled = false;
+                btnIssue.Enabled = false;
+
+                return;
+            }
             int selectedLicenseID = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseID;
 
             lblLocalLicenseID.Text = selectedLicenseID.ToString();
@@ -48,7 +56,6 @@ private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicense
                 return;
             }
 
-            // 1. الفحص الأول: التأكد من أن فئة الرخصة هي الفئة الثالثة (Class 3)
             if (ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseClass != 3)
             {
                 MessageBox.Show("Selected License should be Class 3, please select another license.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -56,7 +63,6 @@ private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicense
                 return;
             }
 
-            // 2. الفحص الثاني: البحث عن رخصة دولية نشطة سابقة لنفس السائق
             clsBLInternationalLicense activeInternationalLicense =
                 clsBLInternationalLicense.GetActiveInternationalLicenseByDriverID(ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.DriverID);
 
@@ -65,17 +71,15 @@ private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicense
                 MessageBox.Show($"Person already has an active international license with ID = {activeInternationalLicense.InternationalLicenseID}",
                                 "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // تخزين الرقم وجلب البيانات لملء اللابلز بالأسفل
                 _InternationalLicenseID = activeInternationalLicense.InternationalLicenseID;
                 lblInternationalLicenseID.Text = activeInternationalLicense.InternationalLicenseID.ToString();
                 lblApplicationID.Text = activeInternationalLicense.ApplicationID.ToString();
 
                 btnIssue.Enabled = false;
-                llShowLicensesInfo.Enabled = true; // تفعيل الرابط لفتح شاشة التفاصيل
+                llShowLicensesInfo.Enabled = true; 
                 return;
             }
 
-            // 3. في حال عدم وجود رخصة دولية نشطة (جاهز للإصدار الجديد)
             btnIssue.Enabled = true;
             llShowLicensesInfo.Enabled = false;
             lblInternationalLicenseID.Text = "[???]";
@@ -89,18 +93,14 @@ private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicense
             if (MessageBox.Show("Are you sure you want to issue International License?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-            // 1. جلب رقم الهوية (NationalNo) للرخصة الحالية المختارة
             string nationalNo = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.DriverInfo.PersonInfo.NationalNo;
 
-            // 2. استدعاء ميثود الإصدار الخاصة بك مباشرة من طبقة البزنس
             int internationalLicenseID = clsBLInternationalLicense.IssueInternationalLicenseByNationalNo(nationalNo);
 
-            // 3. التحقق من نجاح العملية
             if (internationalLicenseID != -1)
             {
                 _InternationalLicenseID = internationalLicenseID;
 
-                // جلب كائن الرخصة الدولية الصادرة لعرض رقم الطلب (ApplicationID)
                 clsBLInternationalLicense internationalLicense = clsBLInternationalLicense.Find(internationalLicenseID);
 
                 if (internationalLicense != null)
@@ -111,7 +111,6 @@ private void ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected(int LocalLicense
 
                 MessageBox.Show($"International License Issued Successfully with ID = {internationalLicenseID}", "License Issued", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // تعطيل/تفعيل عناصر الواجهة بعد الإصدار
                 btnIssue.Enabled = false;
                 ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
                 llShowLicensesInfo.Enabled = true;

@@ -35,7 +35,7 @@ namespace DVLD.Applications
             lblNationalNo.Text = _License.DriverInfo.PersonInfo.NationalNo;
             lblGendor.Text = (_License.DriverInfo.PersonInfo.Gendor == 0) ? "Male" : "Female";
             lblIssueDate.Text = _License.IssueDate.ToString("dd/MMM/yyyy");
-            lblIssueReason.Text = _License.IssueReasonText; // أو _License.IssueReason.ToString() حسب الكلاس عندك
+            lblIssueReason.Text = _License.IssueReasonText; 
             lblNotes.Text = string.IsNullOrWhiteSpace(_License.Notes) ? "No Notes" : _License.Notes;
             lblIsActive.Text = _License.IsActive ? "Yes" : "No";
             lblDateOfBirth.Text = _License.DriverInfo.PersonInfo.DateOfBirth.ToString("dd/MMM/yyyy");

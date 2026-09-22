@@ -77,7 +77,7 @@ namespace DVLD.Login
                 this.Hide();
                 MainForm frm = new MainForm(this);
                 frm.ShowDialog();
-                this.Show(); // إعادة إظهار شاشة اللوجن فور إغلاق MainForm
+                this.Show(); 
             }
             else
             {
@@ -90,7 +90,7 @@ namespace DVLD.Login
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
   
-            Application.Exit(); // هذا بينهي كل التطبيق والباك جراوند من الفيجوال ستوديو فوراً
+            Application.Exit(); 
         }
     }
 }

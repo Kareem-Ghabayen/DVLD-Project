@@ -13,7 +13,7 @@ namespace DVLD_DataAccess
 
             using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
             {
-                string query = @"SELECT LicenseID FROM Licenses WHERE ApplicationID = @ApplicationID AND IsActive = 1;";
+                string query = @"SELECT LicenseID FROM Licenses WHERE ApplicationID = @ApplicationID ;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

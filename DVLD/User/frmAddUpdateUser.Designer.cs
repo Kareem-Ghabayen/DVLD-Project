@@ -270,7 +270,7 @@
             this.tpPersonalInfo.Location = new System.Drawing.Point(4, 44);
             this.tpPersonalInfo.Name = "tpPersonalInfo";
             this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPersonalInfo.Size = new System.Drawing.Size(692, 471);
+            this.tpPersonalInfo.Size = new System.Drawing.Size(692, 479);
             this.tpPersonalInfo.TabIndex = 0;
             this.tpPersonalInfo.Text = "Personal Info";
             this.tpPersonalInfo.UseVisualStyleBackColor = true;
@@ -301,7 +301,7 @@
             this.tcUser.Location = new System.Drawing.Point(0, 73);
             this.tcUser.Name = "tcUser";
             this.tcUser.SelectedIndex = 0;
-            this.tcUser.Size = new System.Drawing.Size(700, 519);
+            this.tcUser.Size = new System.Drawing.Size(700, 527);
             this.tcUser.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
             this.tcUser.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.tcUser.TabButtonHoverState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
@@ -333,7 +333,7 @@
             this.btnSave.FillColor = System.Drawing.Color.Transparent;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSave.ForeColor = System.Drawing.Color.Black;
-            this.btnSave.Location = new System.Drawing.Point(424, 594);
+            this.btnSave.Location = new System.Drawing.Point(426, 606);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 37);
             this.btnSave.TabIndex = 40;
@@ -351,7 +351,7 @@
             this.btnClose.FillColor = System.Drawing.Color.Transparent;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(575, 594);
+            this.btnClose.Location = new System.Drawing.Point(575, 606);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(113, 37);
             this.btnClose.TabIndex = 42;
@@ -383,7 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 643);
+            this.ClientSize = new System.Drawing.Size(700, 655);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tcUser);

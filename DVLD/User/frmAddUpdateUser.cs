@@ -32,7 +32,6 @@ namespace DVLD.User
             _UserID = UserID;
             _Mode = enMode.Update;
         }
-        //  تاهيل الازرار حسب المود تستدعى في ال  load  
         private void _ResetDefualtValues()
         {
             if (_Mode == enMode.AddNew)
@@ -57,7 +56,6 @@ namespace DVLD.User
             txtConfirmPassword.Text = "";
             chkIsActive.Checked = true;
         }
-        //  ميثود تحميل بيانات الواجهة عند تشغيلها  
         private void _LoadData()
         {
             _User = clsBLUser.FindByUserID(_UserID);
@@ -75,7 +73,6 @@ namespace DVLD.User
             txtConfirmPassword.Text = _User.Password;
             chkIsActive.Checked = _User.IsActive;
 
-            // تحميل بيانات الشخص في الكنترول وتجميد البحث عند التعديل
             ctrlPersonCardWithFilter1.LoadPersonInfo(_User.PersonID);
             ctrlPersonCardWithFilter1.FilterEnabled = false;
         }

@@ -42,7 +42,6 @@ namespace DVLD.DetainApplication
 
             llShowLicensesHistory.Enabled = true;
 
-            // 1. التحقق من أن الرخصة فعالة
             if (!ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsActive)
             {
                 MessageBox.Show("Selected License is NOT Active, choose an active license.", "Not allowed",
@@ -51,7 +50,6 @@ namespace DVLD.DetainApplication
                 return;
             }
 
-            // 2. التحقق مما إذا كانت الرخصة محجوزة بالفعل
             if (clsBLDetainedLicense.IsLicenseDetained(_SelectedLicenseID))
             {
                 MessageBox.Show("Selected License is already detained, choose another one.", "Not allowed",
@@ -81,10 +79,8 @@ namespace DVLD.DetainApplication
         {
             this.Close();
         }
-        //  هاد الميثود ما استغلتها هان بدها شغل في ال  bll 
         private void btnDetain_Click(object sender, EventArgs e)
         {
-            // التحقق من صحة المدخل الرقمي للغرامة
             if (string.IsNullOrEmpty(txtFineFees.Text.Trim()) || !decimal.TryParse(txtFineFees.Text.Trim(), out decimal fineFees))
             {
                 MessageBox.Show("Please enter a valid Fine Fee!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -123,13 +119,10 @@ namespace DVLD.DetainApplication
             txtFineFees.Enabled = false;
             llShowLicensesInfo.Enabled = true;
 
-            // تحديث الكنترول لتقلب Is Detained تلقائياً إلى Yes
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected -= ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
 
-            // 2. تحديث الكنترول لتقلب Is Detained إلى Yes
             ctrlDriverLicenseInfoWithFilter1.LoadLicenseInfo(_SelectedLicenseID);
 
-            // 3. إعادة ربط الحدث من جديد للعمليات القادمة
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
         }
     }

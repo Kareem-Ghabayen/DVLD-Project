@@ -22,26 +22,6 @@ namespace DVLD
             dgvDrivers.DataSource = _dtDrivers;
             lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
 
-            //if (dgvDrivers.Rows.Count > 0)
-            //{
-            //    dgvDrivers.Columns[0].HeaderText = "Driver ID";
-            //    dgvDrivers.Columns[0].Width = 120;
-
-            //    dgvDrivers.Columns[1].HeaderText = "Person ID";
-            //    dgvDrivers.Columns[1].Width = 120;
-
-            //    dgvDrivers.Columns[2].HeaderText = "National No";
-            //    dgvDrivers.Columns[2].Width = 140;
-
-            //    dgvDrivers.Columns[3].HeaderText = "Full Name";
-            //    dgvDrivers.Columns[3].Width = 280;
-
-            //    dgvDrivers.Columns[4].HeaderText = "Date";
-            //    dgvDrivers.Columns[4].Width = 180;
-
-            //    dgvDrivers.Columns[5].HeaderText = "Active Licenses";
-            //    dgvDrivers.Columns[5].Width = 140;
-            //}
         }
 
 
@@ -89,9 +69,8 @@ namespace DVLD
                 return;
             }
 
-            // تصفية الأرقام مقال النصوص
             if (filterColumn == "DriverID" || filterColumn == "PersonID")
-                _dtDrivers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, txtFilterValue.Text.Trim());// '   يتم التعويض بالتوالي حتى لا يحدث اي لبس  مع الداتا جريد فيو
+                _dtDrivers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, txtFilterValue.Text.Trim());
             else
                 _dtDrivers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", filterColumn, txtFilterValue.Text.Trim());
 
@@ -123,7 +102,6 @@ namespace DVLD
 
         private void txtFilterValue_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            // السماح بالأرقام فقط للحقول الرقمية
             if (cbFilterBy.Text == "Driver ID" || cbFilterBy.Text == "Person ID")
             {
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -139,11 +117,15 @@ namespace DVLD
                 txtFilterValue.Text = "";
                 txtFilterValue.Focus();
             }
-             //  هاد مهمة عشان لما تغير قيمة الفلتر يرجع كل اشي للديفولت 
             if (_dtDrivers != null)
                 _dtDrivers.DefaultView.RowFilter = "";
 
             lblRecordsCount.Text = dgvDrivers.Rows.Count.ToString();
+        }
+
+        private void dgvDrivers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -36,7 +36,7 @@ namespace DVLD.people
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
         {
-            cbFilterBy.SelectedIndex = 0; // يحدد خيار National No. تلقائياً
+            cbFilterBy.SelectedIndex = 0;
             txtFilterValue.Focus();
         }
 
@@ -65,7 +65,6 @@ namespace DVLD.people
                 MessageBox.Show("No Person Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            //   هان فيه مشكلة لازم ارجع احلها 
             if (OnPersonSelected != null)
                 OnPersonSelected(ctrlPersonCard1.PersonID);
         }
@@ -84,8 +83,7 @@ namespace DVLD.people
 
         private void DataBackEvent(object sender, int PersonID)
         {
-            // تعبئة البيانات فور العودة من شاشة الإضافة
-            cbFilterBy.SelectedIndex = 1; // Person ID
+            cbFilterBy.SelectedIndex = 1; 
             txtFilterValue.Text = PersonID.ToString();
             ctrlPersonCard1.LoadPersonInfo(PersonID);
 
@@ -96,7 +94,7 @@ namespace DVLD.people
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
             frmAddEditPerson frm = new frmAddEditPerson();
-            frm.DataBack += DataBackEvent; // ربط الدليل للاستقبال
+            frm.DataBack += DataBackEvent; 
             frm.ShowDialog();
         }
 
@@ -111,7 +109,7 @@ namespace DVLD.people
 
         public void LoadPersonInfo(int PersonID)
         {
-            cbFilterBy.SelectedIndex = 1; // يختار Person ID
+            cbFilterBy.SelectedIndex = 1;
             txtFilterValue.Text = PersonID.ToString();
             _FindNow();
         }
@@ -123,7 +121,6 @@ namespace DVLD.people
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
 
-            // تنفيذ البحث فور الضغط على Enter
             if (e.KeyChar == (char)Keys.Enter)
             {
                 btnFind.PerformClick();

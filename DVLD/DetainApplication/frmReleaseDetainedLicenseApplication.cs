@@ -30,7 +30,6 @@ namespace DVLD.DetainApplication
         }
         private void frmReleaseDetainedLicenseApplication_Load(object sender, EventArgs e)
         {
-            // ربط الحدث بالدالة
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
 
             lblCreatedByUser.Text = clsGlobal.CurrentUser.UserName;
@@ -50,7 +49,6 @@ namespace DVLD.DetainApplication
 
             llShowLicensesHistory.Enabled = true;
 
-            // 1. التحقق مما إذا كانت الرخصة محجوزة فعلاً
             if (!clsBLDetainedLicense.IsLicenseDetained(_SelectedLicenseID))
             {
                 MessageBox.Show("Selected License is NOT detained, choose another one.", "Not allowed",
@@ -61,7 +59,6 @@ namespace DVLD.DetainApplication
                 return;
             }
 
-            // 2. قراءة بيانات الحجز من جدول DetainedLicenses
             _DetainedLicense = clsBLDetainedLicense.FindByLicenseID(_SelectedLicenseID);
 
             if (_DetainedLicense == null)
@@ -71,7 +68,6 @@ namespace DVLD.DetainApplication
                 return;
             }
 
-            // 3. عرض بيانات الحجز والمبالغ المالية
             lblDetainID.Text = _DetainedLicense.DetainID.ToString();
             lblDetainDate.Text = _DetainedLicense.DetainDate.ToString("dd/MM/yyyy");
             lblFineFees.Text = _DetainedLicense.FineFees.ToString("N2");
@@ -120,7 +116,6 @@ namespace DVLD.DetainApplication
                 return;
             }
 
-            // 1. استدعاء ميثود فك الحجز وإنشاء الطلب من BLL
             int applicationID = clsBLDetainedLicense.ReleaseLicense(_SelectedLicenseID);
 
             if (applicationID == -1)
@@ -129,18 +124,15 @@ namespace DVLD.DetainApplication
                 return;
             }
 
-            // 2. عرض رقم الطلب وتأكيد النجاح
             lblApplicationID.Text = applicationID.ToString();
 
             MessageBox.Show($"Detained License Released Successfully with Application ID = {applicationID}",
                 "License Released", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // 3. تعطيل وتفعيل عناصر الشاشة المناسبة
             btnRelease.Enabled = false;
             ctrlDriverLicenseInfoWithFilter1.FilterEnabled = false;
             llShowLicensesInfo.Enabled = true;
 
-            // 4. تحديث حالة Is Detained في الكنترول مع فك الحدث مؤقتاً لتفادي ظهور رسالة التنبيه
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected -= ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
             ctrlDriverLicenseInfoWithFilter1.LoadLicenseInfo(_SelectedLicenseID);
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;

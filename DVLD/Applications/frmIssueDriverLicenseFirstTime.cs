@@ -30,7 +30,6 @@ namespace DVLD.Applications
         {
             ctrlLocalDrivingLicenseApplicationInfo1.LoadApplicationInfoByLocalDrivingAppID(_LocalDrivingLicenseApplicationID);
 
-            // 2. جلب كائن الطلب من البزنس
             _LocalDrivingLicenseApplication = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(_LocalDrivingLicenseApplicationID);
 
             if (_LocalDrivingLicenseApplication == null)
@@ -40,7 +39,6 @@ namespace DVLD.Applications
                 return;
             }
 
-            // 3. التحقق أولاً من اجتياز الاختبارات الثلاثة
             if (_LocalDrivingLicenseApplication.GetPassedTestCount() < 3)
             {
                 MessageBox.Show("Person Should Pass All Tests First!", "Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -48,7 +46,6 @@ namespace DVLD.Applications
                 return;
             }
 
-            // 4. التحقق من عدم وجود رخصة صادرة مسبقاً لهذا الطلب
             int activeLicenseID = _LocalDrivingLicenseApplication.GetActiveLicenseID();
             if (activeLicenseID != -1)
             {
@@ -69,7 +66,6 @@ namespace DVLD.Applications
                 btnIssueLicense.Enabled = false;
                 txtNotes.Enabled = false;
 
-                // فتح شاشة التفاصيل مباشرة فور النجاح
                 frmShowLicenseInfo frm = new frmShowLicenseInfo(licenseID);
                 frm.ShowDialog();
 

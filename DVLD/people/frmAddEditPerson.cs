@@ -38,13 +38,12 @@ namespace DVLD.people
             DataTable dtCountries = clsBLCountry.GetAllCountries();
 
             cbCountry.DataSource = dtCountries;
-            cbCountry.DisplayMember = "CountryName"; // الاسم الظاهر للمستخدم
+            cbCountry.DisplayMember = "CountryName"; 
             cbCountry.ValueMember = "CountryID";
 
         }
         private void _ResetDefaultValues()
         {
-            // تعبئة ComboBox الدول
             _FillCountriesInComboBox();
 
             if (_Mode == enMode.AddNew)
@@ -73,11 +72,9 @@ namespace DVLD.people
         {
             _ResetDefaultValues();
 
-            // إذا كنا في وضع الإضافة نكتفي بالقيم الافتراضية ونخرج
             if (_Mode == enMode.AddNew)
                 return;
 
-            // في وضع التعديل: جلب بيانات الشخص من البزنس
             _Person = clsBLSPeople.FindByID(_PersonID);
 
             if (_Person == null)
@@ -88,7 +85,6 @@ namespace DVLD.people
                 return;
             }
 
-            // تعبئة عناصر الشاشة بالبيانات المجلوبة
             lbPersonID.Text = "Person ID:" +_Person.ID.ToString();
             txtFirstName.Text = _Person.FirstName;
             txtSecondName.Text = _Person.SecondName;
@@ -105,7 +101,6 @@ namespace DVLD.people
             else
                 rbFemale.Checked = true;
 
-            // تحديد الدولة المناسبة
             cbCountry.SelectedValue = _Person.NationalityCountryID;
             if (_Person.ImagePath != "")
             {
@@ -140,7 +135,6 @@ namespace DVLD.people
 
         private void llSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // تعريف وإنشاء الكائن برمجياً
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
@@ -159,7 +153,6 @@ namespace DVLD.people
         {
             pbPersonImage.ImageLocation = null;
 
-            // إعادة الصورة الافتراضية حسب الجنس
             if (guna2RadioButton1.Checked)
                 pbPersonImage.Image = Properties.Resources.Male_512;
             else
@@ -181,7 +174,6 @@ namespace DVLD.people
         errorProvider1.SetError(txtNationalNo, null);
     }
 
-    // التحقق من عدم تكرار الرقم الوطني
     if (txtNationalNo.Text.Trim() != _Person.NationalNo && clsBLSPeople.IsPersonExistByNationalNo(txtNationalNo.Text.Trim()))
     {
         e.Cancel = true;
@@ -196,7 +188,6 @@ namespace DVLD.people
         private void btnSave_Click(object sender, EventArgs e)
         {
       
-            // 1. فحص جميع عناصر Validation في الشاشة
             if (!this.ValidateChildren())
             {
                 MessageBox.Show("Some fields are not valid! Put the mouse over the red icon(s) to see the error",
@@ -204,7 +195,6 @@ namespace DVLD.people
                 return;
             }
 
-            // 2. تعبئة البيانات في كائن _Person
             _Person.FirstName = txtFirstName.Text.Trim();
             _Person.SecondName = txtSecondName.Text.Trim();
             _Person.ThirdName = txtThirdName.Text.Trim();
@@ -222,12 +212,11 @@ namespace DVLD.people
             else
                 _Person.ImagePath = "";
 
-            // 3. الحفظ في قاعدة البيانات
             if (_Person.Save())
             {
                 guna2HtmlLabel1.Text = "Edit Person ID = " + _Person.ID;
                 lbPersonID.Text = "Person ID:" + _Person.ID.ToString();
-                _Mode = enMode.Update; // التحويل لوضع التعديل فوراً بعد الإضافة
+                _Mode = enMode.Update; 
 
                 MessageBox.Show("Data Saved Successfully.", "Saved",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);

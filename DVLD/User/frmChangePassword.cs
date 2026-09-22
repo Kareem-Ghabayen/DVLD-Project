@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using BuisnessLayer; // تأكد من اسم الـ Namespace الخاص بالبزنس لاير عندك
+using BuisnessLayer; 
 
 namespace DVLD.User
 {
@@ -10,7 +10,6 @@ namespace DVLD.User
         private int _UserID = -1;
         private clsBLUser _User;
 
-        // المشد يستقبل UserID عند فتح الشاشة
         public frmChangePassword(int UserID)
         {
             InitializeComponent();
@@ -28,7 +27,7 @@ namespace DVLD.User
                 return;
             }
 
-            // تحميل بيانات المستخدم داخل الكنترول العلوي
+
             ctrlUserCard1.LoadUserInfo(_UserID);
         }
 
@@ -41,10 +40,8 @@ namespace DVLD.User
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            // تصفير الأخطاء السابقة
             errorProvider1.Clear();
 
-            // 1. التحقق من أن كلمة السر الحالية ليست فارغة
             if (string.IsNullOrEmpty(txtCurrentPassword.Text.Trim()))
             {
                 errorProvider1.SetError(txtCurrentPassword, "Current Password cannot be empty!");
@@ -52,7 +49,6 @@ namespace DVLD.User
                 return;
             }
 
-            // 2. التحقق من أن كلمة السر الحالية صحيحة وتطابق كلمة سر المستخدم
             if (_User.Password != txtCurrentPassword.Text.Trim())
             {
                 errorProvider1.SetError(txtCurrentPassword, "Current Password is wrong!");
@@ -60,7 +56,6 @@ namespace DVLD.User
                 return;
             }
 
-            // 3. التحقق من أن كلمة السر الجديدة ليست فارغة
             if (string.IsNullOrEmpty(txtNewPassword.Text.Trim()))
             {
                 errorProvider1.SetError(txtNewPassword, "New Password cannot be empty!");
@@ -68,7 +63,6 @@ namespace DVLD.User
                 return;
             }
 
-            // 4. التحقق من أن تأكيد كلمة السر ليس فارغاً
             if (string.IsNullOrEmpty(txtConfirmPassword.Text.Trim()))
             {
                 errorProvider1.SetError(txtConfirmPassword, "Confirm Password cannot be empty!");
@@ -76,7 +70,6 @@ namespace DVLD.User
                 return;
             }
 
-            // 5. التحقق من تطابق كلمة السر الجديدة مع التأكيد
             if (txtNewPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
             {
                 errorProvider1.SetError(txtConfirmPassword, "Password Confirmation does not match New Password!");
@@ -84,13 +77,13 @@ namespace DVLD.User
                 return;
             }
 
-            // --- إذا مرت كل التحققات بنجاح، يتم الحفظ الآن ---
             _User.Password = txtNewPassword.Text.Trim();
 
             if (_User.Save())
             {
                 MessageBox.Show("Password Changed Successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btnSave.Enabled = false; // تعطيل الزر لتفادي التكرار
+                btnSave.Enabled = false; 
+        
             }
             else
             {
@@ -108,12 +101,10 @@ namespace DVLD.User
         {
             if (string.IsNullOrEmpty(txtCurrentPassword.Text.Trim()))
             {
-                //e.Cancel = true;
                 errorProvider1.SetError(txtCurrentPassword, "Current Password cannot be empty!");
             }
             else if (_User.Password != txtCurrentPassword.Text.Trim())
             {
-                //e.Cancel = true;
                 errorProvider1.SetError(txtCurrentPassword, "Current Password is wrong!");
             }
             else
@@ -126,7 +117,6 @@ namespace DVLD.User
         {
             if (string.IsNullOrEmpty(txtNewPassword.Text.Trim()))
             {
-                //e.Cancel = true;
                 errorProvider1.SetError(txtNewPassword, "New Password cannot be empty!");
             }
             else
@@ -139,12 +129,10 @@ namespace DVLD.User
         {
             if (string.IsNullOrEmpty(txtConfirmPassword.Text.Trim()))
             {
-                //e.Cancel = true;
                 errorProvider1.SetError(txtConfirmPassword, "Confirm Password cannot be empty!");
             }
             else if (txtConfirmPassword.Text.Trim() != txtNewPassword.Text.Trim())
             {
-                //e.Cancel = true;
                 errorProvider1.SetError(txtConfirmPassword, "Password Confirmation does not match New Password!");
             }
             else

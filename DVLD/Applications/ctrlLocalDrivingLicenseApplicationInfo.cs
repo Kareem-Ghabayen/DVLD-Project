@@ -7,11 +7,10 @@ namespace DVLD.Applications.Controls
 {
     public partial class ctrlLocalDrivingLicenseApplicationInfo : UserControl
     {
-        // هان للاستعمال الداخلي داخل الكنترول يوزر انا هستقبل رقم الطلب المحلي ورقم الطلب العام وهنشا اوبجيكت من الطلب المحلي من خلال البحث عليه 
         private int _LocalDrivingLicenseApplicationID = -1;
         private clsBLLocalDrivingLicenseApplication _LocalDrivingLicenseApplication;
         private int _ApplicationID = -1;
-
+        private int _LicenseID = -1;
         public int LocalDrivingLicenseApplicationID
         {
             get { return _LocalDrivingLicenseApplicationID; }
@@ -21,7 +20,6 @@ namespace DVLD.Applications.Controls
         {
             get { return _LocalDrivingLicenseApplication; }
         }
-        //  دالة مهمتها وضع الميثود للحالة الاصلية
         public void ResetLocalDrivingLicenseApplicationInfo()
         {
             _LocalDrivingLicenseApplicationID = -1;
@@ -39,9 +37,11 @@ namespace DVLD.Applications.Controls
             lblStatusDate.Text = "[???]";
             lblCreatedBy.Text = "[???]";
             llViewPersonInfo.Enabled = false;
+            llShowLicenseInfo.Enabled = false;
         }
         private void _FillLocalDrivingLicenseApplicationInfo()
         {
+            _LicenseID = _LocalDrivingLicenseApplication.GetActiveLicenseID();
             _LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplication.LocalDrivingLicenseApplicationID;
             _ApplicationID = _LocalDrivingLicenseApplication.ApplicationID;
 
@@ -59,6 +59,8 @@ namespace DVLD.Applications.Controls
             lblCreatedBy.Text = _LocalDrivingLicenseApplication.BaseApplicationInfo.CreatedByUserInfo.UserName;
 
             llViewPersonInfo.Enabled = true;
+            llShowLicenseInfo.Enabled = (_LicenseID != -1);
+
         }
         public void LoadApplicationInfoByLocalDrivingAppID(int LocalDrivingLicenseApplicationID)
         {
@@ -94,7 +96,19 @@ namespace DVLD.Applications.Controls
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
-        
+            int LicenseID = _LocalDrivingLicenseApplication.GetActiveLicenseID();
+
+
+            if (LicenseID != -1)
+            {
+                frmShowLicenseInfo frm = new frmShowLicenseInfo(LicenseID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No license found for this application!", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void gbLocalDrivingLicenseApplicationInfo_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
-            this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvDrivers = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsDriver = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.addNewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.txtFilterValue = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbFilterBy = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblFilterBy = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.lblRecordsCount = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrivers)).BeginInit();
             this.cmsDriver.SuspendLayout();
@@ -73,16 +74,17 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
-            // lblRecordsCount
+            // lblRecords
             // 
-            this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
-            this.lblRecordsCount.Location = new System.Drawing.Point(20, 415);
-            this.lblRecordsCount.Name = "lblRecordsCount";
-            this.lblRecordsCount.Size = new System.Drawing.Size(97, 23);
-            this.lblRecordsCount.TabIndex = 15;
-            this.lblRecordsCount.Text = "# Records:";
+            this.lblRecords.AutoSize = false;
+            this.lblRecords.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecords.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecords.ForeColor = System.Drawing.Color.Black;
+            this.lblRecords.Location = new System.Drawing.Point(20, 415);
+            this.lblRecords.Name = "lblRecords";
+            this.lblRecords.Size = new System.Drawing.Size(106, 31);
+            this.lblRecords.TabIndex = 15;
+            this.lblRecords.Text = "# Records:";
             // 
             // dgvDrivers
             // 
@@ -225,22 +227,35 @@
             // 
             // lblFilterBy
             // 
+            this.lblFilterBy.AutoSize = false;
             this.lblFilterBy.BackColor = System.Drawing.Color.Transparent;
             this.lblFilterBy.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilterBy.ForeColor = System.Drawing.Color.Black;
-            this.lblFilterBy.Location = new System.Drawing.Point(20, 183);
+            this.lblFilterBy.Location = new System.Drawing.Point(9, 183);
             this.lblFilterBy.Name = "lblFilterBy";
-            this.lblFilterBy.Size = new System.Drawing.Size(80, 23);
+            this.lblFilterBy.Size = new System.Drawing.Size(91, 36);
             this.lblFilterBy.TabIndex = 11;
             this.lblFilterBy.Text = "Filter By:";
+            // 
+            // lblRecordsCount
+            // 
+            this.lblRecordsCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecordsCount.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecordsCount.ForeColor = System.Drawing.Color.Black;
+            this.lblRecordsCount.Location = new System.Drawing.Point(132, 415);
+            this.lblRecordsCount.Name = "lblRecordsCount";
+            this.lblRecordsCount.Size = new System.Drawing.Size(23, 23);
+            this.lblRecordsCount.TabIndex = 17;
+            this.lblRecordsCount.Text = "؟؟";
             // 
             // frmListDrivers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblRecordsCount);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.dgvDrivers);
             this.Controls.Add(this.txtFilterValue);
             this.Controls.Add(this.cbFilterBy);
@@ -249,7 +264,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListDrivers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmListDrivers";
+            this.Text = "List Drivers";
             this.Load += new System.EventHandler(this.frmListDrivers_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrivers)).EndInit();
@@ -263,7 +278,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblRecordsCount;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblRecords;
         private Guna.UI2.WinForms.Guna2DataGridView dgvDrivers;
         private Guna.UI2.WinForms.Guna2TextBox txtFilterValue;
         private Guna.UI2.WinForms.Guna2ComboBox cbFilterBy;
@@ -271,5 +286,6 @@
         private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsDriver;
         private System.Windows.Forms.ToolStripMenuItem addNewPersonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblRecordsCount;
     }
 }

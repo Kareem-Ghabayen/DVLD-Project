@@ -70,5 +70,19 @@ namespace DVLD.Applications
                 B.LoadInfoByPersonID(_PersonID);
             }
         }
+
+        private void ctrlPersonCardWithFilter1_OnPersonSelected_1(int PersonID)
+        {
+            _PersonID = PersonID;
+
+            if (_PersonID == -1)
+            {
+                B.Clear();
+            }
+            else
+            {
+                B.LoadInfoByPersonID(_PersonID);
+            }
+        }
     }
 }

@@ -15,10 +15,8 @@ namespace DVLD.International
     {
         public delegate void LicenseSelected(int LicenseID);
 
-        // 2. متغير من نوع الدليجيت تشترك فيه الشاشات الخارجية
         public event LicenseSelected OnLicenseSelected;
 
-        // خصائص الكنترول
         private bool _FilterEnabled = true;
         public bool FilterEnabled
         {
@@ -37,7 +35,6 @@ namespace DVLD.International
         {
             InitializeComponent();
         }
-        // 3. دالة شحن رقم رخصة برمجياً (للاستخدام اختياري مستقبلاً)
         public void LoadLicenseInfo(int LicenseID)
         {
             txtLicenseID.Text = LicenseID.ToString();
@@ -60,7 +57,7 @@ namespace DVLD.International
             }
             else
             {
-                OnLicenseSelected?.Invoke(-1); // تنبيه الشاشة الرئيسية لتطفي الزر!
+                OnLicenseSelected?.Invoke(-1); 
             }
         }
         public void FilterFocus()
@@ -80,10 +77,8 @@ namespace DVLD.International
         private void txtLicenseID_KeyPress(object sender, KeyPressEventArgs e)
         {
             {
-                // منع إدخال غير الأرقام
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
 
-                // التنفيذ عند الضغط على Enter
                 if (e.KeyChar == (char)13)
                 {
                     btnFind.PerformClick();

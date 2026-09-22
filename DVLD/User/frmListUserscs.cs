@@ -20,33 +20,15 @@ namespace DVLD.User
         }
         private void _RefreshUsersList()
         {
-            _dtAllUsers = clsBLUser.GetAllUsers(); // افترضنا أن الدالة ترجع DataTable يحتوي الأعمدة الموضحة بالصورة
+            _dtAllUsers = clsBLUser.GetAllUsers(); 
             dgvUsers.DataSource = _dtAllUsers;
 
             lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
 
-            if (dgvUsers.Rows.Count > 0)
-            {
-                //// تحسين عرض الأوردة والشكل إن أردت
-                //dgvUsers.Columns["UserID"].HeaderText = "User ID";
-                //dgvUsers.Columns["UserID"].Width = 110;
-
-                //dgvUsers.Columns["PersonID"].HeaderText = "Person ID";
-                //dgvUsers.Columns["PersonID"].Width = 110;
-
-                //dgvUsers.Columns["FullName"].HeaderText = "Full Name";
-                //dgvUsers.Columns["FullName"].Width = 320;
-
-                //dgvUsers.Columns["UserName"].HeaderText = "UserName";
-                //dgvUsers.Columns["UserName"].Width = 180;
-
-                //dgvUsers.Columns["IsActive"].HeaderText = "Is Active";
-                //dgvUsers.Columns["IsActive"].Width = 100;
-            }
         }
         private void frmListUserscs_Load(object sender, EventArgs e)
         {
-            cbFilterBy.SelectedIndex = 0; // ضبط الافتراضي على None
+            cbFilterBy.SelectedIndex = 0; 
             _RefreshUsersList();
         }
 
@@ -57,7 +39,7 @@ namespace DVLD.User
                 txtFilterValue.Visible = false;
                 cbIsActive.Visible = true;
                 cbIsActive.Focus();
-                cbIsActive.SelectedIndex = 0; // 0 = All
+                cbIsActive.SelectedIndex = 0; 
             }
             else
             {
@@ -73,7 +55,6 @@ namespace DVLD.User
         {
             string FilterColumn = "";
 
-            // تحديد اسم العمود البرمجي حسب اختيار المستخدم
             switch (cbFilterBy.Text)
             {
                 case "User ID":
@@ -93,7 +74,6 @@ namespace DVLD.User
                     break;
             }
 
-            // إذا كان البحث فارغاً أو اختيار الفلتر None
             if (txtFilterValue.Text.Trim() == "" || FilterColumn == "None")
             {
                 _dtAllUsers.DefaultView.RowFilter = "";
@@ -101,14 +81,12 @@ namespace DVLD.User
                 return;
             }
 
-            // فلترة الأرقام تختلف عن النصوص في SQL Filter Expression
             if (FilterColumn == "UserID" || FilterColumn == "PersonID")
             {
-                // التأكد من أن المدخل رقم لمنع الأخطاء
                 if (int.TryParse(txtFilterValue.Text.Trim(), out int result))
                     _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, result);
                 else
-                    _dtAllUsers.DefaultView.RowFilter = "1 = 0"; // لا يرجع شيء إذا أدخل حروف في حقل رقمي
+                    _dtAllUsers.DefaultView.RowFilter = "1 = 0"; 
             }
             else
             {
@@ -140,9 +118,10 @@ namespace DVLD.User
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            frmAddUpdateUser frm = new frmAddUpdateUser(); // فتح الشاشة في مود الإضافة (-1)
-            frm.ShowDialog();
+            frmAddUpdateUser frm = new frmAddUpdateUser();
             frm.DataBack += _DataBackEventHandler;
+
+            frm.ShowDialog();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,14 +134,16 @@ namespace DVLD.User
         private void addNewPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAddUpdateUser frm = new frmAddUpdateUser();
-            frm.ShowDialog();
             frm.DataBack += _DataBackEventHandler;
+
+            frm.ShowDialog();
+
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int userID = (int)dgvUsers.CurrentRow.Cells["UserID"].Value;
-            frmAddUpdateUser frm = new frmAddUpdateUser(userID); // فتح الشاشة في مود التعديل
+            frmAddUpdateUser frm = new frmAddUpdateUser(userID); 
             frm.ShowDialog();
             _RefreshUsersList();
         }
@@ -200,7 +181,7 @@ namespace DVLD.User
 
         private void frmListUserscs_Load_1(object sender, EventArgs e)
         {
-            cbFilterBy.SelectedIndex = 0; // ضبط الافتراضي على None
+            cbFilterBy.SelectedIndex = 0;
             _RefreshUsersList();
         }
 
@@ -210,7 +191,6 @@ namespace DVLD.User
         }
         private void _DataBackEventHandler(object sender, int UserID)
         {
-            // أعد تحميل البيانات في DataGridView أو قم بفلترتها حسب UserID الجديد
             _RefreshUsersList();
         }
     }

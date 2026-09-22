@@ -30,7 +30,6 @@ namespace DVLD.Applications
         {
             _RefreshLocalDrivingLicenseApplicationsList();
 
-            // ضبط الفلترة على None افتراضياً
             if (cbFilterBy.Items.Count > 0)
                 cbFilterBy.SelectedIndex = 0;
 
@@ -61,7 +60,6 @@ namespace DVLD.Applications
         {
             string filterColumn = "";
 
-            // ربط النص المعروض في ComboBox باسم العمود الحقيقي في الفيو
             switch (cbFilterBy.Text)
             {
                 case "L.D.L.AppID":
@@ -85,7 +83,6 @@ namespace DVLD.Applications
                     break;
             }
 
-            // إذا تم مسح النص أو اخترنا None نلغي الفلترة
             if (txtFilterValue.Text.Trim() == "" || filterColumn == "None")
             {
                 _dtAllApplications.DefaultView.RowFilter = "";
@@ -93,10 +90,8 @@ namespace DVLD.Applications
                 return;
             }
 
-            // تطبيق الفلترة حسب نوع العمود (رقمي أم نصي)
             if (filterColumn == "LocalDrivingLicenseApplicationID")
             {
-                // الفلترة الرقمية بـ =
                 if (int.TryParse(txtFilterValue.Text.Trim(), out int appID))
                 {
                     _dtAllApplications.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, appID);
@@ -108,11 +103,9 @@ namespace DVLD.Applications
             }
             else
             {
-                // الفلترة النصية بـ LIKE
                 _dtAllApplications.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", filterColumn, txtFilterValue.Text.Trim());
             }
 
-            // تحديث العداد بناءً على النتيجة المفوترة
             lblRecordsCount.Text = dgvLocalDrivingLicenseApplications.Rows.Count.ToString();
         }
 
@@ -129,7 +122,6 @@ namespace DVLD.Applications
             frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication();
             frm.ShowDialog();
 
-            // إعادة تحديث القائمة فور إغلاق شاشة الإضافة لتظهر البيانات الجديدة
             _RefreshLocalDrivingLicenseApplicationsList();
         }
 
@@ -154,13 +146,11 @@ namespace DVLD.Applications
             int passedTests = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[5].Value;
             string status = (string)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[6].Value;
 
-            // تمكين أو تعطيل خيارات التعديل والحذف والإلغاء
             bool isNew = (status == "New");
             editApplicationToolStripMenuItem.Enabled = isNew;
             deleteApplicationToolStripMenuItem.Enabled = isNew;
             cancelApplicationToolStripMenuItem.Enabled = isNew;
 
-            // خيارات جدولة الاختبارات
             scheduleTestsToolStripMenuItem.Enabled = isNew && (passedTests < 3);
             if (scheduleTestsToolStripMenuItem.Enabled)
             {
@@ -169,10 +159,8 @@ namespace DVLD.Applications
                 scheduleStreetTestToolStripMenuItem.Enabled = (passedTests == 2);
             }
 
-            // إصدار الرخصة لأول مرة
             issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = (passedTests == 3 && isNew);
 
-            // عرض الرخصة (متاحة فقط إذا كانت الحالة Completed)
             showLicenseToolStripMenuItem.Enabled = (status == "Completed");
         }
 
@@ -195,21 +183,21 @@ namespace DVLD.Applications
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            //    if (MessageBox.Show("Are you sure you want to delete this application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            //        return;
+            if (MessageBox.Show("Are you sure you want to delete this application?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
 
-            //    int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
+            int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
 
-            //    if (clsBLLocalDrivingLicenseApplication.DeleteLocalDrivingLicenseApplication(localDrivingLicenseApplicationID))
-            //    {
-            //        MessageBox.Show("Application Deleted Successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        _RefreshLocalDrivingLicenseApplicationsList();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Could not delete application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+            if (clsBLLocalDrivingLicenseApplication.DeleteLocalDrivingLicenseApplication(localDrivingLicenseApplicationID))
+            {
+                MessageBox.Show("Application Deleted Successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _RefreshLocalDrivingLicenseApplicationsList();
+            }
+            else
+            {
+                MessageBox.Show("Could not delete application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         }
 
         private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)

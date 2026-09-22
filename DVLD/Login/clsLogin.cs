@@ -1,5 +1,5 @@
 ﻿using BuisnessLayer;
-using BusinessLayer; // تأكد من استدعاء البزنس لير الخاص بك
+using BusinessLayer; 
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,6 @@ namespace DVLD.Login
             return user;
         }
 
-        // 2. ميثود حفظ بيانات الدخول (إذا اختار المستخدم "تذكرني")
         public static void RememberUsernameAndPassword(string username, string password)
         {
             try
@@ -29,7 +28,7 @@ namespace DVLD.Login
                 string valueNameUserName = "UserName";
                 string valueNamePassword = "Password";
 
-                // حفظ القيم في الـ Registry
+        
                 Registry.SetValue(keyPath, valueNameUserName, username, RegistryValueKind.String);
                 Registry.SetValue(keyPath, valueNamePassword, password, RegistryValueKind.String);
             }
@@ -38,7 +37,6 @@ namespace DVLD.Login
             }
         }
 
-        // 3. ميثود جلب البيانات المحفوظة عند فتح الشاشة لو كانت مفعلة
         public static void  GetStoredCredential(ref string username, ref string password)
         {
             try

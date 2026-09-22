@@ -31,7 +31,6 @@ namespace DVLD.Applications.RenewApplications
 
         private void frmRenewLocalDrivingLicense_Load(object sender, EventArgs e)
         {
-            // 1. ربط الحدث يدوياً مع دالة المعالجة عند تحميل الشاشة
             ctrlDriverLicenseInfoWithFilter1.OnLicenseSelected += ctrlDriverLicenseInfoWithFilter1_OnLicenseSelected;
 
             ctrlDriverLicenseInfoWithFilter1.FilterFocus();
@@ -53,7 +52,6 @@ namespace DVLD.Applications.RenewApplications
             lblOldLicenseID.Text = selectedLicenseID.ToString();
             llShowLicensesHistory.Enabled = (selectedLicenseID != -1);
 
-            // فحص 1: هل الرخصة فعالة؟
             if (!ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsActive)
             {
                 MessageBox.Show("Selected License is NOT Active, choose an active license.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -61,7 +59,6 @@ namespace DVLD.Applications.RenewApplications
                 return;
             }
 
-            // فحص 2: هل الرخصة منتهية الصلاحية فعلاً؟
             if (!ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsLicenseExpired())
             {
                 MessageBox.Show($"Selected License is NOT Expired yet, it will expire on: {ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.ExpirationDate.ToShortDateString()}",
@@ -70,7 +67,6 @@ namespace DVLD.Applications.RenewApplications
                 return;
             }
 
-            // فحص 3: هل الرخصة محجوزة؟
             if (ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.IsDetained)
             {
                 MessageBox.Show("Selected License is Detained, you must release it first.", "Not allowed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,7 +74,6 @@ namespace DVLD.Applications.RenewApplications
                 return;
             }
 
-            // حساب تاريخ الانتهاء والرسوم
             int defaultValidityLength = ctrlDriverLicenseInfoWithFilter1.SelectedLicenseInfo.LicenseClassInfo.DefaultValidityLength;
             lblExpirationDate.Text = DateTime.Now.AddYears(defaultValidityLength).ToShortDateString();
 

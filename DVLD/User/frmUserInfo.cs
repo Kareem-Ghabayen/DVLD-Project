@@ -14,7 +14,6 @@ namespace DVLD.User
     {
         private int _UserID = -1;
 
-        // استقبال الـ UserID عند فتح الشاشة
         public frmUserInfo(int UserID)
         {
             InitializeComponent();

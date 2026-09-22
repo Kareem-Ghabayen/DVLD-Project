@@ -54,7 +54,7 @@ namespace DVLD.people
             _PersonID = _Person.ID;
             lblPersonID.Text = _Person.ID.ToString();
             lblNationalNo.Text = _Person.NationalNo;
-            lblFullName.Text = _Person.FirstName + " " + _Person.SecondName + " " + _Person.ThirdName; // خاصية تعود بالاسم الأرباعي في الكلاس
+            lblFullName.Text = _Person.FirstName + " " + _Person.SecondName + " " + _Person.ThirdName; 
             lblGendor.Text = _Person.Gendor == 0 ? "Male" : "Female";
             lblEmail.Text = _Person.Email;
             lblPhone.Text = _Person.Phone;
@@ -67,6 +67,7 @@ namespace DVLD.people
             else
                 pbPersonImage.Image = _Person.Gendor == 0 ? Properties.Resources.Male_512 : Properties.Resources.Male_512;
 
+            
             llEditPersonInfo.Enabled = true;
         }
 

@@ -33,7 +33,7 @@
             this.lblPassedTests = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.llShowLicenseInfo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblAppliedForLicense = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -88,7 +88,7 @@
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.lblPassedTests);
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.guna2HtmlLabel3);
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.pictureBox3);
-            this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.guna2HtmlLabel1);
+            this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.llShowLicenseInfo);
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.lblAppliedForLicense);
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.pictureBox2);
             this.gbLocalDrivingLicenseApplicationInfo.Controls.Add(this.pictureBox1);
@@ -149,18 +149,18 @@
             this.pictureBox3.TabIndex = 69;
             this.pictureBox3.TabStop = false;
             // 
-            // guna2HtmlLabel1
+            // llShowLicenseInfo
             // 
-            this.guna2HtmlLabel1.AutoSize = false;
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Gray;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(119, 113);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(192, 24);
-            this.guna2HtmlLabel1.TabIndex = 68;
-            this.guna2HtmlLabel1.Text = "Show License Info";
-            this.guna2HtmlLabel1.Click += new System.EventHandler(this.guna2HtmlLabel1_Click);
+            this.llShowLicenseInfo.AutoSize = false;
+            this.llShowLicenseInfo.BackColor = System.Drawing.Color.Transparent;
+            this.llShowLicenseInfo.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowLicenseInfo.ForeColor = System.Drawing.Color.Gray;
+            this.llShowLicenseInfo.Location = new System.Drawing.Point(119, 113);
+            this.llShowLicenseInfo.Name = "llShowLicenseInfo";
+            this.llShowLicenseInfo.Size = new System.Drawing.Size(192, 24);
+            this.llShowLicenseInfo.TabIndex = 68;
+            this.llShowLicenseInfo.Text = "Show License Info";
+            this.llShowLicenseInfo.Click += new System.EventHandler(this.guna2HtmlLabel1_Click);
             // 
             // lblAppliedForLicense
             // 
@@ -586,7 +586,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel llShowLicenseInfo;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblAppliedForLicense;
         private System.Windows.Forms.PictureBox pictureBox4;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPassedTests;

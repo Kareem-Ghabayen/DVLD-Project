@@ -50,7 +50,7 @@
             this.gbFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.gbFilter.Location = new System.Drawing.Point(0, 0);
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(690, 123);
+            this.gbFilter.Size = new System.Drawing.Size(702, 123);
             this.gbFilter.TabIndex = 0;
             this.gbFilter.Text = "Filter";
             this.gbFilter.Click += new System.EventHandler(this.gbFilter_Click);
@@ -149,7 +149,7 @@
             // 
             this.ctrlPersonCard1.Location = new System.Drawing.Point(0, 113);
             this.ctrlPersonCard1.Name = "ctrlPersonCard1";
-            this.ctrlPersonCard1.Size = new System.Drawing.Size(692, 309);
+            this.ctrlPersonCard1.Size = new System.Drawing.Size(702, 309);
             this.ctrlPersonCard1.TabIndex = 1;
             // 
             // ctrlPersonCardWithFilter
@@ -159,7 +159,7 @@
             this.Controls.Add(this.ctrlPersonCard1);
             this.Controls.Add(this.gbFilter);
             this.Name = "ctrlPersonCardWithFilter";
-            this.Size = new System.Drawing.Size(690, 421);
+            this.Size = new System.Drawing.Size(702, 421);
             this.Load += new System.EventHandler(this.ctrlPersonCardWithFilter_Load);
             this.gbFilter.ResumeLayout(false);
             this.gbFilter.PerformLayout();

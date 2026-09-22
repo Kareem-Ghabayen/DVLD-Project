@@ -27,7 +27,6 @@ namespace DVLD.International
             dgvInternationalLicenses.DataSource = _dtInternationalLicenses;
             lblRecordsCount.Text = dgvInternationalLicenses.Rows.Count.ToString();
 
-            // ضبط أسماء الأعمدة وتنسيق العرض إذا كانت توجد أعمدة ممتدة
 
         }
 

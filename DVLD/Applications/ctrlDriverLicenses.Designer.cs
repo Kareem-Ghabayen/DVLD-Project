@@ -40,23 +40,23 @@
             this.lblLocalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvLocalLicensesHistory = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cmsLocalLicenseHistory = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tpInternationalLicenses = new System.Windows.Forms.TabPage();
             this.lblInternationalLicensesRecords = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvInternationalLicensesHistory = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.cmsLocalLicenseHistory = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsInternationalLicenseHistory = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.showInternationalLicenseInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.gbDriverLicenses.SuspendLayout();
             this.tcDriverLicenses.SuspendLayout();
             this.tpLocalLicenses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesHistory)).BeginInit();
+            this.cmsLocalLicenseHistory.SuspendLayout();
             this.tpInternationalLicenses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicensesHistory)).BeginInit();
-            this.cmsLocalLicenseHistory.SuspendLayout();
             this.cmsInternationalLicenseHistory.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +121,7 @@
             this.lblLocalLicensesRecords.BackColor = System.Drawing.Color.Transparent;
             this.lblLocalLicensesRecords.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocalLicensesRecords.ForeColor = System.Drawing.Color.Black;
-            this.lblLocalLicensesRecords.Location = new System.Drawing.Point(113, 138);
+            this.lblLocalLicensesRecords.Location = new System.Drawing.Point(113, 168);
             this.lblLocalLicensesRecords.Name = "lblLocalLicensesRecords";
             this.lblLocalLicensesRecords.Size = new System.Drawing.Size(248, 36);
             this.lblLocalLicensesRecords.TabIndex = 74;
@@ -133,7 +133,7 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(6, 138);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(6, 168);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(248, 36);
             this.guna2HtmlLabel1.TabIndex = 73;
@@ -174,7 +174,7 @@
             this.dgvLocalLicensesHistory.RowHeadersVisible = false;
             this.dgvLocalLicensesHistory.RowHeadersWidth = 51;
             this.dgvLocalLicensesHistory.RowTemplate.Height = 26;
-            this.dgvLocalLicensesHistory.Size = new System.Drawing.Size(849, 59);
+            this.dgvLocalLicensesHistory.Size = new System.Drawing.Size(849, 106);
             this.dgvLocalLicensesHistory.TabIndex = 72;
             this.dgvLocalLicensesHistory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvLocalLicensesHistory.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -197,6 +197,31 @@
             this.dgvLocalLicensesHistory.ThemeStyle.RowsStyle.Height = 26;
             this.dgvLocalLicensesHistory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvLocalLicensesHistory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // cmsLocalLicenseHistory
+            // 
+            this.cmsLocalLicenseHistory.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsLocalLicenseHistory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPersonDetailsToolStripMenuItem});
+            this.cmsLocalLicenseHistory.Name = "cmsPeople";
+            this.cmsLocalLicenseHistory.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.cmsLocalLicenseHistory.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.cmsLocalLicenseHistory.RenderStyle.ColorTable = null;
+            this.cmsLocalLicenseHistory.RenderStyle.RoundedEdges = true;
+            this.cmsLocalLicenseHistory.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.cmsLocalLicenseHistory.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmsLocalLicenseHistory.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.cmsLocalLicenseHistory.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.cmsLocalLicenseHistory.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.cmsLocalLicenseHistory.Size = new System.Drawing.Size(201, 30);
+            // 
+            // showPersonDetailsToolStripMenuItem
+            // 
+            this.showPersonDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_321;
+            this.showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
+            this.showPersonDetailsToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
+            this.showPersonDetailsToolStripMenuItem.Text = "Show License Info";
+            this.showPersonDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPersonDetailsToolStripMenuItem_Click);
             // 
             // guna2HtmlLabel3
             // 
@@ -307,43 +332,6 @@
             this.dgvInternationalLicensesHistory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvInternationalLicensesHistory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // guna2HtmlLabel2
-            // 
-            this.guna2HtmlLabel2.AutoSize = false;
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(19, 6);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(223, 34);
-            this.guna2HtmlLabel2.TabIndex = 75;
-            this.guna2HtmlLabel2.Text = "Local Licenses History:";
-            // 
-            // cmsLocalLicenseHistory
-            // 
-            this.cmsLocalLicenseHistory.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsLocalLicenseHistory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showPersonDetailsToolStripMenuItem});
-            this.cmsLocalLicenseHistory.Name = "cmsPeople";
-            this.cmsLocalLicenseHistory.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsLocalLicenseHistory.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.cmsLocalLicenseHistory.RenderStyle.ColorTable = null;
-            this.cmsLocalLicenseHistory.RenderStyle.RoundedEdges = true;
-            this.cmsLocalLicenseHistory.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsLocalLicenseHistory.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cmsLocalLicenseHistory.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsLocalLicenseHistory.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.cmsLocalLicenseHistory.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsLocalLicenseHistory.Size = new System.Drawing.Size(201, 30);
-            // 
-            // showPersonDetailsToolStripMenuItem
-            // 
-            this.showPersonDetailsToolStripMenuItem.Image = global::DVLD.Properties.Resources.PersonDetails_321;
-            this.showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
-            this.showPersonDetailsToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.showPersonDetailsToolStripMenuItem.Text = "Show License Info";
-            this.showPersonDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPersonDetailsToolStripMenuItem_Click);
-            // 
             // cmsInternationalLicenseHistory
             // 
             this.cmsInternationalLicenseHistory.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -369,6 +357,18 @@
             this.showInternationalLicenseInfoToolStripMenuItem.Text = "Show License Info";
             this.showInternationalLicenseInfoToolStripMenuItem.Click += new System.EventHandler(this.showInternationalLicenseInfoToolStripMenuItem_Click);
             // 
+            // guna2HtmlLabel2
+            // 
+            this.guna2HtmlLabel2.AutoSize = false;
+            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Tahoma", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black;
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(19, 6);
+            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            this.guna2HtmlLabel2.Size = new System.Drawing.Size(223, 34);
+            this.guna2HtmlLabel2.TabIndex = 75;
+            this.guna2HtmlLabel2.Text = "Local Licenses History:";
+            // 
             // ctrlDriverLicenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -380,9 +380,9 @@
             this.tcDriverLicenses.ResumeLayout(false);
             this.tpLocalLicenses.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesHistory)).EndInit();
+            this.cmsLocalLicenseHistory.ResumeLayout(false);
             this.tpInternationalLicenses.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicensesHistory)).EndInit();
-            this.cmsLocalLicenseHistory.ResumeLayout(false);
             this.cmsInternationalLicenseHistory.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -24,7 +24,6 @@ namespace DVLD.User
             InitializeComponent();
         }
 
-        // دالة جلب بيانات المستخدم بواسطة رقم المستخدم UserID
         public void LoadUserInfo(int UserID)
         {
             _User = clsBLUser.FindByUserID(UserID);
@@ -39,7 +38,6 @@ namespace DVLD.User
             _FillUserInfo();
         }
 
-        // دالة جلب بيانات المستخدم بواسطة رقم الشخص PersonID
         public void LoadUserInfoByPersonID(int PersonID)
         {
             _User = clsBLUser.FindByPersonID(PersonID);
@@ -54,8 +52,7 @@ namespace DVLD.User
             _FillUserInfo();
         }
 
-        // تعبئة البيانات في الشاشة
-        private void _FillUserInfo()
+      private void _FillUserInfo()
         {
             _UserID = _User.UserID;
 
@@ -65,8 +62,7 @@ namespace DVLD.User
             lblIsActive.Text = _User.IsActive ? "Yes" : "No";
         }
 
-        // تفريغ البيانات
-        public void ResetUserInfo()
+      public void ResetUserInfo()
         {
             _UserID = -1;
             ctrlPersonCard1.ResetPersonInfo();

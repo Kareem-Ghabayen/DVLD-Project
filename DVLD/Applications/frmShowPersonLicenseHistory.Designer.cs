@@ -58,7 +58,7 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.Image = global::DVLD.Properties.Resources.cross_32;
-            this.btnClose.Location = new System.Drawing.Point(781, 777);
+            this.btnClose.Location = new System.Drawing.Point(781, 801);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(85, 31);
             this.btnClose.TabIndex = 21;
@@ -78,30 +78,29 @@
             // ctrlPersonCardWithFilter1
             // 
             this.ctrlPersonCardWithFilter1.FilterEnabled = true;
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(176, 66);
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(185, 66);
             this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(690, 421);
-            this.ctrlPersonCardWithFilter1.TabIndex = 0;
-            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected);
-            this.ctrlPersonCardWithFilter1.Load += new System.EventHandler(this.ctrlPersonCardWithFilter1_Load);
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(702, 421);
+            this.ctrlPersonCardWithFilter1.TabIndex = 23;
+            this.ctrlPersonCardWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardWithFilter1_OnPersonSelected_1);
             // 
             // B
             // 
             this.B.Location = new System.Drawing.Point(12, 493);
             this.B.Name = "B";
-            this.B.Size = new System.Drawing.Size(875, 278);
+            this.B.Size = new System.Drawing.Size(875, 302);
             this.B.TabIndex = 22;
             // 
             // frmShowPersonLicenseHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 820);
+            this.ClientSize = new System.Drawing.Size(893, 844);
+            this.Controls.Add(this.ctrlPersonCardWithFilter1);
             this.Controls.Add(this.B);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.ctrlPersonCardWithFilter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowPersonLicenseHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -113,11 +112,10 @@
         }
 
         #endregion
-
-        private people.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2Button btnClose;
         private ctrlDriverLicenses B;
+        private people.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
     }
 }

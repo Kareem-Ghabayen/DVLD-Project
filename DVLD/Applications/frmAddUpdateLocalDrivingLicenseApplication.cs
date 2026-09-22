@@ -125,7 +125,6 @@ namespace DVLD.Applications
                 return;
             }
 
-            // في حالة الإضافة: التثبت من اختيار شخص أولاً
             if (ctrlPersonCardWithFilter1.PersonID != -1)
             {
                 tpApplicationInfo.Enabled = true;
@@ -199,7 +198,6 @@ namespace DVLD.Applications
                         return;
                     }
                 }
-                // وضع التعديل (Update)
                 _LocalDrivingLicenseApplication.LicenseClassID = licenseClassID;
 
                 if (_LocalDrivingLicenseApplication.Save())
