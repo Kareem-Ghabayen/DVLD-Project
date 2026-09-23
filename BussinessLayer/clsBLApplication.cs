@@ -63,7 +63,7 @@ namespace BuisnessLayer
         {
             this.ApplicationID = ApplicationID;
             this.ApplicantPersonID = ApplicantPersonID;
-            this.ApplicantPersonInfo = clsBLSPeople.FindByID(ApplicantPersonID);//  هان انا حملت معلومات الشخص من خلال ال  id  
+            this.ApplicantPersonInfo = clsBLSPeople.FindByID(ApplicantPersonID);
             this.ApplicationDate = ApplicationDate;
             this.ApplicationTypeID = ApplicationTypeID;
             this.ApplicationTypeInfo = clsBLApplicationType.Find(ApplicationTypeID);
@@ -278,7 +278,7 @@ namespace BuisnessLayer
             replacementApplication.ApplicantPersonID = oldLicense.DriverInfo.PersonID;
             replacementApplication.ApplicationDate = DateTime.Now;
             replacementApplication.ApplicationTypeID = (int)enApplicationType.ReplacementForDamaged;
-            replacementApplication.ApplicationStatus = 3; // تعيين الحالة مباشرة كـ Completed قبل الحفظ
+            replacementApplication.ApplicationStatus = 3;
             replacementApplication.LastStatusDate = DateTime.Now;
 
             clsBLApplicationType appType = clsBLApplicationType.Find((int)enApplicationType.ReplacementForDamaged);

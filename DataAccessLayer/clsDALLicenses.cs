@@ -42,7 +42,6 @@ namespace DVLD_DataAccess
         {
             bool isFound = false;
 
-            // افترض أن عندك كلاس الاتصال مع قاعدة البيانات ConnectionString
             using (SqlConnection connection = new SqlConnection(Connection.ConnectionString))
             {
                 string query = "SELECT Found=1 FROM Licenses WHERE LicenseID = @LicenseID";
@@ -61,7 +60,6 @@ namespace DVLD_DataAccess
                     }
                     catch (Exception ex)
                     {
-                        // Log exception if needed
                         isFound = false;
                     }
                 }
@@ -69,7 +67,6 @@ namespace DVLD_DataAccess
 
             return isFound;
         }
-        //  هان عشان تفحص ادا الشخص معاه رخصة من نوع نمعين ولا لا 
         public static bool IsLicenseExistByPersonIDAndLicenseClass(int PersonID, int LicenseClass)
         {
             bool isFound = false;
@@ -213,7 +210,6 @@ namespace DVLD_DataAccess
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            // تم تصحيح Licenses.LicenseClassID إلى Licenses.LicenseClass
             string query = @"SELECT Licenses.LicenseID, Licenses.ApplicationID, LicenseClasses.ClassName, Licenses.IssueDate, Licenses.ExpirationDate, Licenses.IsActive 
                      FROM Licenses 
                      INNER JOIN LicenseClasses ON Licenses.LicenseClass = LicenseClasses.LicenseClassID 
@@ -237,7 +233,6 @@ namespace DVLD_DataAccess
             }
             catch (Exception ex)
             {
-                // طباعة الخطأ في نافذة الـ Output للتتبع
                 System.Diagnostics.Debug.WriteLine("Error in GetDriverLicenses: " + ex.Message);
             }
             finally

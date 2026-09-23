@@ -14,11 +14,8 @@ namespace BuisnessLayer
         public int CreatedByUserID { set; get; }
         public DateTime CreatedDate { set; get; }
 
-        // =========================================================
-        // الخاصية المضافة للوصول لبيانات الشخص (بما فيها الاسم الكامل)
-        // =========================================================
+   
         public clsBLSPeople PersonInfo { set; get; }
-        // =========================================================
 
         public clsBLDriver()
         {
@@ -38,7 +35,6 @@ namespace BuisnessLayer
             this.CreatedByUserID = CreatedByUserID;
             this.CreatedDate = CreatedDate;
             
-            // جلب بيانات الشخص بمجرد تحميل السائق
             this.PersonInfo = clsBLSPeople.FindByID(this.PersonID);
 
             Mode = enMode.Update;

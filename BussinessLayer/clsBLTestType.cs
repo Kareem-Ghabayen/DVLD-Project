@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using DataAccessLayer; // تأكد من اسم الـ namespace عندك
+using DataAccessLayer; 
 
 namespace BusinessLayer
 {
@@ -63,7 +63,6 @@ namespace BusinessLayer
             switch (Mode)
             {
                 case enMode.AddNew:
-                    // أنواع الاختبارات عادة لا تُضاف من التطبيق بل من الـ DB، لكن لو لزم...
                     Mode = enMode.Update;
                     return true;
 

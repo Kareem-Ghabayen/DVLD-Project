@@ -136,18 +136,17 @@ namespace BusinessLayer
             }
             clsBLTest test = new clsBLTest();
             test.TestAppointmentID = testAppointmentID;
-            test.TestResult = testResult; // true = Pass, false = Fail
+            test.TestResult = testResult; 
             test.Notes = notes;
-            test.CreatedByUserID = clsGlobal.CurrentUser.UserID; // جبناه من الكلاس العالمي مباشرة
+            test.CreatedByUserID = clsGlobal.CurrentUser.UserID; 
 
-            if (test.Save()) // حفظ النتيجة في جدول Tests
+            if (test.Save()) 
             {
-                // 2. بعد ما حفظنا النتيجة، لازم نقفل الموعد الأصلي عشان يصير مغلق وما ينحجز مرة ثانية
                 clsBLTestAppointment appointment = clsBLTestAppointment.Find(testAppointmentID);
                 if (appointment != null)
                 {
                     appointment.IsLocked = true;
-                    appointment.Save(); // تحديث حالة الموعد ليصبح مقفل
+                    appointment.Save();
                 }
 
                 return true;
@@ -157,7 +156,6 @@ namespace BusinessLayer
         }
         public static bool DoesFailTestType(int localDrivingLicenseApplicationID, int testTypeID)
         {
-            // استدعاء الداتا لاير بتمرير رقم طلب الرخصة المحلي
             return clsDALTest.DoesFailTestType(localDrivingLicenseApplicationID, testTypeID);
         }
     }

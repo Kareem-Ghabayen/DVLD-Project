@@ -198,7 +198,7 @@ namespace DVLD.Applications
                 MessageBox.Show("Could not delete application.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        }
+        
 
         private void cancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -238,42 +238,30 @@ namespace DVLD.Applications
 
             _RefreshLocalDrivingLicenseApplicationsList();
         }
-        private void _ScheduleTest(int testTypeID)
-        {
-            //int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
-            //frmListTestAppointments frm = new frmListTestAppointments(localDrivingLicenseApplicationID, testTypeID);
-            //frm.ShowDialog();
-            //_RefreshLocalDrivingLicenseApplicationsList();
-        }
+
 
         private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgvLocalDrivingLicenseApplications.CurrentRow == null)
                 return;
 
-            // 2. جلب رقم الطلب المحلي من السطر المحدد
             int localDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells["LocalDrivingLicenseApplicationID"].Value;
 
-            // 3. فتح شاشة إصدار الرخصة لأول مرة وتمرير الرقم
             frmIssueDriverLicenseFirstTime frm = new frmIssueDriverLicenseFirstTime(localDrivingLicenseApplicationID);
             frm.ShowDialog();
 
-            // 4. إعادة تحميل الجدول لتحديث حالة الطلب فور إغلاق الشاشة
             frmListLocalDrivingLicenseApplications_Load(null, null);
         }
 
         private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 1. جلب رقم الطلب المحلي من السطر المحدد في الجدول
             int LocalDrivingLicenseApplicationID = (int)dgvLocalDrivingLicenseApplications.CurrentRow.Cells[0].Value;
 
-            // 2. البحث عن بيانات الطلب للحصول على رقم الشخص (ApplicantPersonID)
             clsBLLocalDrivingLicenseApplication LocalDrivingLicenseApplication =
                 clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
 
             if (LocalDrivingLicenseApplication != null)
             {
-                // 3. تمرير رقم الشخص للكونستركتور وفتح الشاشة
                 frmShowPersonLicenseHistory frm = new frmShowPersonLicenseHistory(LocalDrivingLicenseApplication.BaseApplicationInfo.ApplicantPersonID);
                 frm.ShowDialog();
             }

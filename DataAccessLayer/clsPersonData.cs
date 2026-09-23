@@ -326,7 +326,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -359,7 +358,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
             }
             finally
@@ -414,7 +412,6 @@ INNER JOIN Countries ON People.NationalityCountryID = Countries.CountryID" ;
             }
             catch (Exception ex)
             {
-               // Console.WriteLine("Error " + ex.Message);
             }
 
             finally

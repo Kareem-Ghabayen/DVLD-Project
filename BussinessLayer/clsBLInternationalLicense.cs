@@ -14,7 +14,7 @@ namespace BusinessLayer
         public int InternationalLicenseID { set; get; }
         public int ApplicationID { set; get; }
         public int DriverID { set; get; }
-        public clsBLDriver DriverInfo { set; get; } // كائن السائق للوصول لبياناته مباشرة من الخارج
+        public clsBLDriver DriverInfo { set; get; } 
         public int IssuedUsingLocalLicenseID { set; get; }
         public DateTime IssueDate { set; get; }
         public DateTime ExpirationDate { set; get; }
@@ -41,7 +41,7 @@ namespace BusinessLayer
             this.InternationalLicenseID = internationalLicenseID;
             this.ApplicationID = applicationID;
             this.DriverID = driverID;
-            this.DriverInfo = clsBLDriver.FindByDriverID(driverID); // تحميل بيانات السائق تلقائياً
+            this.DriverInfo = clsBLDriver.FindByDriverID(driverID); 
             this.IssuedUsingLocalLicenseID = issuedUsingLocalLicenseID;
             this.IssueDate = issueDate;
             this.ExpirationDate = expirationDate;

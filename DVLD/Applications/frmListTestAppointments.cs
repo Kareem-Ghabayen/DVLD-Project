@@ -76,7 +76,7 @@ namespace DVLD.Applications
         private void btnAddNewAppointment_Click(object sender, EventArgs e)
         {
             int localDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
-            clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType; // VisionTest, WrittenTest, or StreetTest
+            clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType; 
 
             frmScheduleTest frm = new frmScheduleTest(localDrivingLicenseApplicationID, testTypeID);
             frm.ShowDialog();
@@ -105,10 +105,8 @@ namespace DVLD.Applications
                 clsBLTestType.enTestType testTypeID = (clsBLTestType.enTestType)_TestType;
                 frmTakeTest frm = new frmTakeTest(_LocalDrivingLicenseApplicationID, testTypeID, testAppointmentID);
 
-                // 3. عرض الشاشة كـ Dialog
                 frm.ShowDialog();
 
-                // 4. إعادة تحميل الجدول لتحديث القائمة وإظهار الموعد المقفول (IsLocked = true)
                 _RefreshAppointmentsList();
             }
         }

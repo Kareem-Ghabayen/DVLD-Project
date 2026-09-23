@@ -276,7 +276,6 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        // 9. التحقق عما إذا كان الشخص يمتلك حساب مستخدم مسبقاً
         public static bool IsUserExistForPersonID(int PersonID)
         {
             bool isFound = false;
@@ -328,7 +327,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {

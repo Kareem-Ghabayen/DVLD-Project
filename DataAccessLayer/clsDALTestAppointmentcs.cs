@@ -25,7 +25,6 @@ namespace DataAccessLayer
                 {
                     isFound = true;
 
-                    // استخدام Convert ينقذ الكود من أخطاء التحويل الصريح
                     TestTypeID = Convert.ToInt32(reader["TestTypeID"]);
                     LocalDrivingLicenseApplicationID = Convert.ToInt32(reader["LocalDrivingLicenseApplicationID"]);
                     AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
@@ -36,14 +35,12 @@ namespace DataAccessLayer
                     if (reader["RetakeTestApplicationID"] != DBNull.Value)
                         RetakeTestApplicationID = Convert.ToInt32(reader["RetakeTestApplicationID"]);
                     else
-                        //throw new Exception($"RetakeTestApplicationID is NULL in Database for TestAppointmentID: {TestAppointmentID}");
                     RetakeTestApplicationID = -1;
                 }
                 reader.Close();
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("DAL Error in GetTestAppointmentByID: " + ex.Message);
                 isFound = false;
             }
             finally { connection.Close(); }
@@ -100,7 +97,6 @@ namespace DataAccessLayer
             int TestAppointmentID = -1;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            // تم تصحيح اسم العمود واسم البرامتر إلى RetakeTestApplicationID
             string query = @"INSERT INTO TestAppointments 
                         (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, PaidFees, CreatedByUserID, IsLocked, RetakeTestApplicationID)
                      VALUES 
@@ -128,7 +124,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // طباعة تفاصيل الخطأ في الـ Output لمعرفتها فوراً مستقبلاً
                 Console.WriteLine("DAL Error: " + ex.Message);
             }
             finally
@@ -145,7 +140,6 @@ namespace DataAccessLayer
             bool isUpdated = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            // تم تصحيح اسم العمود واسم البرامتر ليكون المطابق لجدول الداتابيز RetakeTestApplicationID
             string query = @"UPDATE TestAppointments SET 
                 TestTypeID = @TestTypeID,
                 LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID,
@@ -165,7 +159,6 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             command.Parameters.AddWithValue("@IsLocked", IsLocked);
 
-            // تحويل الـ -1 إلى DBNull.Value لمنع خطأ Foreign Key في SQL Server
             if (RetakeTestApplicationID == -1)
                 command.Parameters.AddWithValue("@RetakeTestApplicationID", DBNull.Value);
             else
@@ -179,7 +172,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // طباعة تفاصيل الخطأ لو حدثت مشكلة مستقبلاً
                 Console.WriteLine("DAL Update Error: " + ex.Message);
             }
             finally
@@ -237,7 +229,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Log exception if needed
                 isActive = false;
             }
             finally
@@ -251,7 +242,6 @@ namespace DataAccessLayer
         {
             int retakeAppID = -1;
 
-            // استعلام بيجيب أحدث طلب إعادة فحص (نوع 7) مرتبط بهذا الطلب المحلي وما انحجز فيه موعد بعد (أو غير مكتمل)
             string query = @"SELECT TOP 1 Applications.ApplicationID 
                      FROM Applications
                      INNER JOIN LocalDrivingLicenseApplications 
@@ -279,7 +269,6 @@ namespace DataAccessLayer
                     }
                     catch (Exception ex)
                     {
-                        // Log exception
                     }
                 }
             }
@@ -290,7 +279,7 @@ namespace DataAccessLayer
         {
             DataTable dt = new DataTable();
 
-            SqlConnection connection = new SqlConnection(Connection.ConnectionString); // أصلح اسم كلاس الاتصال إن اختلف عندك
+            SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
             string query = @"SELECT TestAppointmentID, AppointmentDate, PaidFees, IsLocked
                      FROM TestAppointments
@@ -316,7 +305,6 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                // Handle Exception
             }
             finally
             {

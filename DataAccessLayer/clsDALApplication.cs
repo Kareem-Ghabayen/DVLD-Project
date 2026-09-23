@@ -336,12 +336,11 @@ namespace DataAccessLayer
             bool isExist = false;
             SqlConnection connection = new SqlConnection(Connection.ConnectionString);
 
-            // الفحص يتم حصرياً في جدول Applications الرئيسي بناءً على الشخص وننوع الطلب والحالة (غير مكتمل)
             string query = @"SELECT Found = 1 
                      FROM Applications 
                      WHERE ApplicantPersonID = @PersonID 
                        AND ApplicationTypeID = @ApplicationTypeID 
-                       AND ApplicationStatus = 2"; // 3 تعني Completed (مكتمل)
+                       AND ApplicationStatus = 2"; 
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
@@ -376,7 +375,7 @@ namespace DataAccessLayer
                      WHERE Applications.ApplicantPersonID = @ApplicantPersonID 
                        AND Applications.ApplicationTypeID = @ApplicationTypeID 
                        AND LocalDrivingLicenseApplications.LicenseClassID = @LicenseClassID 
-                       AND Applications.ApplicationStatus = 1;"; // 1 = New / Active
+                       AND Applications.ApplicationStatus = 1;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);

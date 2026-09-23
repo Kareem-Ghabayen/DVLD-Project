@@ -33,12 +33,9 @@ namespace DVLD.Applications
         {
             if (_PersonID != -1)
             {
-                // هذا السطر يجلب بيانات الشخص ويشغل OnPersonSelected تلقائياً
                 ctrlPersonCardWithFilter1.LoadPersonInfo(_PersonID);
                 ctrlPersonCardWithFilter1.FilterEnabled = false;
 
-                // احذف السطر التالي لأنه يسبب الاستدعاء الثاني المكرر:
-                // ctrlDriverLicenses1.LoadInfoByPersonID(_PersonID);
             }
             else
             {

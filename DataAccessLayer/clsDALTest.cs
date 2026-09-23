@@ -246,7 +246,6 @@ namespace DataAccessLayer
         {
             bool isFailed = false;
 
-            // استعلام مباشر بجدول المواعيد بدون الحاجة لـ JOINs زائدة مع جدول الأشخاص
             string query = @"SELECT TOP 1 Tests.TestResult 
                      FROM Tests 
                      INNER JOIN TestAppointments ON Tests.TestAppointmentID = TestAppointments.TestAppointmentID
@@ -268,13 +267,11 @@ namespace DataAccessLayer
 
                         if (result != null && bool.TryParse(result.ToString(), out bool testResult))
                         {
-                            // لو النتيجة false (راسب) ترجع isFailed = true
                             isFailed = !testResult;
                         }
                     }
                     catch (Exception ex)
                     {
-                        // Handling Exception
                     }
                 }
             }

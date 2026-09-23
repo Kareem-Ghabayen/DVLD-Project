@@ -1,7 +1,7 @@
 ﻿using BuisnessLayer;
 using BusinessLayer;
 using DataAccessLayer;
-using DVLD_DataAccess; // أو حسب اسم مساحة الأسماء عندك في الـ DAL
+using DVLD_DataAccess; 
 using System;
 using System.Data;
 using static BuisnessLayer.clsBLApplication;
@@ -88,7 +88,15 @@ namespace DVLD_BLL
                     return _UpdateLocalDrivingLicenseApplication();
             }
         }
+        public static bool DeleteLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID)
+        {
+            // فحص بسيط للمدخلات فقط
+            if (LocalDrivingLicenseApplicationID <= 0)
+                return false;
 
+            // استدعاء مباشر لدالة الـ DAL وتمرير القيمة
+            return clsDALLocalDrivingLicenseApplication.DeleteLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID);
+        }
         private bool _AddNewLocalDrivingLicenseApplication()
         {
             this.LocalDrivingLicenseApplicationID = clsDALLocalDrivingLicenseApplication.AddNewLocalDrivingLicenseApplication(

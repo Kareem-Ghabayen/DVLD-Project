@@ -68,7 +68,6 @@ namespace DVLD.Applications
                 lblTotalFees.Text = (ctrlScheduledTest1.TestFees + retakeAppFees).ToString();
                 lblRTestAppID.Text = "N/A";
             }
-            // حالة تعديل موعد قائم (Update Mode)
             else if (_AppointmentID != -1)
             {
                 var appointment = clsBLTestAppointment.Find(_AppointmentID);

@@ -69,7 +69,6 @@ public class clsDALLicenseClasses
         return isFound;
     }
 
-    // 3. البحث عن فئة رخصة باستخدام اسمها (ClassName)
     public static bool GetLicenseClassInfoByClassName(string ClassName, ref int LicenseClassID, ref string ClassDescription,
         ref byte MinimumAllowedAge, ref byte DefaultValidityLength, ref float ClassFees)
     {

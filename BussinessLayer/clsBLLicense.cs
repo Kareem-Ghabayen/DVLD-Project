@@ -6,7 +6,7 @@ using System;
 using System.Data;
 using static BuisnessLayer.clsBLApplication;
 
-namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
+namespace BuisnessLayer 
 {
     public class clsBLLicense
     {
@@ -28,9 +28,6 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public clsBLDriver DriverInfo { get; set; }
 
-        // =========================================================
-        // الخصائص المضافة لدعم واجهة عرض الرخصة (ctrlDriverLicenseInfo)
-        // =========================================================
 
         public clsBLLicenseClass LicenseClassInfo => clsBLLicenseClass.Find(this.LicenseClass);
 
@@ -56,7 +53,6 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public bool IsDetained => clsBLDetainedLicense.IsLicenseDetained(this.LicenseID);
 
-        // =========================================================
 
         public clsBLLicense()
         {
@@ -189,7 +185,6 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public clsBLLicense RenewLicense(string Notes, int CreatedByUserID)
         {
-            // 1. إنشاء طلب تجديد جديد بجدول Applications
             clsBLApplication application = new clsBLApplication();
             application.ApplicantPersonID = this.DriverInfo.PersonID;
             application.ApplicationDate = DateTime.Now;
@@ -202,12 +197,10 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             if (!application.Save())
                 return null;
 
-            // 2. إلغاء تفعيل الرخصة القديمة
             this.IsActive = false;
             if (!this.Save())
                 return null;
 
-            // 3. إصدار الرخصة الجديدة
             clsBLLicense newLicense = new clsBLLicense();
             newLicense.ApplicationID = application.ApplicationID;
             newLicense.DriverID = this.DriverID;
@@ -231,39 +224,34 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public int IssueLicenseFirstTime(int localDrivingLicenseApplicationID, string notes = "")
         {
-            // 1. جلب الطلب المحلي وفحص هل اجتاز الـ 3 اختبارات
             clsBLLocalDrivingLicenseApplication localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
 
             if (localApp == null || localApp.GetPassedTestCount() < 3)
-                return -1; // يا إما الطلب مش موجود أو ما خلص الفحوصات
+                return -1;
 
-            // 2. جلب الطلب الأساسي (Application) عشان نقدر نطلع منها رقم الشخص (ApplicantPersonID)
             clsBLApplication baseApplication = clsBLApplication.Find(localApp.ApplicationID);
             if (baseApplication == null)
                 return -1;
 
-            // 3. جلب أو إنشاء رقم السائق (DriverID) تلقائياً باستخدام رقم الشخص
             int driverID = clsBLDriver.GetOrCreateDriverID(baseApplication.ApplicantPersonID);
             if (driverID == -1)
-                return -1; // لو فشل في جلب أو إنشاء السائق
+                return -1; 
 
             clsBLLicenseClass licenseClassInfo = clsBLLicenseClass.Find(localApp.LicenseClassID);
             if (licenseClassInfo == null)
                 return -1;
 
-            // 4. تعبئة بيانات الرخصة
             this.ApplicationID = localApp.ApplicationID;
-            this.DriverID = driverID; // رقم السائق الصحيح
+            this.DriverID = driverID; 
             this.LicenseClass = localApp.LicenseClassID;
             this.IssueDate = DateTime.Now;
             this.ExpirationDate = DateTime.Now.AddYears(licenseClassInfo.DefaultValidityLength);
             this.Notes = notes;
             this.PaidFees = licenseClassInfo.ClassFees;
             this.IsActive = true;
-            this.IssueReason = 1; // First Time
+            this.IssueReason = 1; 
             this.CreatedByUserID = clsGlobal.CurrentUser.UserID;
 
-            // 5. الحفظ وتحديث حالة الطلب
             if (this.Save())
             {
                 baseApplication.SetComplete();
@@ -275,14 +263,12 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
 
         public clsBLLicense Replace(enIssueReason issueReason, int applicationID)
         {
-            // 1. إلغاء تفعيل الرخصة القديمة الحالية
             this.IsActive = false;
             if (!this.Save())
             {
                 return null;
             }
 
-            // 2. إنشاء رخصة جديدة كبديل للرخصة الحالية
             clsBLLicense newLicense = new clsBLLicense();
 
             newLicense.ApplicationID = applicationID;
@@ -290,11 +276,10 @@ namespace BuisnessLayer // أو حسب اسم الـ Namespace عندك
             newLicense.LicenseClass = this.LicenseClass;
             newLicense.IssueDate = DateTime.Now;
 
-            // الاحتفاظ بنفس تاريخ الانتهاء القديم دون تغيير
             newLicense.ExpirationDate = this.ExpirationDate;
 
             newLicense.Notes = this.Notes;
-            newLicense.PaidFees = 0; // الرسوم 0 لأن رسوم الاستبدال تدفع في Application Fees فقط
+            newLicense.PaidFees = 0;
             newLicense.IsActive = true;
             newLicense.IssueReason = (byte)issueReason;
             newLicense.CreatedByUserID = clsGlobal.CurrentUser.UserID;

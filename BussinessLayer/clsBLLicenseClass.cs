@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using DataAccessLayer; // تأكد من اسم الـ Namespace تبع الـ DAL عندك
+using DataAccessLayer; 
 
 namespace BuisnessLayer
 {
@@ -14,9 +14,8 @@ namespace BuisnessLayer
         public string ClassDescription { get; set; }
         public byte MinimumAllowedAge { get; set; }
         public byte DefaultValidityLength { get; set; }
-        public decimal ClassFees { get; set; } // حولناها لـ decimal للفلوس والأمان
+        public decimal ClassFees { get; set; } 
 
-        // Constructor فاضي للإنشاء الجديد
         public clsBLLicenseClass()
         {
             this.LicenseClassID = -1;
@@ -29,7 +28,6 @@ namespace BuisnessLayer
             Mode = enMode.AddNew;
         }
 
-        // Constructor خاص بالـ Update والـ Find
         private clsBLLicenseClass(int licenseClassID, string className, string classDescription,
             byte minimumAllowedAge, byte defaultValidityLength, float classFees)
         {
@@ -38,12 +36,11 @@ namespace BuisnessLayer
             this.ClassDescription = classDescription;
             this.MinimumAllowedAge = minimumAllowedAge;
             this.DefaultValidityLength = defaultValidityLength;
-            this.ClassFees = (decimal)classFees; // تحويل الـ float القادم من الـ DAL لـ decimal
+            this.ClassFees = (decimal)classFees; 
 
             Mode = enMode.Update;
         }
 
-        // دالة الـ Find بالـ ID
         public static clsBLLicenseClass Find(int licenseClassID)
         {
             string className = "", classDescription = "";
@@ -64,7 +61,6 @@ namespace BuisnessLayer
             }
         }
 
-        // دالة الـ Find بالاسم (ClassName)
         public static clsBLLicenseClass Find(string className)
         {
             int licenseClassID = -1;
@@ -86,13 +82,11 @@ namespace BuisnessLayer
             }
         }
 
-        // دالة لجلب كل فئات الرخص لعرضها في Grid أو ComboBox
         public static DataTable GetAllLicenseClasses()
         {
             return clsDALLicenseClasses.GetAllLicenseClasses();
         }
 
-        // دالة الـ Save (إضافة أو تعديل)
         private bool _AddNewLicenseClass()
         {
             this.LicenseClassID = clsDALLicenseClasses.AddNewLicenseClass(this.ClassName, this.ClassDescription,

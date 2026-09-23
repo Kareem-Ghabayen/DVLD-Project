@@ -128,21 +128,18 @@ namespace BusinessLayer
         {
             try
             {
-                // 1. فحص هل اجتاز الاختبار سابقاً
                 if (clsBLTest.DoesPassTestType(localDrivingLicenseApplicationID, testTypeID))
                 {
                     Console.WriteLine("تتبع 1: فشل بسبب أن المتقدم اجتاز هذا الاختبار سابقاً!");
                     return false;
                 }
 
-                // 2. فحص هل يوجد موعد نشط حالياً
                 if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
                 {
                     Console.WriteLine("تتبع 2: فشل بسبب وجود موعد نشط ومحجوز حالياً لهذا الفحص!");
                     return false;
                 }
 
-                // 3. فحص وجود الطلب المحلي وعدد المحاولات السابقة
                 var localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
                 if (localApp == null)
                 {
@@ -157,7 +154,6 @@ namespace BusinessLayer
                     return false;
                 }
 
-                // 4. فحص جلب رسوم نوع الاختبار
                 var testType = clsBLTestType.Find(testTypeID);
                 if (testType == null)
                 {
@@ -165,14 +161,12 @@ namespace BusinessLayer
                     return false;
                 }
 
-                // 5. فحص تسجيل دخول المستخدم الحالي
                 if (clsGlobal.CurrentUser == null)
                 {
                     Console.WriteLine("تتبع 5: فشل بسبب أن clsGlobal.CurrentUser يساوي null!");
                     return false;
                 }
 
-                // 6. إنشـاء وتعبئة الكائن
                 clsBLTestAppointment appointment = new clsBLTestAppointment();
                 appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
                 appointment.TestTypeID = testTypeID;
@@ -181,7 +175,6 @@ namespace BusinessLayer
                 appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID;
                 appointment.RetakeTestApplicationID = -1;
 
-                // 7. محاولة الحفظ في قاعدة البيانات
                 if (!appointment.Save())
                 {
                     Console.WriteLine("تتبع 6: فشل داخل appointment.Save()! (تأكد من الـ DAL وقيم DBNull.Value للـ RetakeTestApplicationID)");
@@ -200,21 +193,18 @@ namespace BusinessLayer
 
         public static clsBLTestAppointment ScheduleRetakeTest(int localDrivingLicenseApplicationID, int testTypeID, DateTime appointmentDate)
         {
-            // 1. التحقق من الرسوب في أحدث اختبار
             if (!clsBLTest.DoesFailTestType(localDrivingLicenseApplicationID, testTypeID))
             {
                 Console.WriteLine("DEBUG: الشخص ليس راسباً في هذا الاختبار!");
                 return null;
             }
 
-            // 2. التحقق من عدم وجود موعد نشط حالياً
             if (clsBLTestAppointment.IsThereAnActiveAppointment(localDrivingLicenseApplicationID, testTypeID))
             {
                 Console.WriteLine("DEBUG: يوجد موعد نشط بالفعل لهذا الاختبار!");
                 return null;
             }
 
-            // 3. جلب بيانات طلب الرخصة المحلي للحصول على رقم الشخص
             clsBLLocalDrivingLicenseApplication localApp = clsBLLocalDrivingLicenseApplication.FindByLocalDrivingLicenseApplicationID(localDrivingLicenseApplicationID);
             if (localApp == null)
             {
@@ -222,7 +212,6 @@ namespace BusinessLayer
                 return null;
             }
 
-            // 4. إنشاء طلب إعادة الاختبار وحفظه في جدول Applications (بدلاً من البحث عن طلب سابق)
             clsBLApplication retakeApplication = new clsBLApplication();
             retakeApplication.ApplicantPersonID = localApp.BaseApplicationInfo.ApplicantPersonID;
             retakeApplication.ApplicationDate = DateTime.Now;
@@ -238,7 +227,6 @@ namespace BusinessLayer
                 return null;
             }
 
-            // 5. إنشاء موعد الاختبار وربطه برقم طلب الإعادة الجديد المتولد تلقائياً
             clsBLTestAppointment appointment = new clsBLTestAppointment();
             appointment.TestTypeID = testTypeID;
             appointment.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
@@ -247,10 +235,8 @@ namespace BusinessLayer
             appointment.CreatedByUserID = clsGlobal.CurrentUser.UserID;
             appointment.IsLocked = false;
 
-            // هان نقطة الربط الجوهرية: إسناد الـ ID الجديد للطلب الذي أنشأناه لتوّنا
             appointment.RetakeTestApplicationID = retakeApplication.ApplicationID;
 
-            // 6. حفظ الموعد في جدول TestAppointments
             if (!appointment.Save())
             {
                 Console.WriteLine("DEBUG: فشل حفظ الموعد في قاعدة البيانات!");

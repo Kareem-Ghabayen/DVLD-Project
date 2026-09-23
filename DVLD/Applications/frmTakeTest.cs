@@ -27,10 +27,8 @@ private int _LocalDrivingLicenseApplicationID;
 
         private void frmTakeTest_Load(object sender, EventArgs e)
         {
-            // 1. تحميل البيانات في الكنترول
             ctrlScheduledTest1.LoadInfo(_LocalDrivingLicenseApplicationID, _TestTypeID, _TestAppointmentID);
 
-            // 2. التحقق مما إذا كان الاختبار قد تم إجراؤه سابقاً
             clsBLTest test = clsBLTest.FindByTestAppointmentID(_TestAppointmentID);
 
             if (test != null)
@@ -42,7 +40,6 @@ private int _LocalDrivingLicenseApplicationID;
 
                 txtNotes.Text = test.Notes;
 
-                // قفل الواجهة لأن الاختبار أُجري سابقاً
                 btnSave.Enabled = false;
                 rbPass.Enabled = false;
                 rbFail.Enabled = false;
@@ -58,7 +55,6 @@ private int _LocalDrivingLicenseApplicationID;
                 return;
             }
 
-            // استدعاء ميثود الـ BLL المباشرة
             if (clsBLTest.TakeTest(_TestAppointmentID, rbPass.Checked, txtNotes.Text.Trim()))
             {
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);

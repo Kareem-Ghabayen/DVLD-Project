@@ -145,7 +145,6 @@ namespace BuisnessLayer
             switch (Mode)
             {
                 case enMode.AddNew:
-                    // التأكد من عدم تكرار اسم المستخدم أو أن الشخص لديه حساب مسبقاً
                     if (IsUserExist(this.UserName) || IsUserExistForPersonID(this.PersonID))
                     {
                         return false;

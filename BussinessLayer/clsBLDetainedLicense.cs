@@ -1,5 +1,5 @@
 ﻿using BuisnessLayer;
-using DataAccessLayer; // أو DVLD_DataAccess حسب مساحة الأسماء عندك
+using DataAccessLayer;
 using DVLD_DataAccess;
 using System;
 using System.Data;
